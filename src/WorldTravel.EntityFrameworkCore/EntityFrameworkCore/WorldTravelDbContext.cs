@@ -2,7 +2,6 @@
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
@@ -11,10 +10,10 @@ using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Users.EntityFrameworkCore;
 using WorldTravel.Entities.Cities;
+using WorldTravel.Entities.Countries;
 using WorldTravel.Entities.Files;
 using WorldTravel.Entities.Logs;
 using WorldTravel.Entities.MailTemplates;
@@ -26,14 +25,13 @@ using WorldTravel.Entities.Users;
 
 namespace WorldTravel.EntityFrameworkCore
 {
-    [ReplaceDbContext(typeof(IIdentityDbContext))]
-    [ReplaceDbContext(typeof(ITenantManagementDbContext))]
     [ConnectionStringName("Default")]
     public class WorldTravelDbContext : 
         AbpDbContext<WorldTravelDbContext>
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */
         public DbSet<City> Cities { get; set; }
+        public DbSet<Country> Countries { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<MailTemplate> MailTemplates { get; set; }

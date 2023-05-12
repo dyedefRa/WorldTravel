@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Volo.Abp.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace WorldTravel.Entities.Messages
 {
@@ -24,12 +25,12 @@ namespace WorldTravel.Entities.Messages
         public DateTime ReceiverStatusDate { get; set; }
         public DateTime CreatedDate { get; set; }
         public Guid SenderId { get; set; }
-        [ForeignKey("SenderId")]
-        public virtual AppUser Sender { get; set; }
+        //[ForeignKey("SenderId")]
+        //public virtual AppUser Sender { get; set; }
         public Guid ReceiverId { get; set; }
 
-        [ForeignKey("ReceiverId")]
-        public virtual AppUser Receiver { get; set; }
+        //[ForeignKey("ReceiverId")]
+        //public virtual AppUser Receiver { get; set; }
 
         //ARSIV MI SENDER ARSIV MI REIVECER
         public MessageType MessageType { get; set; }

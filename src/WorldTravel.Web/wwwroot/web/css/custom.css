@@ -25,6 +25,11 @@
     background-color: lightpink;
 }
 
+
+
+
+
+
 /*#toast-container > .toast {
     background-image: none !important;
 }*/
@@ -879,3 +884,12 @@ button:focus {
         cursor:pointer;
     }
 /*MESSAGE <<<<<<<<<<<<<<<<<<<*/
+
+
+.logo-next-name {
+    color: #1594d0;
+    font-size: 25px;
+    margin-left: 8px;
+    margin-top: 3px;
+}
+

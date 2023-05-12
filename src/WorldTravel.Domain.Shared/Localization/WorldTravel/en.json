@@ -3,6 +3,93 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+
+
+
+    //GENEL
+    //"ProjectName": "WorldTravel",
+    //"Home": "Ana sayfa",
+    //"Popular": "Popüler",
+    //"Cities": "Şehirler",
+    //"Register": "Üye Ol",
+    //"LoginB": "GİRİŞ YAP",
+    //"Login": "Giriş Yap",
+    //"Profile": "PROFİLİM",
+    //"Logout": "Çıkış Yap",
+    //"Message": "Mesaj",
+    //"Loading": "Yükleniyor...",
+    //"Choose": "Seçiniz",
+    //"Name": "Ad",
+    //"Surname": "Soyad",
+    //"UserName": "Kullanıcı Adı",
+    //"Email": "Email",
+    //"PhoneNumber": "Telefon",
+    //"Password": "Parola",
+    //"ConfirmPassword": "Parola Doğrulama",
+    //"Gender": "Cinsiyet",
+    //"BirthDate": "Doğum Tarihi",
+    //"Description": "Açıklama",
+    //"MyAccountInformation": "Hesap Bilgilerim",
+    //"MyAdverts": "İlanlarım",
+    //"SelectImage": "Profil Resmi Seç",
+    //"Search": "Ara",
+    //"Messages": "Mesajlar",
+
+    //"ForgotYourPassword": "Parolamı Unuttum",
+    //"WantToBeRegister": "Üye Olmak İstiyorum",
+    //"LoginInstead": "Bunun yerine oturum aç",
+
+
+    ////MENU
+    //"UserManagement": "Kullanıcı Yönetimi",
+    //"RoleManagement": "Rol Yönetimi",
+    //"AdminPage": "Admin Ana Sayfa",
+    //"PageManagement": "Sayfa Yönetimi",
+    //"MesageManagement": "Mesaj Yönetimi",
+    //"MesageManagementSee": "Görme",
+
+    ////MESSAGE
+    //"Mute": "Sessize Al",
+    //"Block": "Blokla",
+    //"DeleteMessage": "Mesajı Sil",
+    //"WriteMessage": "Mesaj yaz..",
+    //"Send": "Gönder",
+
+    ////ENUMS
+    //"Enum:Status:0": "Belirtilmedi",
+    //"Enum:Status:-1": "Pasif",
+    //"Enum:Status:1": "Aktif",
+    //"Enum:Status:-255": "Silinmiş",
+
+    //"Unstated": "Belirtilmedi",
+    //"Male": "Erkek",
+    //"Female": "Kadın",
+
+    //"Enum:GenderType:1": "Erkek",
+    //"Enum:GenderType:2": "Kadın",
+
+
+    ////ERORS
+    //"ReturnHomePage": "Ana sayfaya dön",
+    //"NotFoundPage": "Sayfa Bulunamadı",
+    //"UnauthorizedPageB": "BU SAYFAYA ERİŞİM İZNİNİZ YOK",
+    //"YouMustLogin": "Lütfen tekrardan giriş yapınız",
+    //"NotAllowedProcess": "Bu işlemi yapmaya izniniz yok",
+    //"UnexpectedErrorPage": "Beklenmedik bir hata oluştu.",
+    //"SorryAnErrorHasOccurred": "Üzgünüm, bir hata oluştu.",
+    //"ImageFailedToLoad": "Resim Yüklenemedi.",
+    //"GeneralIdentityError": "Bir hata oluştu.Lütfen girdilerinizi kontrol ediniz.",
+    //"GeneralUploadError": "Bir hata oluştu.Lütfen tekrar deneyiniz.",
+    //"GeneralError": "Bir hata oluştu.",
+
+
+    ////SUCCESS
+    //"SuccessfullyCompleted": "İşleminiz başarıyla tamamlandı",
+    //"MessageSuccessfullyDeleted": "Mesaj başarıyla silindi",
+
+
+    "Turkish": "Turkish",
+    "English": "English"
   }
 }

@@ -51,7 +51,7 @@ namespace WorldTravel.Services
             {
                 var currentUserId = CurrentUser.Id.Value;
                 var query = Repository.Where(x => x.Status == Status.Active && (x.SenderId == currentUserId || x.ReceiverId == currentUserId)).AsQueryable();
-                query = query.Include(x => x.Sender).Include(x => x.Receiver);
+                //query = query.Include(x => x.Sender).Include(x => x.Receiver);
 
                 var list = await AsyncExecuter.ToListAsync(query);
                 var viewModels = list
@@ -59,10 +59,10 @@ namespace WorldTravel.Services
                     {
 
                         var viewModel = ObjectMapper.Map<Message, MessageViewModel>(x);
-                        var shownUser = x.SenderId == currentUserId ? x.Receiver : x.Sender;
-                        viewModel.ShownUserFullName = shownUser.Name + " " + shownUser.Surname;
-                        viewModel.ShownUserImageUrl = _fileAppService.SetDefaultImageIfFileIsNull(shownUser.ImageId, shownUser.Gender.Value);
-                        viewModel.ShownUserZodiacSign = shownUser.BirthDate.HasValue ? shownUser.BirthDate.Value.ToZodiacSign() : "";
+                        //var shownUser = x.SenderId == currentUserId ? x.Receiver : x.Sender;
+                        //viewModel.ShownUserFullName = shownUser.Name + " " + shownUser.Surname;
+                        //viewModel.ShownUserImageUrl = _fileAppService.SetDefaultImageIfFileIsNull(shownUser.ImageId, shownUser.Gender.Value);
+                        //viewModel.ShownUserZodiacSign = shownUser.BirthDate.HasValue ? shownUser.BirthDate.Value.ToZodiacSign() : "";
 
                         return viewModel;
                     })
@@ -101,7 +101,7 @@ namespace WorldTravel.Services
 
 
                 var query = Repository.Where(x => x.Status == Status.Active && x.Id == messageId).AsQueryable();
-                query = query.Include(x => x.Sender).Include(x => x.Receiver).Include(x => x.MessageContents);
+                //query = query.Include(x => x.Sender).Include(x => x.Receiver).Include(x => x.MessageContents);
 
                 var list = await AsyncExecuter.ToListAsync(query);
                 var viewModels = list
@@ -109,12 +109,12 @@ namespace WorldTravel.Services
                     {
                         MessageWithContentViewModel viewModel = new MessageWithContentViewModel();
                         viewModel.MessageId = x.Id;
-                        var shownUser = x.SenderId == CurrentUser.Id.Value ? x.Receiver : x.Sender;
-                        viewModel.MessageId = x.Id;
-                        viewModel.ShownUserId = shownUser.Id;
-                        viewModel.ShownUserFullName = shownUser.Name + " " + shownUser.Surname;
-                        var shownUserImageUrl = _fileAppService.SetDefaultImageIfFileIsNull(shownUser.ImageId, shownUser.Gender.Value);
-                        viewModel.ShownUserImageUrl = shownUserImageUrl;
+                        //var shownUser = x.SenderId == CurrentUser.Id.Value ? x.Receiver : x.Sender;
+                        //viewModel.MessageId = x.Id;
+                        //viewModel.ShownUserId = shownUser.Id;
+                        //viewModel.ShownUserFullName = shownUser.Name + " " + shownUser.Surname;
+                        //var shownUserImageUrl = _fileAppService.SetDefaultImageIfFileIsNull(shownUser.ImageId, shownUser.Gender.Value);
+                        //viewModel.ShownUserImageUrl = shownUserImageUrl;
 
                         //foreach (var messagecontent in x.MessageContents.OrderByDescending(x => x.CreatedDate).Take(15))
                         foreach (var messagecontent in x.MessageContents.OrderByDescending(x => x.CreatedDate))

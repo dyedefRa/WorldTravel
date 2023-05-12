@@ -10,8 +10,11 @@
         <div class="row align-items-center">
             <!--Web Logo-->
             <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
-                <a href="/Home">
-                    <img src="/web/images/home-logo.png" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
+                <a href="/Home" style="text-decoration:none;">
+                   <div  style="display:flex;">
+                        <img src="/web/images/world-logo.png" height="40" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
+                        <span class="logo-next-name">@L["ProjectName"]</span>
+                   </div>
                 </a>
             </div>
             <!--End Web Logo-->
@@ -69,9 +72,9 @@
                             <li class="lvl1 parent dropdown">
                                 <a href="#"><i class="fa fa-user fa-fw"></i> @L["Profile"]<i class="anm anm-angle-down-l"></i></a>
                                 <ul class="dropdown">
-                                   @* <li class="lvl1">
-                                        <img src="/uploads/profile/eecc75a5-bac7-4ef7-bd1f-ab472edf38f1_06-5-2023-04-23-03.png" alt="@L["User"]" id="profileImage" style="cursor: pointer" class="rounded-circle p-1 bg-pink" width="70" height="70">
-                                    </li>*@
+                                    @* <li class="lvl1">
+                                <img src="/uploads/profile/eecc75a5-bac7-4ef7-bd1f-ab472edf38f1_06-5-2023-04-23-03.png" alt="@L["User"]" id="profileImage" style="cursor: pointer" class="rounded-circle p-1 bg-pink" width="70" height="70">
+                                </li>*@
                                     <li><a href="/Account/Manage">@L["MyAccountInformation"]</a></li>
                                     <li><a href="/Account/MyAdvert">@L["MyAdverts"]</a></li>
                                     <li><a href="/Account/Logout">@L["Logout"]</a></li>

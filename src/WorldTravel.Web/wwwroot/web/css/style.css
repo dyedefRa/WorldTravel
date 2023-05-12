@@ -1377,10 +1377,20 @@ body.home8-jewellery { font-size:14px; }
 .home9-parallax .footer-top h4, .home9-parallax .footer-top .h4, .home9-parallax .footer-top, .home9-parallax .footer-links a, .home9-parallax .footer-top p, .home9-parallax .footer-bottom, .home9-parallax .footer-bottom a { color:#000; }
 .home9-parallax .site-footer hr { border-color:#e8e9eb; }
 
+.home9-parallax #siteNav > li > a {
+	color: black !important;
+}
+.home9-parallax #siteNav > li > a:hover {
+	color: #1594d0 !important;
+}
 /*---------------------------------------
   28.9 Home10 - Minimal  ----------------
   ---------------------------------------*/
-.home10-minimal .container-fluid { padding-left:30px; padding-right:30px; }
+.home10-minimal .container-fluid {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
 .home10-minimal #siteNav > li > a { font-weight:400; }
 .home10-minimal .top-header { background:#333333; text-transform:uppercase; }
 
