@@ -1,0 +1,188 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using WorldTravel.Localization
+@using WorldTravel.Extensions
+@inject IHtmlLocalizer<WorldTravelResource> L
+@model WorldTravel.Web.Pages.Home.IndexModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <style>
+
+        .top-text {
+            text-align: center;
+        }
+
+            .top-text h6 {
+                color: #fff;
+                font-size: 15px;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+
+            .top-text h2 {
+                color: #fff;
+                font-size: 45px;
+                font-weight: 800;
+                text-transform: capitalize;
+                margin-top: 15px;
+                margin-bottom: 45px;
+            }
+
+        .home-search-form {
+            background-color: #fff;
+            padding: 0px 0px 0px 30px;
+            width: 100%;
+            border-radius: 7px;
+            display: inline-block;
+            text-align: center;
+        }
+
+            .home-search-form select,
+            .home-search-form input {
+                width: 100%;
+                height: 36px;
+                background-color: transparent;
+                border: none;
+                color: #2a2a2a;
+                font-size: 15px;
+                outline: none;
+            }
+
+        .form-select:focus {
+            box-shadow: none;
+        }
+
+        .home-search-form input.searchText {
+            border-left: 1px solid #8d99af;
+            border-right: 1px solid #8d99af;
+            padding: 0px 30px;
+        }
+
+        .home-search-form input::placeholder {
+            color: #2a2a2a;
+            font-size: 15px;
+        }
+
+        .home-search-form button {
+            width: 100%;
+            height: 100%;
+            background-color: #8d99af;
+            border: none;
+            padding: 15px;
+            color: #fff;
+            font-size: 15px;
+            border-top-right-radius: 7px;
+            border-bottom-right-radius: 7px;
+        }
+
+            .home-search-form button i {
+                width: 40px;
+                height: 40px;
+                background-color: #fff;
+                border-radius: 50%;
+                color: #8d99af;
+                display: inline-block;
+                text-align: center;
+                line-height: 38px;
+                margin-right: 10px;
+            }
+
+    </style>
+}
+
+
+
+<!--Home slider-->
+<div class="slideshow slideshow-wrapper pb-section">
+    <div class="home-slideshow">
+        <div class="slide slideshow--medium">
+            <div class="blur-up lazyload">
+                <img class="blur-up lazyload" data-src="/web/images/slideshow-banners/home5-banner1.jpg" src="/web/images/slideshow-banners/home5-banner1.jpg" alt="The One" title="The One" />
+                <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                    <div class="slideshow__text-content classic left">
+                        <div class="container" style="margin-top:-250px;">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="top-text header-text">
+                                        <h6>Over 36,500+ Active Listings</h6>
+                                        <h2>Find Nearby Places &amp; Things</h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <form id="search-form" class="home-search-form" name="gs" method="submit" role="search" action="#">
+                                        <div class="row">
+                                            <div class="col-lg-3 align-self-center">
+                                                    <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
+                                                        <option selected>All Areas</option>
+                                                        <option value="New Village">New Village</option>
+                                                        <option value="Old Town">Old Town</option>
+                                                        <option value="Modern City">Modern City</option>
+                                                    </select>
+                                            </div>
+                                            <div class="col-lg-3 align-self-center">
+                                                <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
+                                                    <option selected>All Areas</option>
+                                                    <option value="New Village">New Village</option>
+                                                    <option value="Old Town">Old Town</option>
+                                                    <option value="Modern City">Modern City</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-3 align-self-center">
+                                                    <select name="price" class="form-select select3" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
+                                                        <option selected>Price Range</option>
+                                                        <option value="$100 - $250">$100 - $250</option>
+                                                        <option value="$250 - $500">$250 - $500</option>
+                                                        <option value="$500 - $1000">$500 - $1,000</option>
+                                                        <option value="$1000+">$1,000 or more</option>
+                                                    </select>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <fieldset>
+                                                    <button class="main-button btn btn-green"><i class="fa fa-search"></i> @L["Search"]</button>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Home slider-->
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('body').addClass('home5-cosmetic');
+
+            //#region Filter
+
+            //#endregion
+
+            //abp.ajax({
+            //    type: 'GET',
+            //    url: '/api/identity/users'
+            //}).then(function (result) {
+            //    console.log(result);
+            //}).catch(function () {
+            //    alert("request failed :(");
+            //});
+
+
+            //abp.ajax({
+            //    url: abp.appPath + 'Portal/Catalog/SwitchCustomer',
+            //    data: JSON.stringify(info),
+            //    success: function (data) {
+            //        console.log('Data Returned: ' + data.personId);
+            //    }
+            //});
+        });
+    </script>
+}

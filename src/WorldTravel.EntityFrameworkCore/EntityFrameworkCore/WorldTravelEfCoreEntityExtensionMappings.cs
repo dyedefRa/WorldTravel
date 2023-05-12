@@ -2,6 +2,7 @@
 using Volo.Abp.Identity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.Threading;
+using WorldTravel.Entities.Users;
 
 namespace WorldTravel.EntityFrameworkCore
 {
@@ -39,6 +40,53 @@ namespace WorldTravel.EntityFrameworkCore
                  * See the documentation for more:
                  * https://docs.abp.io/en/abp/latest/Customizing-Application-Modules-Extending-Entities
                  */
+
+
+                ObjectExtensionManager.Instance
+                    .MapEfCoreProperty<IdentityUser, int?>(
+                        nameof(AppUser.UserType),
+                        (entityBuilder, propertyBuilder) =>
+                        {
+                            propertyBuilder.HasColumnName("UserType");
+                        }
+                    );
+
+                ObjectExtensionManager.Instance
+                      .MapEfCoreProperty<IdentityUser, int?>(
+                          nameof(AppUser.Gender),
+                          (entityBuilder, propertyBuilder) =>
+                          {
+                              propertyBuilder.HasColumnName("Gender");
+                          }
+                      );
+
+                ObjectExtensionManager.Instance
+                          .MapEfCoreProperty<IdentityUser, System.DateTime?>(
+                              nameof(AppUser.BirthDate),
+                              (entityBuilder, propertyBuilder) =>
+                              {
+                                  propertyBuilder.HasColumnType("datetime");
+                                  propertyBuilder.HasColumnName("BirthDate");
+                              }
+                          );
+
+                ObjectExtensionManager.Instance
+                         .MapEfCoreProperty<IdentityUser, int?>(
+                             nameof(AppUser.Status),
+                             (entityBuilder, propertyBuilder) =>
+                             {
+                                 propertyBuilder.HasColumnName("Status");
+                             }
+                         );
+
+                ObjectExtensionManager.Instance
+                        .MapEfCoreProperty<IdentityUser, int?>(
+                            "ImageId",
+                            (entityBuilder, propertyBuilder) =>
+                            {
+                                propertyBuilder.HasColumnName("ImageId");
+                            }
+                        );
             });
         }
     }

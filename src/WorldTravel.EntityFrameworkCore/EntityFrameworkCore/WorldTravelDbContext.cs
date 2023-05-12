@@ -4,6 +4,7 @@ using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -12,6 +13,16 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Volo.Abp.Users.EntityFrameworkCore;
+using WorldTravel.Entities.Cities;
+using WorldTravel.Entities.Files;
+using WorldTravel.Entities.Logs;
+using WorldTravel.Entities.MailTemplates;
+using WorldTravel.Entities.MessageContents;
+using WorldTravel.Entities.Messages;
+using WorldTravel.Entities.SentMails;
+using WorldTravel.Entities.Towns;
+using WorldTravel.Entities.Users;
 
 namespace WorldTravel.EntityFrameworkCore
 {
@@ -19,39 +30,19 @@ namespace WorldTravel.EntityFrameworkCore
     [ReplaceDbContext(typeof(ITenantManagementDbContext))]
     [ConnectionStringName("Default")]
     public class WorldTravelDbContext : 
-        AbpDbContext<WorldTravelDbContext>,
-        IIdentityDbContext,
-        ITenantManagementDbContext
+        AbpDbContext<WorldTravelDbContext>
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */
-        
-        #region Entities from the modules
-        
-        /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
-         * and replaced them for this DbContext. This allows you to perform JOIN
-         * queries for the entities of these modules over the repositories easily. You
-         * typically don't need that for other modules. But, if you need, you can
-         * implement the DbContext interface of the needed module and use ReplaceDbContext
-         * attribute just like IIdentityDbContext and ITenantManagementDbContext.
-         *
-         * More info: Replacing a DbContext of a module ensures that the related module
-         * uses this DbContext on runtime. Otherwise, it will use its own DbContext class.
-         */
-        
-        //Identity
-        public DbSet<IdentityUser> Users { get; set; }
-        public DbSet<IdentityRole> Roles { get; set; }
-        public DbSet<IdentityClaimType> ClaimTypes { get; set; }
-        public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
-        public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
-        public DbSet<IdentityLinkUser> LinkUsers { get; set; }
-        
-        // Tenant Management
-        public DbSet<Tenant> Tenants { get; set; }
-        public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<File> Files { get; set; }
+        public DbSet<Log> Logs { get; set; }
+        public DbSet<MailTemplate> MailTemplates { get; set; }
+        public DbSet<MessageContent> MessageContents { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<SentMail> SentMails { get; set; }
+        public DbSet<Town> Towns { get; set; }
+        public DbSet<AppUser> Users { get; set; }
 
-        #endregion
-        
         public WorldTravelDbContext(DbContextOptions<WorldTravelDbContext> options)
             : base(options)
         {
@@ -81,6 +72,20 @@ namespace WorldTravel.EntityFrameworkCore
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});
+
+            //TODOO 3
+            builder.Entity<AppUser>(b =>
+            {
+                b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users");
+                b.ConfigureByConvention();
+                b.ConfigureAbpUser();
+                b.Property(a => a.UserType).HasColumnName("UserType").HasColumnType("int");
+                b.Property(a => a.Gender).HasColumnName("Gender").HasColumnType("int");
+                b.Property(a => a.Status).HasColumnName("Status").HasColumnType("int");
+                b.Property(a => a.BirthDate).HasColumnName("BirthDate").HasColumnType("datetime");
+                b.Property(a => a.ImageId).HasColumnName("ImageId").HasColumnType("int");
+                b.HasOne<IdentityUser>().WithOne().HasForeignKey<AppUser>(x => x.Id);
+            });
         }
     }
 }

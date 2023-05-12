@@ -1,10 +1,12 @@
-﻿namespace WorldTravel.Web.Pages
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace WorldTravel.Web.Pages
 {
     public class IndexModel : WorldTravelPageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            
+            return Redirect("~/Home");
         }
     }
 }

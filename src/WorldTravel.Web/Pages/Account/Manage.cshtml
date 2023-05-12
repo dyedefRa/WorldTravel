@@ -1,0 +1,141 @@
+﻿@page
+@using WorldTravel.Localization
+@using WorldTravel.Enums
+@using WorldTravel.Extensions
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<WorldTravelResource> L
+@model WorldTravel.Web.Pages.Account.ManageModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<div class="page section-header">
+    <div class="bredcrumbWrap mb-00">
+        <div class="container breadcrumbs">
+            <a class="bread breadfirst" href="/Home" title="@L["Home"]"><i class="fa fa-home fa-fw"></i> @L["Home"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
+            <span class="bread breadsecond"><i class="fa fa-cog fa-fw"></i> @L["MyAccountInformation"]</span>
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top:120px; margin-bottom:190px;">
+    <div class="main-body">
+        <form method="post" href="/Account/Manage">
+            <abp-input asp-for="UserManageInputModel.Id" />
+            @Html.AntiForgeryToken()
+            @(await Component.InvokeAsync<Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Themes.Basic.Components.PageAlerts.PageAlertsViewComponent>())
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="my-card" style="height:328.33px">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="@Model.UserManageInputModel.ImageUrl" alt="@L["User"]" id="profileImage" style="cursor: pointer" class="rounded-circle p-1 @(Model.UserManageInputModel.Gender==GenderType.Male?"bg-primary":"bg-pink")" width="110" height="110">
+                                <div class="mt-3">
+                                    <h4>@Model.UserManageInputModel.UserName</h4>
+                                    <p class="text-secondary mb-1">@Model.UserManageInputModel.Name @Model.UserManageInputModel.Surname</p>
+                                    @if (Model.UserManageInputModel.BirthDate.HasValue)
+                                    {
+                                        <p class="text-secondary mb-1">@Model.UserManageInputModel.BirthDate.Value.ToZodiacSign()</p>
+                                    }
+                                    <p></p>
+                                    <p class="text-muted font-size-sm">@Model.UserManageInputModel.CreationTime.ToTurkishDateString()'den beri üyesiniz</p>
+                                    @*   <button type="button" id="btnChangePassword" class="btn btn-blue">
+                                    @L["Şifre Değiş"]
+                                    </button>*@                                    
+                                    <button type="button" id="btnChangeProfileImage" class="btn btn-green" style="margin-top:10px;">
+                                        @L["SelectImage"]
+                                    </button>
+                                    <input type="file" id="fileImage" hidden accept="image/*" />
+                                </div>
+                            </div>
+                            @*                            <hr class="my-4">
+                            *@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="my-card" id="my-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-6 col-xl-6">
+                                    <abp-input asp-for="UserManageInputModel.Name" label="@L["Name"]" />
+                                </div>
+                                <div class="form-group col-md-12 col-lg-6 col-xl-6">
+                                    <abp-input asp-for="UserManageInputModel.Surname" label="@L["Surname"]" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-6 col-xl-6">
+                                    <abp-input asp-for="UserManageInputModel.Email" label="@L["Email"]" />
+                                </div>
+                                <div class="form-group col-md-12 col-lg-6 col-xl-6">
+                                    <abp-input asp-for="UserManageInputModel.PhoneNumber" class="mobilephone" placeholder="0(5__) ___-____" label="@L["PhoneNumber"]" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                                    <abp-input asp-for="UserManageInputModel.BirthDate" label="@L["BirthDate"]" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="float:right">
+                <div class="col">
+                    <abp-button text="@L["Save"]" type="submit" class="btn-blue" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('body').addClass('home5-cosmetic');
+            $('.header-wrap').removeClass('classicHeader');
+            $('#UserManageInputModel_BirthDate').attr('type', 'date');
+
+        @if (Model.UserManageInputModel.BirthDate.HasValue)
+        {
+            @:$('#UserManageInputModel_BirthDate').val('@Model.UserManageInputModel.BirthDate.Value.ToLocalDateString()');
+        }});
+
+
+        $('#btnChangeProfileImage,#profileImage').click(function () {
+            $('#fileImage').trigger('click');
+        });
+
+        document.getElementById('fileImage').addEventListener('change', function (e) {
+            if (e.target.files[0]) {
+                var formData = new FormData();
+                formData.append('image', e.target.files[0]);
+                $.ajax({
+                    url: '/Account/Manage?handler=ChangeProfileImage',
+                    type: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("RequestVerificationToken", $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    success: function (result) {
+                        if (result.success) {
+                            pageLoadAndAfterAlert_Post("imageAlert", AlertType.success, "Profil resminiz başarıyla değiştirildi");
+                        }
+                        else {
+                            toastr.error(result.message)
+                        }
+                    },
+                    error: function (err) {
+                    }
+                });
+            }
+        });
+
+        window.onload = function () {
+            pageLoadAndAfterAlert_Get("imageAlert")
+        }
+
+
+    </script>
+}

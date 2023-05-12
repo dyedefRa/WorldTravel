@@ -23,6 +23,36 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\Account\Login.cshtml" />
+    <None Include="Pages\Account\Logout.cshtml" />
+    <None Include="Pages\Account\Manage.cshtml" />
+    <None Include="Pages\Account\Register.cshtml" />
+    <None Include="Pages\Admin\Account\Login.cshtml" />
+    <None Include="Pages\Admin\Account\Manage.cshtml" />
+    <None Include="Pages\Admin\Identity\Roles\CreateModal.cshtml" />
+    <None Include="Pages\Admin\Identity\Roles\EditModal.cshtml" />
+    <None Include="Pages\Admin\Identity\Roles\Index.cshtml" />
+    <None Include="Pages\Admin\Identity\Users\CreateModal.cshtml" />
+    <None Include="Pages\Admin\Identity\Users\EditModal.cshtml" />
+    <None Include="Pages\Admin\Identity\Users\Index.cshtml" />
+    <None Include="Pages\Admin\Identity\_ViewImports.cshtml" />
+    <None Include="Pages\Admin\Index.cshtml" />
+    <None Include="Pages\Admin\Shared\_Layout.cshtml" />
+    <None Include="Pages\Admin\Shared\_LoginLayout.cshtml" />
+    <None Include="Pages\Admin\Shared\_PartialHeader.cshtml" />
+    <None Include="Pages\Admin\Shared\_PartialSidebar.cshtml" />
+    <None Include="Pages\Admin\_ViewImports.cshtml" />
+    <None Include="Pages\Admin\_ViewStart.cshtml" />
+    <None Include="Pages\Error\Index.cshtml" />
+    <None Include="Pages\Home\Index.cshtml" />
+    <None Include="Pages\Message\Index.cshtml" />
+    <None Include="Pages\Shared\_Footer.cshtml" />
+    <None Include="Pages\Shared\_Layout.cshtml" />
+    <None Include="Pages\Shared\_Menu.cshtml" />
+    <None Include="Pages\Shared\_VideoModal.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Pages\**\*.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -32,8 +62,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.27" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.6.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +81,12 @@
     <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.4.4" />
     <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="4.4.4" />
     <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Admin\ContactForm\" />
+    <Folder Include="Pages\Admin\Label\" />
+    <Folder Include="Pages\Admin\Package\" />
   </ItemGroup>
 
 </Project>

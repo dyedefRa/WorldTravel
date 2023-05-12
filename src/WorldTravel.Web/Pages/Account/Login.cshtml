@@ -1,0 +1,59 @@
+﻿@page
+@using WorldTravel.Localization
+@using Microsoft.Extensions.Localization
+@model WorldTravel.Web.Pages.Account.LoginModel
+@inject IStringLocalizer<WorldTravelResource> L
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="page section-header">
+    <div class="bredcrumbWrap mb-00">
+        <div class="container breadcrumbs">
+            <a class="bread breadfirst" href="/Home" title="@L["Home"]"><i class="fa fa-home fa-fw"></i> @L["Home"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
+            <a class="bread breadsecond" href="#" onClick="return false;" title="@L["Login"]"><i class="fa fa-sign-in fa-fw"></i> @L["Login"]</a>
+        </div>
+    </div>
+ @*   <div class="page-title text-center">
+        <div class="wrapper"><h1 class="page-width"><i class="fa fa-sign-in fa-fw"></i> @L["LoginB"]</h1></div>
+    </div>*@
+</div>
+
+<div class="container" style="margin-top:150px; margin-bottom:170px;">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+            <div class="mb-4">
+                <form method="post" href="/Account/Login" class="contact-form">
+                    @Html.AntiForgeryToken()
+                    @(await Component.InvokeAsync<Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Themes.Basic.Components.PageAlerts.PageAlertsViewComponent>())
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <abp-input asp-for="UserLoginInputModel.Email" label="@L["Email"]" />
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <abp-input asp-for="UserLoginInputModel.Password" label="@L["Password"]" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                            <abp-button text="@L["LoginB"]" type="submit" button-type="Success" class="btn mb-3" />
+                            <p class="mb-4">
+                                <a href="#">@L["ForgotYourPassword"]</a> &nbsp; | &nbsp;
+                                <a href="/Account/Register">@L["WantToBeRegister"]</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('body').addClass('home5-cosmetic');
+            $('.header-wrap').removeClass('classicHeader');
+        });
+    </script>
+}

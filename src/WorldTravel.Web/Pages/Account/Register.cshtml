@@ -1,0 +1,87 @@
+﻿@page
+@using WorldTravel.Localization
+@using Microsoft.Extensions.Localization
+@model WorldTravel.Web.Pages.Account.RegisterModel
+@inject IStringLocalizer<WorldTravelResource> L
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<div class="page section-header">
+    <div class="bredcrumbWrap mb-00">
+        <div class="container breadcrumbs">
+            <a class="bread breadfirst" href="/Home" title="@L["Home"]"><i class="fa fa-home fa-fw"></i> @L["Home"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
+            <a class="bread breadsecond" href="#" onClick="return false;" title="@L["Register"]"><i class="fa fa-user-plus fa-fw"></i> @L["Register"]</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top:60px;">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+            <div class="mb-4">
+                <form method="post" href="/Account/Register">
+                    @Html.AntiForgeryToken()
+                    @(await Component.InvokeAsync<Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Themes.Basic.Components.PageAlerts.PageAlertsViewComponent>())
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-input asp-for="UserRegisterInputModel.Name" label="@L["Name"]" />
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-input asp-for="UserRegisterInputModel.Surname" label="@L["Surname"]" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-input asp-for="UserRegisterInputModel.UserName" label="@L["UserName"]" />
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-input asp-for="UserRegisterInputModel.Email" label="@L["Email"]" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-input asp-for="UserRegisterInputModel.Password" label="@L["Password"]" />
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-input asp-for="UserRegisterInputModel.ConfirmPassword" label="@L["ConfirmPassword"]" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-input asp-for="UserRegisterInputModel.PhoneNumber" class="mobilephone" placeholder="0(5__) ___-____" label="@L["PhoneNumber"]" />
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                            <abp-select asp-for="UserRegisterInputModel.Gender" label="@L["Gender"]">
+                                <option disabled selected>@L["Choose"]</option>
+                            </abp-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                            <abp-input asp-for="UserRegisterInputModel.BirthDate" label="@L["BirthDate"]" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:40px;">
+                        <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <abp-button text="@L["Register"]" type="submit" class="btn-nice" button-type="Primary" />
+                            <p style="margin-top:20px;">
+                                <a href="/Account/Login">@L["LoginInstead"]</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('body').addClass('home5-cosmetic');
+            $('.header-wrap').removeClass('classicHeader');
+            $('#UserRegisterInputModel_BirthDate').attr('type', 'date');
+        });
+    </script>
+}
+

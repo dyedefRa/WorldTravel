@@ -1,5 +1,6 @@
 ﻿using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.BackgroundJobs.Hangfire;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
@@ -19,6 +20,9 @@ namespace WorldTravel
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule)
         )]
+
+    [DependsOn(typeof(AbpBackgroundJobsHangfireModule))]
+    [DependsOn(typeof(AbpAutoMapperModule))]
     public class WorldTravelApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

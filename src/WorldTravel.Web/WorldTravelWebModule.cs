@@ -1,42 +1,37 @@
-using System;
-using System.IO;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorldTravel.EntityFrameworkCore;
-using WorldTravel.Localization;
-using WorldTravel.MultiTenancy;
-using WorldTravel.Web.Menus;
-using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.Web;
 using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.TenantManagement.Web;
 using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.UI;
-using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using WorldTravel.EntityFrameworkCore;
+using WorldTravel.HangfireServices.Abstract;
+using WorldTravel.HangfireServices.Concrete;
+using WorldTravel.Localization;
+using WorldTravel.Web.Helpers;
 
 namespace WorldTravel.Web
 {
@@ -76,15 +71,60 @@ namespace WorldTravel.Web
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
+            context.Services.AddAntiforgery(options =>
+            {
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.HttpOnly = true;
+                options.SuppressXFrameOptionsHeader = true;
+            });
+
+            context.Services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromDays(365 * 1000);
+            });
+
+            ConfigureAppSetting(context, configuration);
             ConfigureUrls(configuration);
             ConfigureBundles();
             ConfigureAuthentication(context, configuration);
             ConfigureAutoMapper();
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
-            ConfigureNavigationServices();
             ConfigureAutoApiControllers();
-            ConfigureSwaggerServices(context.Services);
+            ConfigureHangfire(context, configuration);
+            ConfigureRedirectStrategy(context, configuration);
+            context.Services.AddLogging();
+        }
+
+        private void ConfigureRedirectStrategy(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            var basePath = configuration["App:SelfUrl"];
+            context.Services
+                .ConfigureApplicationCookie(options =>
+                    options.Events.OnRedirectToLogin = context =>
+                    {
+                        if (context.Request.Path.StartsWithSegments("/api"))
+                        {
+                            context.Response.Headers["Location"] = context.RedirectUri;
+                            context.Response.StatusCode = 401;
+                        }
+                        else
+                            context.Response.Redirect(basePath + "/Home");
+
+                        return Task.CompletedTask;
+                    });
+        }
+
+        private void ConfigureAppSetting(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            //context.Services.Configure<ConstraintSettings>(configuration.GetSection("ConstraintSettings"));
+            //context.Services.Configure<DefaultSettings>(configuration.GetSection("DefaultSettings"));
+            //context.Services.Configure<FtpSettings>(configuration.GetSection("FtpSettings"));
+            //context.Services.Configure<SftpSettings>(configuration.GetSection("SftpSettings"));
+            //context.Services.Configure<SmtpSettings>(configuration.GetSection("SmtpSettings"));
+            //context.Services.Configure<SftpMatchSettings>(configuration.GetSection("SftpMatchSettings"));
+            //context.Services.Configure<ItsServiceSettings>(configuration.GetSection("ItsServiceSettings"));
+            //configuration.GetSection("ConstraintSettings").Bind(XmlToDtoHelper.ConstraintSettings);
         }
 
         private void ConfigureUrls(IConfiguration configuration)
@@ -100,12 +140,33 @@ namespace WorldTravel.Web
             Configure<AbpBundlingOptions>(options =>
             {
                 options.StyleBundles.Configure(
-                    BasicThemeBundles.Styles.Global,
+                    "css_files",
                     bundle =>
                     {
-                        bundle.AddFiles("/global-styles.css");
-                    }
-                );
+                        bundle.AddFiles("/global_assets/css/icons/icomoon/styles.min.css");
+                        bundle.AddFiles("/global_assets/css/icons/material/styles.min.css");
+                        bundle.AddFiles("/assets/css/bootstrap.min.css");
+                        bundle.AddFiles("/assets/css/bootstrap_limitless.min.css");
+                        bundle.AddFiles("/assets/css/layout.min.css");
+                        bundle.AddFiles("/assets/css/components.min.css");
+                        bundle.AddFiles("/assets/css/colors.min.css");
+                        bundle.AddFiles("/libs/abp/aspnetcore-mvc-ui-theme-shared/datatables/datatables-styles.css");
+                        bundle.AddFiles("/libs/bootstrap-datepicker/bootstrap-datepicker.min.css");
+                        bundle.AddFiles("/global_assets/css/icons/fontawesome/styles.min.css");
+                        bundle.AddFiles("/libs/toastr/toastr.min.css");
+                        bundle.AddFiles("/libs/datatables.net-bs4/css/dataTables.bootstrap4.css");
+                        bundle.AddFiles("/assets/css/custom.css");
+                    });
+            });
+
+            Configure<AbpBundlingOptions>(options =>
+            {
+                options.StyleBundles.Configure(
+                    "custom_js_files",
+                    bundle =>
+                    {
+                        bundle.AddFiles("/assests/js/custom.js");
+                    });
             });
         }
 
@@ -147,32 +208,35 @@ namespace WorldTravel.Web
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
-                options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-                options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
-                options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
-                options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
-                options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
-                options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
-                options.Languages.Add(new LanguageInfo("it", "it", "Italian", "it"));
-                options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-                options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-                options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
+                //options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
+                //options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
+                //options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                //options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
+                //options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
+                //options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
+                //options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
+                //options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
+                //options.Languages.Add(new LanguageInfo("it", "it", "Italian", "it"));
+                //options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
+                //options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
+                //options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
                 options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-                options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
-                options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
-                options.Languages.Add(new LanguageInfo("es", "es", "Español"));
+                //options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+                //options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
+                //options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
+                //options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
         }
 
-        private void ConfigureNavigationServices()
+        private void ConfigureHangfire(ServiceConfigurationContext context, IConfiguration configuration)
         {
-            Configure<AbpNavigationOptions>(options =>
+            context.Services.AddHangfire(config =>
             {
-                options.MenuContributors.Add(new WorldTravelMenuContributor());
+                config.UseSqlServerStorage(configuration.GetConnectionString("Default"));
             });
+
+            var services = context.Services;
+            services.AddScoped<IRecurringJobService, RecurringJobService>();
         }
 
         private void ConfigureAutoApiControllers()
@@ -183,34 +247,55 @@ namespace WorldTravel.Web
             });
         }
 
-        private void ConfigureSwaggerServices(IServiceCollection services)
-        {
-            services.AddAbpSwaggerGen(
-                options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "WorldTravel API", Version = "v1" });
-                    options.DocInclusionPredicate((docName, description) => true);
-                    options.CustomSchemaIds(type => type.FullName);
-                }
-            );
-        }
+        //private void ConfigureSwaggerServices(IServiceCollection services)
+        //{
+        //    services.AddAbpSwaggerGen(
+        //        options =>
+        //        {
+        //            options.SwaggerDoc("v1", new OpenApiInfo { Title = "WorldTravel API", Version = "v1" });
+        //            options.DocInclusionPredicate((docName, description) => true);
+        //            options.CustomSchemaIds(type => type.FullName);
+        //        }
+        //    );
+        //}
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             app.UseAbpRequestLocalization();
 
-            if (!env.IsDevelopment())
+            //if (!env.IsDevelopment())
+            //{
+            //    app.UseErrorPage();
+            //}
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            app.UseStatusCodePagesWithRedirects("~/Error/Index?httpStatusCode={0}");
+            app.UseExceptionHandler("/Error");
+            //}
+
+            app.Use(async (context, next) =>
             {
-                app.UseErrorPage();
-            }
+                context.Response.Headers.Add("X-Frame-Options", "DENY");
+                await next();
+            });
+
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                HttpOnly = HttpOnlyPolicy.Always,
+                Secure = CookieSecurePolicy.Always,
+            });
 
             app.UseCorrelationId();
             app.UseStaticFiles();
@@ -218,22 +303,32 @@ namespace WorldTravel.Web
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();
 
-            if (MultiTenancyConsts.IsEnabled)
-            {
-                app.UseMultiTenancy();
-            }
+            //if (MultiTenancyConsts.IsEnabled)
+            //{
+            //    app.UseMultiTenancy();
+            //}
 
             app.UseUnitOfWork();
             app.UseIdentityServer();
             app.UseAuthorization();
-            app.UseSwagger();
-            app.UseAbpSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "WorldTravel API");
-            });
             app.UseAuditing();
+            //app.UseSwagger();
+            //app.UseAbpSwaggerUI(options =>
+            //{
+            //    options.SwaggerEndpoint("/swagger/v1/swagger.json", "WorldTravel API");
+            //});
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions()
+            {
+                Authorization = new[] { new HangfireAuthorizationFilter() }
+            });
+            app.UseHangfireServer(new BackgroundJobServerOptions
+            {
+                SchedulePollingInterval = TimeSpan.FromSeconds(30), // Default 15sn.
+                WorkerCount = 1,
+
+            });
         }
     }
 }

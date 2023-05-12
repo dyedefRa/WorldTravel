@@ -11,20 +11,13 @@ namespace WorldTravel.Web
     {
         public static int Main(string[] args)
         {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                 .Build();
+
             Log.Logger = new LoggerConfiguration()
-#if DEBUG
-                .MinimumLevel.Debug()
-#else
-                .MinimumLevel.Information()
-#endif
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
-                .Enrich.FromLogContext()
-                .WriteTo.Async(c => c.File("Logs/logs.txt"))
-#if DEBUG
-                .WriteTo.Async(c => c.Console())
-#endif
-                .CreateLogger();
+              .ReadFrom.Configuration(configuration)
+              .CreateLogger();
 
             try
             {
@@ -39,15 +32,15 @@ namespace WorldTravel.Web
             }
             finally
             {
-                Log.CloseAndFlush();
+                //Log.CloseAndFlush();
             }
         }
 
         internal static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+           Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(build =>
                 {
-                    build.AddJsonFile("appsettings.secrets.json", optional: true);
+                    build.AddJsonFile("appsettings.json", optional: true);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
