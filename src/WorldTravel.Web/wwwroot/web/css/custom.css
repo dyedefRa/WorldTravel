@@ -22,7 +22,11 @@
 }
 
 .bg-pink {
-    background-color: lightpink;
+    background-color: lightpink !important;
+}
+
+.bg-default {
+    background-color: #1594d0 !important;
 }
 
 
@@ -69,7 +73,7 @@
 }
 
 .breadfirst:hover {
-    color: #17a2b8;
+    color: #1594d0;
 }
 
 .breadsecond:hover {
@@ -873,15 +877,15 @@ button:focus {
 /*-----*/
 .modal-body p {
     position: relative;
-    padding-right:20px !important;
+    padding-right: 20px !important;
 }
 
     .modal-body p span {
         position: absolute;
         top: 0px;
         right: 5px;
-        font-weight:100;
-        cursor:pointer;
+        font-weight: 100;
+        cursor: pointer;
     }
 /*MESSAGE <<<<<<<<<<<<<<<<<<<*/
 
@@ -892,4 +896,3 @@ button:focus {
     margin-left: 8px;
     margin-top: 3px;
 }
-

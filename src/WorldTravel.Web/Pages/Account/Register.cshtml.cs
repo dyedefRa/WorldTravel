@@ -1,7 +1,4 @@
-﻿using WorldTravel.Abstract;
-using WorldTravel.Enums;
-using WorldTravel.Extensions;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Serilog;
@@ -13,6 +10,9 @@ using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.Web.Pages.Identity;
+using WorldTravel.Abstract;
+using WorldTravel.Enums;
+using WorldTravel.Extensions;
 
 namespace WorldTravel.Web.Pages.Account
 {
@@ -60,7 +60,7 @@ namespace WorldTravel.Web.Pages.Account
                     input.ExtraProperties.Add("Gender", (int)UserRegisterInputModel.Gender);
                     input.ExtraProperties.Add("BirthDate", UserRegisterInputModel.BirthDate);
                     input.ExtraProperties.Add("Status", (int)Status.Active);
-
+                    input.UserName = StringExtensions.GenerateUserName(UserRegisterInputModel.Email);
                     input.RoleNames = new string[] { EnumExtensions.GetEnumDescription(UserType.User) };
                     var addedResult = await _identityUserAppService.CreateAsync(input);
 
@@ -116,8 +116,8 @@ namespace WorldTravel.Web.Pages.Account
         public class UserRegisterModel
         {
 
-            [Required]
-            [RegularExpression(@"^[0-9a-zA-Z]{4,20}$", ErrorMessage = "Kullanıcı Adı alanı en az 4, en fazla 20 karakterden olmalıdır.İçerisinde sadece harf yada sayı bulunmalıdır.")]
+            //[Required]
+            //[RegularExpression(@"^[0-9a-zA-Z]{4,20}$", ErrorMessage = "Kullanıcı Adı alanı en az 4, en fazla 20 karakterden olmalıdır.İçerisinde sadece harf yada sayı bulunmalıdır.")]
             public string UserName { get; set; }
             [Required]
             public string Name { get; set; }

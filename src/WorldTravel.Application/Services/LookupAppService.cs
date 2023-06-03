@@ -1,9 +1,4 @@
-﻿using WorldTravel.Abstract;
-using WorldTravel.Entities.Cities;
-using WorldTravel.Entities.Towns;
-using WorldTravel.Enums;
-using WorldTravel.Extensions;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -13,7 +8,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using Volo.Abp.Identity;
+using WorldTravel.Abstract;
+using WorldTravel.Entities.Cities;
+using WorldTravel.Entities.Countries;
+using WorldTravel.Entities.Towns;
+using WorldTravel.Enums;
+using WorldTravel.Extensions;
 
 namespace WorldTravel.Services
 {
@@ -22,13 +22,17 @@ namespace WorldTravel.Services
     {
         private readonly IRepository<City, int> _cityRepository;
         private readonly IRepository<Town, int> _townRepository;
+        private readonly IRepository<Country, int> _countryRepository;
 
         public LookupAppService(
             IRepository<City, int> cityRepository,
-            IRepository<Town, int> townRepository)
+            IRepository<Town, int> townRepository,
+            IRepository<Country, int> countryRepository
+            )
         {
             _cityRepository = cityRepository;
             _townRepository = townRepository;
+            _countryRepository = countryRepository;
         }
 
         public async Task<List<SelectListItem>> GetCityLookupAsync()
@@ -57,6 +61,21 @@ namespace WorldTravel.Services
             catch (Exception ex)
             {
                 Log.Error(ex, "LookupAppService > GetTownLookupAsync has error! ");
+                return null;
+            }
+        }
+
+        public async Task<List<SelectListItem>> GetCountryLookupAsync()
+        {
+            try
+            {
+                var list = await _countryRepository.ToListAsync();
+
+                return list.Select(x => new SelectListItem(x.Title, x.Id.ToString())).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "LookupAppService > GetCountryLookupAsync has error! ");
                 return null;
             }
         }

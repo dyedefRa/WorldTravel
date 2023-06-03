@@ -87,6 +87,7 @@
     <Folder Include="Pages\Admin\ContactForm\" />
     <Folder Include="Pages\Admin\Label\" />
     <Folder Include="Pages\Admin\Package\" />
+    <Folder Include="wwwroot\web\images\home\" />
   </ItemGroup>
 
 </Project>

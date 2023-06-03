@@ -9,6 +9,7 @@ namespace WorldTravel.Abstract
     {
         Task<List<SelectListItem>> GetCityLookupAsync();
         Task<List<SelectListItem>> GetTownLookupAsync(int cityId);
+        Task<List<SelectListItem>> GetCountryLookupAsync();
         List<SelectListItem> GetGenderLookup();
     }
 }

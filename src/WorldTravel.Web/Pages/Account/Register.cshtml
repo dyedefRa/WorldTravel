@@ -32,10 +32,10 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 col-lg-6 col-xl-6">
-                            <abp-input asp-for="UserRegisterInputModel.UserName" label="@L["UserName"]" />
+                            <abp-input asp-for="UserRegisterInputModel.Email" label="@L["Email"]" />
                         </div>
                         <div class="form-group col-md-6 col-lg-6 col-xl-6">
-                            <abp-input asp-for="UserRegisterInputModel.Email" label="@L["Email"]" />
+                            <abp-input asp-for="UserRegisterInputModel.PhoneNumber" class="mobilephone" placeholder="0(5__) ___-____" label="@L["PhoneNumber"]" />
                         </div>
                     </div>
                     <div class="row">
@@ -48,16 +48,11 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 col-lg-6 col-xl-6">
-                            <abp-input asp-for="UserRegisterInputModel.PhoneNumber" class="mobilephone" placeholder="0(5__) ___-____" label="@L["PhoneNumber"]" />
-                        </div>
-                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
                             <abp-select asp-for="UserRegisterInputModel.Gender" label="@L["Gender"]">
                                 <option disabled selected>@L["Choose"]</option>
                             </abp-select>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
                             <abp-input asp-for="UserRegisterInputModel.BirthDate" label="@L["BirthDate"]" />
                         </div>
                     </div>
@@ -78,10 +73,11 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            $('body').addClass('home5-cosmetic');
+            $('body').addClass('home9-parallax');
             $('.header-wrap').removeClass('classicHeader');
             $('#UserRegisterInputModel_BirthDate').attr('type', 'date');
         });
+
     </script>
 }
 

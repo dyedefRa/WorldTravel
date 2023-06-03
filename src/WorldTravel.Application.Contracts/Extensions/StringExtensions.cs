@@ -206,7 +206,7 @@ namespace WorldTravel.Extensions
             var totalDays = (now - value).TotalDays;
             if (totalDays <= 29)
             {
-               return Math.Ceiling(totalDays).ToString() + " gün önce";
+                return Math.Ceiling(totalDays).ToString() + " gün önce";
             }
 
             var totalMonth = GetMonthDifference(now, value);
@@ -224,6 +224,14 @@ namespace WorldTravel.Extensions
         {
             int monthsApart = 12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month;
             return Math.Abs(monthsApart);
+        }
+
+        public static string GenerateUserName(string email)
+        {
+            Random rand = new Random();
+            string number = rand.Next(1000).ToString("D3");
+
+            return email.Split('@')[0] + number;
         }
     }
 }

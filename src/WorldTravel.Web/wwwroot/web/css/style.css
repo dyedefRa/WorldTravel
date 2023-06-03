@@ -1556,7 +1556,7 @@ body.home15-funiture-template { font-size:14px; }
 @media only screen and (min-width:990px) {
 .hero__inner .wrap-text { max-width:500px; }
 }
-.hero--large { height:650px; }
+.hero--large { height:800px; }
 .hero .text-large .mega-title { font-size:45px; }
 .hero__inner .center { text-align:center; margin:0 auto; }
 .hero .text-large .mega-subtitle { font-size:20px; }

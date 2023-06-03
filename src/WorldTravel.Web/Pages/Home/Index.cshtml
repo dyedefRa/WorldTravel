@@ -8,7 +8,7 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-@*@section styles {
+@section styles {
     <style>
 
         .top-text {
@@ -91,25 +91,84 @@
             }
 
     </style>
-}*@
+}
 
 
 <div class="slideshow slideshow-wrapper">
     <div class="home-slideshow">
         <div class="slide">
             <div class="blur-up lazyload">
-                <img class="blur-up lazyload" data-src="/web/images/slideshow-banners/home9-banner1.jpg" src="/web/images/slideshow-banners/home9-banner1.jpg" alt="Gift For her" title="Gift For her" />
-                <div class="slideshow__text-wrap slideshow__overlay classic bottom">
-                    <div class="slideshow__text-content left">
-                        <div class="container">
-                            <div class="wrap-caption left">
-                                <h2 class="h1 mega-title slideshow__title">Gift For her</h2>
-                                <span class="mega-subtitle slideshow__subtitle">The latest collection from italian brands</span>
-                                <span class="btn">Shop now</span>
+                <img class="blur-up lazyload" data-src="/web/images/home/home7.jpg" src="/web/images/home/home7.jpg" alt="Gift For her" title="Gift For her" />
+                <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                    <div class="slideshow__text-content classic left">
+                        <div class="container" style="margin-top:-250px;">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="top-text header-text">
+                                        <h6>Over 36,500+ Active Listings</h6>
+                                        <h2>Find Nearby Places &amp; Things</h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <form id="search-form" class="home-search-form" name="gs" method="submit" role="search" action="#">
+                                        <div class="row">
+                                            <div class="col-lg-3 align-self-center">
+                                                @*  <abp-select asp-for="HomeSelectInputModel.Country">
+                                                <option disabled selected>@L["Choose"]</option>
+                                                </abp-select>*@
+
+                                                <select asp-for="HomeSelectInputModel.CountryId" class="form-select" asp-items="@Model.Countries">
+                                                    <option disabled selected>@L["SelectCountry"]</option>
+
+                                                </select>
+                                                @*  <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
+                                                <option selected>All Areas</option>
+                                                <option value="New Village">New Village</option>
+                                                <option value="Old Town">Old Town</option>
+                                                <option value="Modern City">Modern City</option>
+                                                </select>*@
+                                            </div>
+                                            <div class="col-lg-3 align-self-center">
+                                                <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
+                                                    <option selected>All Areas</option>
+                                                    <option value="New Village">New Village</option>
+                                                    <option value="Old Town">Old Town</option>
+                                                    <option value="Modern City">Modern City</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-3 align-self-center">
+                                                <select name="price" class="form-select select3" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
+                                                    <option selected>Price Range</option>
+                                                    <option value="$100 - $250">$100 - $250</option>
+                                                    <option value="$250 - $500">$250 - $500</option>
+                                                    <option value="$500 - $1000">$500 - $1,000</option>
+                                                    <option value="$1000+">$1,000 or more</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <button class="main-button btn bg-default"><i class="fa fa-search"></i> @L["Search"]</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+                @*                <div class="slideshow__text-wrap slideshow__overlay classic bottom">
+                <div class="slideshow__text-content left">
+                <div class="container">
+                <div class="wrap-caption left">
+                <h2 class="h1 mega-title slideshow__title">Gift For her</h2>
+                <span class="mega-subtitle slideshow__subtitle">The latest collection from italian brands</span>
+                <span class="btn">Shop now</span>
+                </div>
+                </div>
+                </div>
+                </div>
+                *@
             </div>
         </div>
     </div>
@@ -118,13 +177,13 @@
 <!--Hero Parallax Section1-->
 <div class="section">
     <div class="hero hero--large hero__overlay bg-size">
-        <img class="bg-img blur-up" src="/web/images/parallax-banners/home9-parallax-banner1.jpg" alt="" />
+        <img class="bg-img blur-up" src="/web/images/home/home10.jpg" alt="" />
         <div class="hero__inner">
             <div class="container">
                 <div class="wrap-text  right text-medium font-bold">
-                    <h2 class="h2 mega-title">Kids Collection</h2>
-                    <div class="rte-setting mega-subtitle">Plenty of options for your kids. Be the first to buy</div>
-                    <a href="#" class="btn">Shop Kids</a>
+                    <h2 class="h2 mega-title">DOĞRU BAŞVURU İLE <br>GİDİLEMEYECEK<br> YER YOK</h2>
+                    <div class="rte-setting mega-subtitle">Kişiye özel profesyonel danışmanlarımızla dosyanızı hazırlayıp size uygun vize türünü almak mümkün</div>
+                    <a href="#" class="btn">Detayları Gör</a>
                 </div>
             </div>
         </div>
@@ -134,13 +193,13 @@
 <!--Hero Parallax Section2-->
 <div class="section">
     <div class="hero hero--large hero__overlay bg-size">
-        <img class="bg-img" src="/web/images/parallax-banners/home9-parallax-banner2.jpg" alt="" />
+        <img class="bg-img blur-up" src="/web/images/home/n5.jpg" alt="" />
         <div class="hero__inner">
             <div class="container">
                 <div class="wrap-text  left text-large font-bold">
-                    <h2 class="h2 mega-title">The mid season SALE.<br>UP TO 50% OFF</h2>
-                    <div class="rte-setting mega-subtitle">Live life Comfortable.<br>This flip flops switch, flip &amp; reverse to make up to 246 combos!<p><b>FREE SHIPPING on all orders over $199</b></p></div>
-                    <a href="#" class="btn">Shop Now</a>
+                    <h2 class="h2 mega-title">PROFESYONEL HİZMET İLE<br> HERKES<br>YURTDIŞINA GİDEBİLİR</h2>
+                    <div class="rte-setting mega-subtitle"><p><b>Yabancı dil, eğitim, maddi referans, yurt dışı refaransı vb. gibi şartlar olmadan</b></p> istediğin ülkeye gidebilirsin</div>
+                    <a href="#" class="btn">Detayları Gör</a>
                 </div>
             </div>
         </div>
@@ -150,13 +209,13 @@
 <!--Hero Parallax Section3-->
 <div class="section">
     <div class="hero hero--large hero__overlay bg-size">
-        <img class="bg-img" src="/web/images/parallax-banners/home9-parallax-banner3.jpg" alt="" />
+        <img class="bg-img blur-up" src="/web/images/home/home2.jpg" alt="" />
         <div class="hero__inner">
             <div class="container">
                 <div class="wrap-text  center text-medium font-bold">
-                    <h2 class="h2 mega-title">Women Wallets</h2>
-                    <div class="rte-setting mega-subtitle">Carry this stylist wallets for party</div>
-                    <a href="#" class="btn">Explore more</a>
+                    <h2 class="h2 mega-title">YURT DIŞINDAKİ DANIŞMANLARIMIZLA <br> SEYAHATİNİZİ <br> EN İYİ ŞEKİLDE <br> PLANLAYIN</h2>
+                    @*<div class="rte-setting mega-subtitle">Carry this stylist wallets for party</div>*@
+                    <a href="#" class="btn">Seyahat Planla</a>
                 </div>
             </div>
         </div>
