@@ -79,7 +79,7 @@ namespace WorldTravel.Services
                 var image = Repository.FindAsync(imageId.Value).Result;
                 if (image != null)
                 {
-                    return image.FilePath;
+                    return image.Path;
                 }
                 else
                 {
@@ -156,7 +156,7 @@ namespace WorldTravel.Services
             var file = await Repository.FirstOrDefaultAsync(x => x.Id == fileId);
             if (file != null)
             {
-                return file.FilePath;
+                return file.Path;
             }
 
             return ""; // Buraya default resim.

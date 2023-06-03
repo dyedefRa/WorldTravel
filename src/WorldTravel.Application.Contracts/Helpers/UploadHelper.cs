@@ -32,10 +32,10 @@ namespace WorldTravel.Helpers
             }
 
             var media = new FileDto();
-            media.FileName = fileName;
-            media.FilePath = Path.Combine(relatedSettingFolder.ToFileShownPath(), fileName);
+            media.Name = fileName;
+            media.Path = Path.Combine(relatedSettingFolder.ToFileShownPath(), fileName);
             media.FullPath = filePath;
-            media.FileSize = file.Length;
+            media.Size = file.Length;
             media.Status = Status.Active;
             return new SuccessDataResult<FileDto>(media);
         }

@@ -68,6 +68,7 @@
     "Unstated": "Belirtilmedi",
     "Male": "Erkek",
     "Female": "Kadın",
+    "DoNotWantSpecify": "Belirtmek İstemiyorum",
 
     "Enum:GenderType:1": "Erkek",
     "Enum:GenderType:2": "Kadın",

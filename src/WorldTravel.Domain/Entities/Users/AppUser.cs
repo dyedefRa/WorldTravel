@@ -1,11 +1,8 @@
-﻿//using WorldTravel.Entities.Adverts;
-using WorldTravel.Entities.Files;
-using WorldTravel.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.Users;
+using WorldTravel.Entities.Files;
+using WorldTravel.Enums;
 
 namespace WorldTravel.Entities.Users
 {
@@ -28,11 +25,8 @@ namespace WorldTravel.Entities.Users
         public GenderType? Gender { get; set; }
         public DateTime? BirthDate { get; set; }
         public virtual int? ImageId { get; set; }
-        [ForeignKey("ImageId")]
         public virtual File Image { get; set; }
         public Status? Status { get; set; }
-
-        //public virtual ICollection<Advert> Adverts { get; set; }
 
     }
 }

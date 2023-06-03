@@ -1,13 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 using Volo.Abp.Domain.Entities;
+using WorldTravel.Entities.CountryContents;
+using WorldTravel.Entities.Forms;
+using WorldTravel.Entities.ShareContents;
 
 namespace WorldTravel.Entities.Countries
 {
-    [Table(WorldTravelConsts.DbTablePrefix + "Countries")]
+    // Share content için toplam sayı
+    //CountryContent Icın toplam sayı
+    //Form da seçilen ülkelerin sayısıyla ilgili bişeyler yap.
     public class Country : Entity<int>
     {
-        [MaxLength(255)]
         public string Title { get; set; }
+
+        public virtual ICollection<CountryContent> CountryContents { get; set; }
+        public virtual ICollection<Form> Forms { get; set; }
+        public virtual ICollection<ShareContent> ShareContents { get; set; }
+
     }
 }

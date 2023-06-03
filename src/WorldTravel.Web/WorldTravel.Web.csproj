@@ -45,7 +45,6 @@
     <None Include="Pages\Admin\_ViewStart.cshtml" />
     <None Include="Pages\Error\Index.cshtml" />
     <None Include="Pages\Home\Index.cshtml" />
-    <None Include="Pages\Message\Index.cshtml" />
     <None Include="Pages\Shared\_Footer.cshtml" />
     <None Include="Pages\Shared\_Layout.cshtml" />
     <None Include="Pages\Shared\_Menu.cshtml" />

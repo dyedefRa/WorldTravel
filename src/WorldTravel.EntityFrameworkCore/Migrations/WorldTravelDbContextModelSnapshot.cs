@@ -1982,6 +1982,7 @@ namespace WorldTravel.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AreaNumber")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -1989,6 +1990,7 @@ namespace WorldTravel.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -2005,12 +2007,73 @@ namespace WorldTravel.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
                     b.ToTable("AppCountries");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.CountryContentFiles.CountryContentFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountryContentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "CountryContentId" }, "IX_AppCountryContentFile_CountryContentId");
+
+                    b.HasIndex(new[] { "FileId" }, "IX_AppCountryContentFile_FileId");
+
+                    b.ToTable("AppCountryContentFiles");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.CountryContents.CountryContent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReadCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("ValidDate")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "CountryId" }, "IX_AppCountryContent_CountryId");
+
+                    b.ToTable("AppCountryContents");
                 });
 
             modelBuilder.Entity("WorldTravel.Entities.Files.File", b =>
@@ -2020,18 +2083,8 @@ namespace WorldTravel.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<long?>("FileSize")
-                        .HasColumnType("bigint");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("FileType")
                         .HasColumnType("int");
@@ -2041,12 +2094,83 @@ namespace WorldTravel.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("Size")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("AppFiles");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.Forms.Form", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsContacted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "CountryId" }, "IX_AppForm_CountryId");
+
+                    b.ToTable("AppForms");
                 });
 
             modelBuilder.Entity("WorldTravel.Entities.Logs.Log", b =>
@@ -2060,7 +2184,8 @@ namespace WorldTravel.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Level")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
@@ -2072,7 +2197,7 @@ namespace WorldTravel.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 
@@ -2087,7 +2212,7 @@ namespace WorldTravel.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("InsertedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("MailKey")
                         .IsRequired()
@@ -2111,92 +2236,6 @@ namespace WorldTravel.Migrations
                     b.ToTable("AppMailTemplates");
                 });
 
-            modelBuilder.Entity("WorldTravel.Entities.MessageContents.MessageContent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDateForReceived")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDateForSender")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeletedForReceiver")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeletedForSender")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSeen")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("MessageId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ReceiverId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SenderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MessageId");
-
-                    b.ToTable("AppMessageContents");
-                });
-
-            modelBuilder.Entity("WorldTravel.Entities.Messages.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MessageType")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ReceiverId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ReceiverStatus")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReceiverStatusDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("SenderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("SenderStatus")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SenderStatusDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppMessages");
-                });
-
             modelBuilder.Entity("WorldTravel.Entities.SentMails.SentMail", b =>
                 {
                     b.Property<int>("Id")
@@ -2209,6 +2248,7 @@ namespace WorldTravel.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Body")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CcAddress")
@@ -2216,19 +2256,78 @@ namespace WorldTravel.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Subject")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ToAddress")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppSentMails");
+                    b.ToTable("AppSentMail");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.ShareContentFiles.ShareContentFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShareContentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "FileId" }, "IX_AppShareContentFile_FileId");
+
+                    b.HasIndex(new[] { "ShareContentId" }, "IX_AppShareContentFile_ShareContentId");
+
+                    b.ToTable("AppShareContentFiles");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.ShareContents.ShareContent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReadCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("ValidDate")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "CountryId" }, "IX_AppShareContent_CountryId");
+
+                    b.ToTable("AppShareContents");
                 });
 
             modelBuilder.Entity("WorldTravel.Entities.Towns.Town", b =>
@@ -2242,6 +2341,7 @@ namespace WorldTravel.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -2668,15 +2768,75 @@ namespace WorldTravel.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WorldTravel.Entities.MessageContents.MessageContent", b =>
+            modelBuilder.Entity("WorldTravel.Entities.CountryContentFiles.CountryContentFile", b =>
                 {
-                    b.HasOne("WorldTravel.Entities.Messages.Message", "Message")
-                        .WithMany("MessageContents")
-                        .HasForeignKey("MessageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("WorldTravel.Entities.CountryContents.CountryContent", "CountryContent")
+                        .WithMany("CountryContentFiles")
+                        .HasForeignKey("CountryContentId")
+                        .HasConstraintName("FK_AppCountryContentFiles_AppCountryContents")
                         .IsRequired();
 
-                    b.Navigation("Message");
+                    b.HasOne("WorldTravel.Entities.Files.File", "File")
+                        .WithMany("CountryContentFiles")
+                        .HasForeignKey("FileId")
+                        .HasConstraintName("FK_AppCountryContentFiles_AppFiles")
+                        .IsRequired();
+
+                    b.Navigation("CountryContent");
+
+                    b.Navigation("File");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.CountryContents.CountryContent", b =>
+                {
+                    b.HasOne("WorldTravel.Entities.Countries.Country", "Country")
+                        .WithMany("CountryContents")
+                        .HasForeignKey("CountryId")
+                        .HasConstraintName("FK_AppCountryContents_AppCountries")
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.Forms.Form", b =>
+                {
+                    b.HasOne("WorldTravel.Entities.Countries.Country", "Country")
+                        .WithMany("Forms")
+                        .HasForeignKey("CountryId")
+                        .HasConstraintName("FK_AppForms_AppCountries")
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.ShareContentFiles.ShareContentFile", b =>
+                {
+                    b.HasOne("WorldTravel.Entities.Files.File", "File")
+                        .WithMany("ShareContentFiles")
+                        .HasForeignKey("FileId")
+                        .HasConstraintName("FK_AppShareContentFiles_AppFiles")
+                        .IsRequired();
+
+                    b.HasOne("WorldTravel.Entities.ShareContents.ShareContent", "ShareContent")
+                        .WithMany("ShareContentFiles")
+                        .HasForeignKey("ShareContentId")
+                        .HasConstraintName("FK_AppShareContentFiles_AppShareContents")
+                        .IsRequired();
+
+                    b.Navigation("File");
+
+                    b.Navigation("ShareContent");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.ShareContents.ShareContent", b =>
+                {
+                    b.HasOne("WorldTravel.Entities.Countries.Country", "Country")
+                        .WithMany("ShareContents")
+                        .HasForeignKey("CountryId")
+                        .HasConstraintName("FK_AppShareContents_AppCountries")
+                        .IsRequired();
+
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("WorldTravel.Entities.Towns.Town", b =>
@@ -2684,7 +2844,7 @@ namespace WorldTravel.Migrations
                     b.HasOne("WorldTravel.Entities.Cities.City", "City")
                         .WithMany("Towns")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_AppTowns_AppCities")
                         .IsRequired();
 
                     b.Navigation("City");
@@ -2796,14 +2956,32 @@ namespace WorldTravel.Migrations
                     b.Navigation("Towns");
                 });
 
+            modelBuilder.Entity("WorldTravel.Entities.Countries.Country", b =>
+                {
+                    b.Navigation("CountryContents");
+
+                    b.Navigation("Forms");
+
+                    b.Navigation("ShareContents");
+                });
+
+            modelBuilder.Entity("WorldTravel.Entities.CountryContents.CountryContent", b =>
+                {
+                    b.Navigation("CountryContentFiles");
+                });
+
             modelBuilder.Entity("WorldTravel.Entities.Files.File", b =>
                 {
+                    b.Navigation("CountryContentFiles");
+
+                    b.Navigation("ShareContentFiles");
+
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WorldTravel.Entities.Messages.Message", b =>
+            modelBuilder.Entity("WorldTravel.Entities.ShareContents.ShareContent", b =>
                 {
-                    b.Navigation("MessageContents");
+                    b.Navigation("ShareContentFiles");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using Volo.Abp.Domain.Entities;
-using WorldTravel;
 
 namespace WorldTravel.Entities.Logs
 {
-    [Table(WorldTravelConsts.DbTablePrefix + "Logs")]
     public class Log : Entity<int>
     {
         public string Message { get; set; }
