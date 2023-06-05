@@ -12,11 +12,12 @@ namespace WorldTravel.Permissions
             //Define your own permissions here. Example:
             //myGroup.AddPermission(EvArkadasimPermissions.MyPermission1, L("Permission:MyPermission1"));
 
-            var messagePermission = myGroup.AddPermission(WorldTravelPermissions.Message.Default, L("MesageManagement"));
-            messagePermission.AddChild(WorldTravelPermissions.Message.See, L("MesageManagementSee"));
-            //messagePermission.AddChild(EvArkadasimPermissions.Message.Create, L("Permission:Documents.Create"));
-            //messagePermission.AddChild(EvArkadasimPermissions.Message.Edit, L("Permission:Documents.Edit"));
-            //messagePermission.AddChild(EvArkadasimPermissions.Message.Delete, L("Permission:Documents.Delete"));
+            var formPermission = myGroup.AddPermission(WorldTravelPermissions.Form.Default, L("FormManagement"));
+            //formPermission.AddChild(WorldTravelPermissions.Form.Create, L("Permission:Create"));
+            formPermission.AddChild(WorldTravelPermissions.Form.Edit, L("Permission:Edit"));
+            formPermission.AddChild(WorldTravelPermissions.Form.Delete, L("Permission:Delete"));
+            //formPermission.AddChild(WorldTravelPermissions.Form.ManagePermissions, L("Permission:ManagePermissions"));
+
         }
 
         private static LocalizableString L(string name)

@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Shared\_ChatBot.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Pages\Account\Login.cshtml" />
     <None Include="Pages\Account\Logout.cshtml" />
     <None Include="Pages\Account\Manage.cshtml" />
@@ -47,6 +51,7 @@
     <None Include="Pages\Home\Index.cshtml" />
     <None Include="Pages\Shared\_Footer.cshtml" />
     <None Include="Pages\Shared\_Layout.cshtml" />
+    <None Include="Pages\Shared\_ChatBot.cshtml" />
     <None Include="Pages\Shared\_Menu.cshtml" />
     <None Include="Pages\Shared\_VideoModal.cshtml" />
   </ItemGroup>
@@ -83,8 +88,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Admin\ContactForm\" />
     <Folder Include="Pages\Admin\Label\" />
+    <Folder Include="Pages\Admin\CountryContent\" />
+    <Folder Include="Pages\Admin\ShareContent\" />
     <Folder Include="Pages\Admin\Package\" />
     <Folder Include="wwwroot\web\images\home\" />
   </ItemGroup>

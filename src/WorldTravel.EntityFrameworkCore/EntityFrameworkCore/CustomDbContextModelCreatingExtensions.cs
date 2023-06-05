@@ -17,6 +17,11 @@ namespace WorldTravel.EntityFrameworkCore
 {
     public static class CustomDbContextModelCreatingExtensions
     {
+        //1 Datetime nullable yapmak için direk enitty de nullable ver yani ; 
+        //        public DateTime? BirthDate { get; set; }
+
+        //String required için  burdan ver entity.Property(e => e.Title).IsRequired(true)
+        //İlişkileri buradan yap.
         public static void CustomConfigure(this ModelBuilder modelBuilder)
         {
             Check.NotNull(modelBuilder, nameof(modelBuilder));

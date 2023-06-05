@@ -1,11 +1,9 @@
 ﻿using System;
-using Volo.Abp.Domain.Entities;
-using WorldTravel.Entities.Countries;
 using WorldTravel.Enums;
 
-namespace WorldTravel.Entities.Forms
+namespace WorldTravel.Dtos.Forms
 {
-    public class Form : Entity<int>
+    public class CreateUpdateFormDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -15,9 +13,8 @@ namespace WorldTravel.Entities.Forms
         public GenderType Gender { get; set; }
         public DateTime? BirthDate { get; set; }
         public int CountryId { get; set; }
-        public virtual Country Country { get; set; }
-        public bool IsContacted { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public Status Status { get; set; }
+        public bool IsContacted { get; set; } = false;
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public Status Status { get; set; } = Status.Active;
     }
 }

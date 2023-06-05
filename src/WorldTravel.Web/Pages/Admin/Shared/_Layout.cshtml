@@ -7,8 +7,11 @@
 @using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetScripts
 @using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetStyles
 @using Volo.Abp.Localization
+@using WorldTravel.Localization
+@using Microsoft.Extensions.Localization
 @inject IAbpAntiForgeryManager AbpAntiForgeryManager
 @inject IPageLayout PageLayout
+@inject IStringLocalizer<WorldTravelResource> L
 @{
     Layout = null;
     AbpAntiForgeryManager.SetCookie();
@@ -80,7 +83,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2021 - @DateTime.Now.Year. <a href="#">Plastik Market Admin</a> V2.2 by <a href="https://www.nuevo.com.tr/" target="_blank">Nuevo</a>
+                        &copy; 2023 <a href="#">@L["ProjectName"]</a> ver1.0 by <a href="#" target="_blank">Antiexe VıÞs</a>
                     </span>
                 </div>
             </div>

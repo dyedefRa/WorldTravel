@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Volo.Abp.Identity;
 using WorldTravel.Dtos.Files;
+using WorldTravel.Dtos.Forms;
+using WorldTravel.Dtos.Forms.ViewModels;
 using WorldTravel.Dtos.Users;
 using WorldTravel.Dtos.Users.ViewModels;
 using WorldTravel.Entities.Files;
+using WorldTravel.Entities.Forms;
 using WorldTravel.Entities.Users;
 
 namespace WorldTravel
@@ -12,9 +15,6 @@ namespace WorldTravel
     {
         public WorldTravelApplicationAutoMapperProfile()
         {
-            /* You can configure your AutoMapper mapping configuration here.
-        * Alternatively, you can split your mapping configurations
-        * into multiple profile classes for a better organization. */
             #region User
             CreateMap<AppUser, AppUserViewModel>();              //UserAppService > GetUserByIdAsync
             CreateMap<IdentityUserDto, IdentityUserUpdateDto>(); //UserAppService > ManageProfileAsync
@@ -23,10 +23,18 @@ namespace WorldTravel
 
 
             #region File
-
             CreateMap<File, FileDto>().ReverseMap();//FileAppService > SaveFileAsync
-
             #endregion
+
+            #region Form
+            CreateMap<Form, FormDto>().ReverseMap();//Form/Index POST
+            CreateMap<Form, CreateUpdateFormDto>().ReverseMap();//Form/Index POST
+            CreateMap<Form, FormViewModel>().ReverseMap();//FormAopService > GetFormListAsync
+            #endregion
+
+
+
+
         }
     }
 }

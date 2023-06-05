@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 using WorldTravel.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using WorldTravel.EntityFrameworkCore;
 namespace WorldTravel.Migrations
 {
     [DbContext(typeof(WorldTravelDbContext))]
-    partial class WorldTravelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230604123134_Update-Form-BirthDate")]
+    partial class UpdateFormBirthDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

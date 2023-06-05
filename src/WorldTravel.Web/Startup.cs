@@ -19,3 +19,6 @@ namespace WorldTravel.Web
 
 //Dil değiştirildiğinde home sayfasına atıyor. degısıtırcez.
 //tüm imagelere Alt ve title ver.
+
+//DIL MUHABBETINI BENI OKUYA EKLE 
+//CHATBOT BENI OKUYA EKLE.

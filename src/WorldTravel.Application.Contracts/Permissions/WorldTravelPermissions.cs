@@ -2,9 +2,6 @@
 {
     public static class WorldTravelPermissions
     {
-        //Add your own permission names. Example:
-        //public const string MyPermission1 = GroupName + ".MyPermission1";
-
         public const string GroupName = "WorldTravel";
         public const string Identity = "AbpIdentity";
 
@@ -16,6 +13,7 @@
             public const string Delete = Default + ".Delete";
             public const string ManagePermission = Default + ".ManagePermissions";
         }
+
         public static class Role
         {
             public const string Default = Identity + ".Roles";
@@ -25,14 +23,11 @@
             public const string ManagePermission = Default + ".ManagePermissions";
         }
 
-        public static class Message
+        public static class Form
         {
-            public const string Default = GroupName + ".Messages";
-            public const string See = Default + ".See";
-            //public const string Create = Default + ".Create";
-            //public const string Edit = Default + ".Edit";
-            //public const string Delete = Default + ".Delete";
+            public const string Default = Identity + ".Forms";
+            public const string Edit = Default + ".Edit";
+            public const string Delete = Default + ".Delete";
         }
-
     }
 }

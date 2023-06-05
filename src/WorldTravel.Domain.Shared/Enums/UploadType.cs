@@ -6,7 +6,9 @@ namespace WorldTravel.Enums
     {
         [Description("profile")]
         Profile = 1,
-        [Description("home")]
-        Home = 2,
+        [Description("countrycontent")]
+        CountryContent = 1,
+        [Description("sharecontent")]
+        ShareContent = 2,
     }
 }

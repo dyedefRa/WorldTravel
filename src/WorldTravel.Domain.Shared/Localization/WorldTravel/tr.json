@@ -17,7 +17,6 @@
     "Login": "Giriş Yap",
     "Profile": "PROFİLİM",
     "Logout": "Çıkış Yap",
-    "Message": "Mesaj",
     "Loading": "Yükleniyor...",
     "Choose": "Seçiniz",
     "Name": "Ad",
@@ -34,10 +33,28 @@
     "MyAdverts": "İlanlarım",
     "SelectImage": "Profil Resmi Seç",
     "Search": "Ara",
-    "Messages": "Mesajlar",
     "WorldwideTravel": "Dünya Çapında Seyahat",
     "SelectCountry": "Ülke seçiniz",
+    "Filter": "Filtrele",
+    "FullName": "Ad / Soyad",
+    "CountryName": "Ülke",
+    "CreatedDate": "Oluşturulma Tarihi",
+    "IsContacted": "İletişime Geçildi Mi?",
+    "True": "Evet",
+    "False": "Hayır",
+    "Country": "Ülke",
+    "CreateForm": "Rezervasyon Oluştur",
+    "ChangeContactedStatus": "Durum Değiştir",
 
+    //PERMISSION
+    "Permission:Create": "Oluşturma",
+    "Permission:Edit": "Düzenleme",
+    "Permission:Delete": "Silme",
+    "Permission:ManagePermissions": "İzinleri Değiştirme",
+
+    //FORM
+    "FormManagement": "Form Yönetimi",
+    "Forms": "Formlar",
 
     "ForgotYourPassword": "Parolamı Unuttum",
     "WantToBeRegister": "Üye Olmak İstiyorum",
@@ -49,15 +66,6 @@
     "RoleManagement": "Rol Yönetimi",
     "AdminPage": "Admin Ana Sayfa",
     "PageManagement": "Sayfa Yönetimi",
-    "MesageManagement": "Mesaj Yönetimi",
-    "MesageManagementSee": "Görme",
-
-    //MESSAGE
-    "Mute": "Sessize Al",
-    "Block": "Blokla",
-    "DeleteMessage": "Mesajı Sil",
-    "WriteMessage": "Mesaj yaz..",
-    "Send": "Gönder",
 
     //ENUMS
     "Enum:Status:0": "Belirtilmedi",
@@ -72,26 +80,29 @@
 
     "Enum:GenderType:1": "Erkek",
     "Enum:GenderType:2": "Kadın",
+    "Enum:GenderType:3": "Belirtmek İstemiyor",
 
 
     //ERORS
     "ReturnHomePage": "Ana sayfaya dön",
     "NotFoundPage": "Sayfa Bulunamadı",
     "UnauthorizedPageB": "BU SAYFAYA ERİŞİM İZNİNİZ YOK",
-    "YouMustLogin": "Lütfen tekrardan giriş yapınız",
+    //"YouMustLogin": "Lütfen tekrardan giriş yapınız",
     "NotAllowedProcess": "Bu işlemi yapmaya izniniz yok",
     "UnexpectedErrorPage": "Beklenmedik bir hata oluştu.",
     "SorryAnErrorHasOccurred": "Üzgünüm, bir hata oluştu.",
     "ImageFailedToLoad": "Resim Yüklenemedi.",
     "GeneralIdentityError": "Bir hata oluştu.Lütfen girdilerinizi kontrol ediniz.",
     "GeneralUploadError": "Bir hata oluştu.Lütfen tekrar deneyiniz.",
-    "GeneralError": "Bir hata oluştu.",
+    "EntityNotFoundError": "İçerik bulunamadı.",
+    "GeneralError": "Bir hata oluştu.", // Controller tarafındaki bilinmeyen hata
+    "UnexpectedError": "Beklenmedik bir hata oluştu.", //Javascript tarafındaki bilinmeyen hata
 
-
-    //SUCCESS
+    //SUCCESS & COnfirms
     "SuccessfullyCompleted": "İşleminiz başarıyla tamamlandı",
-    "MessageSuccessfullyDeleted": "Mesaj başarıyla silindi",
-
+    "FormRequestSuccessfully": "Talebiniz başarıyla alındı.En kısa sürede sizinle iletişime geçeceğiz.Teşekkürler",
+    "SuccessfullyDeleted": "Kayıt başarıyla silindi",
+    "DeleteConfirmMessage": "Kaydı silmek istediğinize emin misiniz?",
 
     "Turkish": "Türkçe",
     "English": "English"

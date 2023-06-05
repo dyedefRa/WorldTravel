@@ -115,7 +115,9 @@ namespace WorldTravel.Services
 
             var newGroup = result.Groups.Where(x => x.Name == "WorldTravel" || x.Name == "AbpIdentity").OrderBy(x => x.Name).ToList();
             //newGroup.FirstOrDefault(x => x.Name == "AbpIdentity").DisplayName = _L["UserManagement"];
-            newGroup.FirstOrDefault(x => x.Name == "WorldTravel").DisplayName = _L["PageManagement"];
+            if (newGroup.Any(x => x.Name == "WorldTravel"))
+                newGroup.FirstOrDefault(x => x.Name == "WorldTravel").DisplayName = _L["PageManagement"];
+            
             result.Groups = newGroup;
             return result;
         }
