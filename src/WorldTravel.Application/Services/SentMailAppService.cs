@@ -1,7 +1,4 @@
-﻿using WorldTravel.Abstract;
-using WorldTravel.Dtos.SentMails;
-using WorldTravel.Entities.SentMails;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Serilog;
 using System;
 using System.Threading.Tasks;
@@ -9,6 +6,9 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using WorldTravel.Abstract;
+using WorldTravel.Dtos.SentMails;
+using WorldTravel.Entities.SentMails;
 
 namespace WorldTravel.Services
 {

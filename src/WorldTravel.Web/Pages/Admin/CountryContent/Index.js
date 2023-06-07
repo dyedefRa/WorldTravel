@@ -1,25 +1,22 @@
 $(function () {
     var l = abp.localization.getResource('WorldTravel');
-    //var createModal = new abp.ModalManager(abp.appPath + 'Admin/Form/Create');
-    //var editModal = new abp.ModalManager(abp.appPath + 'Admin/Form/Edit');
+    var createModal = new abp.ModalManager(abp.appPath + 'Admin/Form/Create');
+    var editModal = new abp.ModalManager(abp.appPath + 'Admin/Form/Edit');
 
     var getFilter = function () {
         return {
-            fullNameFilter: $("#FullNameFilter").val(),
-            emailFilter: $("#EmailFilter").val(),
-            phoneFilter: $("#PhoneFilter").val(),
-            isContactedFilter: $("#IsContactedFilter").val()
+            countryNameFilter: $("#CountryNameFilter").val()
         };
     };
 
-    var dataTable = $('#FormsTable').DataTable(
+    var dataTable = $('#CountryContentsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
             paging: true,
             order: [],
             searching: false,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(worldTravel.services.form.getFormList, getFilter),
+            ajax: abp.libs.datatables.createAjax(worldTravel.services.counrtyContent.getCounrtyContentList, getFilter),
             columnDefs: [
                 {
                     title: l('Actions'),
@@ -27,10 +24,10 @@ $(function () {
                         items:
                             [
                                 {
-                                    text: l('ChangeContactedStatus'),
+                                    text: l('Edit'),
                                     //visible: abp.auth.isGranted('WorldTravel.Forms.Edit'),
                                     action: function (data) {
-                                        worldTravel.services.form.updateFormIsContacted(data.record.id)
+                                        worldTravel.services.counrtyContent.updateCounrtyContent(data.record.id)
                                             .done(function (result) {
                                                 if (result.success) {
                                                     toastr.success(result.message)
@@ -44,57 +41,29 @@ $(function () {
                                                 toastr.error('@L["UnexpectedError"].Value');
                                             });
                                     }
+                                },
+                                {
+                                    text: l('Delete'),
+                                    //visible: abp.auth.isGranted('WorldTravel.Forms.Delete'),
+                                    confirmMessage: function (data) {
+                                        return l('DeleteConfirmMessage', data.record.name);
+                                    },
+                                    action: function (data) {
+                                        worldTravel.services.counrtyContent.softDelete(data.record.id)
+                                            .then(function () {
+                                                abp.notify.info(l('SuccessfullyDeleted'));
+                                                dataTable.ajax.reload();
+                                            });
+                                    }
                                 }
                             ]
                     }
                 },
                 {
-                    title: l('FullName'),
-                    data: "fullName",
+                    title: l('Title'),
+                    data: "title",
                     render: function (data) {
                         return data;
-                    }
-                },
-                {
-                    title: l('PhoneNumber'),
-                    data: "phoneNumber",
-                    render: function (data) {
-                        return data;
-                    }
-                },
-                {
-                    title: l('Email'),
-                    data: "email",
-                    render: function (data) {
-                        return data;
-                    }
-                },
-                {
-                    title: l('Gender'),
-                    data: "gender",
-                    render: function (data) {
-                        return l('Enum:GenderType:' + data);
-                    }
-                },
-                {
-                    title: l('BirthDate'),
-                    data: "birthDate",
-                    render: function (data) {
-                        return setDate(data);
-                    }
-                },
-                {
-                    title: l('CountryName'),
-                    data: "countryName",
-                    render: function (data) {
-                        return data;
-                    }
-                },
-                {
-                    title: l('IsContacted'),
-                    data: "isContacted",
-                    render: function (data) {
-                        return setBoolean(data);
                     }
                 },
                 {
@@ -105,19 +74,47 @@ $(function () {
                     }
                 },
                 {
+                    title: l('CountryName'),
+                    data: "countryName",
+                    render: function (data) {
+                        return data;
+                    }
+                },
+                {
+                    title: l('Image'),
+                    data: "previewImageUrl",
+                    render: function (data) {
+                        return setImage200(data);
+                    }
+                },
+                {
+                    title: l('ReadCount'),
+                    data: "readCount",
+                    render: function (data) {
+                        return data;
+                    }
+                },
+                {
+                    title: l('TotalImageCount'),
+                    data: "totalImageCount",
+                    render: function (data) {
+                        return data;
+                    }
+                },
+                {
+                    title: l('TotalVideoCount'),
+                    data: "totalVideoCount",
+                    render: function (data) {
+                        return data;
+                    }
+                },
+                {
                     title: l('CreatedDate'),
                     data: "createdDate",
                     render: function (data) {
                         return setDate(data);
                     }
-                },
-                //{
-                //    title: l('Status'),
-                //    data: "status",
-                //    render: function (data) {
-                //        return l('Enum:Status:' + data);
-                //    }
-                //}
+                }
             ],
             createdRow: function (nRow, aData) {
             }
@@ -125,20 +122,20 @@ $(function () {
     );
 
 
-    //createModal.onResult(function () {
-    //    dataTable.ajax.reload();
-    //    abp.notify.info(l('Successfully'));
-    //});
+    createModal.onResult(function () {
+        dataTable.ajax.reload();
+        abp.notify.info(l('SuccessfullyCompleted'));
+    });
 
-    //editModal.onResult(function () {
-    //    dataTable.ajax.reload();
-    //    abp.notify.info(l('Successfully'));
-    //});
+    editModal.onResult(function () {
+        dataTable.ajax.reload();
+        abp.notify.info(l('SuccessfullyCompleted'));
+    });
 
-    //$('#createButton').click(function (e) {
-    //    e.preventDefault();
-    //    createModal.open();
-    //});
+    $('#createButton').click(function (e) {
+        e.preventDefault();
+        createModal.open();
+    });
 
     $('#btnSearch').on('click', function (e) {
         $('.loading').show();

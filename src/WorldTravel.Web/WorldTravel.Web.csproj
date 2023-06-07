@@ -89,7 +89,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Admin\Label\" />
-    <Folder Include="Pages\Admin\CountryContent\" />
     <Folder Include="Pages\Admin\ShareContent\" />
     <Folder Include="Pages\Admin\Package\" />
     <Folder Include="wwwroot\web\images\home\" />

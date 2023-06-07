@@ -1,5 +1,4 @@
-﻿using IdentityServer4.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -7,7 +6,6 @@ using Serilog;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -57,7 +55,6 @@ namespace WorldTravel.Services
             query = ApplyPaging(query, input);
 
             var list = await query.ToListAsync();
-
             var viewModels = list.Select(x =>
             {
                 var viewModel = ObjectMapper.Map<Form, FormViewModel>(x);
@@ -72,6 +69,7 @@ namespace WorldTravel.Services
         }
 
         [IgnoreAntiforgeryToken]
+        [Authorize(WorldTravelPermissions.Form.Edit)]
         public async Task<IDataResult<string>> UpdateFormIsContactedAsync(int id)
         {
             try

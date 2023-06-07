@@ -196,7 +196,7 @@ function applyImage(value) {
 
 function setImage200(image) {
     if (image === null || image === '') {
-        return '';
+        return ''; //TODOO dfeult resim ekle.
     }
     return '<img  src= "' + image + '"  class="form-group" width="200" style="margin: 0 auto;" />';
 };

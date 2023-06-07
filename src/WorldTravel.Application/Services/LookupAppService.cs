@@ -40,7 +40,6 @@ namespace WorldTravel.Services
             try
             {
                 var list = await _cityRepository.ToListAsync();
-
                 return list.Select(x => new SelectListItem(x.Title, x.Id.ToString())).ToList();
             }
             catch (Exception ex)
@@ -70,7 +69,6 @@ namespace WorldTravel.Services
             try
             {
                 var list = await _countryRepository.ToListAsync();
-
                 return list.Select(x => new SelectListItem(x.Title, x.Id.ToString())).ToList();
             }
             catch (Exception ex)
@@ -85,7 +83,6 @@ namespace WorldTravel.Services
             try
             {
                 var list = ((GenderType[])Enum.GetValues(typeof(GenderType))).ToList();
-
                 return list.Select(x => new SelectListItem(x.ToDescription(), x.ToString())).ToList();
             }
             catch (Exception ex)

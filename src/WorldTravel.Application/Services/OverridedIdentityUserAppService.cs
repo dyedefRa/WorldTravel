@@ -1,7 +1,4 @@
-﻿using WorldTravel.Abstract;
-using WorldTravel.Dtos.Users;
-using WorldTravel.Entities.Users;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -12,6 +9,9 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
+using WorldTravel.Abstract;
+using WorldTravel.Dtos.Users;
+using WorldTravel.Entities.Users;
 
 namespace WorldTravel.Services
 {
@@ -34,7 +34,6 @@ namespace WorldTravel.Services
         //Buraya düşüyor mu kontrol et
         public async Task<PagedResultDto<CustomIdentityUserDto>> GetUserListAsync(GetIdentityUsersInput input)
         {
-
             var count = await UserRepository.GetCountAsync(input.Filter);
             var list = (await UserRepository.GetListAsync(input.Sorting, input.MaxResultCount, input.SkipCount, input.Filter)).Select(x =>
             {
@@ -53,7 +52,6 @@ namespace WorldTravel.Services
             }
 
             return new PagedResultDto<CustomIdentityUserDto>(count, list);
-
         }
 
         /// <summary>
@@ -122,7 +120,7 @@ namespace WorldTravel.Services
         /// <param name="input"></param>
         /// <returns></returns>
         [AllowAnonymous]
-        public async override Task<IdentityUserDto> UpdateAsync(Guid id,IdentityUserUpdateDto input)
+        public async override Task<IdentityUserDto> UpdateAsync(Guid id, IdentityUserUpdateDto input)
         {
             /*var addedUser =*/
             return await base.UpdateAsync(id, input);

@@ -1,12 +1,4 @@
-﻿using WorldTravel.Abstract;
-using WorldTravel.Dtos.Users;
-using WorldTravel.Dtos.Users.ViewModels;
-using WorldTravel.Entities.Users;
-using WorldTravel.Enums;
-using WorldTravel.Models.Pages.Account;
-using WorldTravel.Models.Results.Abstract;
-using WorldTravel.Models.Results.Concrete;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -16,6 +8,14 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
+using WorldTravel.Abstract;
+using WorldTravel.Dtos.Users;
+using WorldTravel.Dtos.Users.ViewModels;
+using WorldTravel.Entities.Users;
+using WorldTravel.Enums;
+using WorldTravel.Models.Pages.Account;
+using WorldTravel.Models.Results.Abstract;
+using WorldTravel.Models.Results.Concrete;
 
 namespace WorldTravel.Services
 {

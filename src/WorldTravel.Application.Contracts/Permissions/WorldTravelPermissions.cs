@@ -27,7 +27,14 @@
         {
             public const string Default = Identity + ".Forms";
             public const string Edit = Default + ".Edit";
-            public const string Delete = Default + ".Delete";
         }
+
+        public static class CountryContent
+        {
+            public const string Default = Identity + ".CountryContents";
+            public const string Create = Default + ".Create";
+            public const string Edit = Default + ".Edit";
+        }
+
     }
 }
