@@ -8,7 +8,7 @@
 
 
     //GENEL
-    "ProjectName": "WorldTravel",
+    "ProjectName": "World Visa Turkey",
     "Home": "Ana sayfa",
     "Popular": "Popüler",
     "Cities": "Şehirler",
@@ -45,7 +45,11 @@
     "Country": "Ülke",
     "CreateForm": "Rezervasyon Oluştur",
     "ChangeContactedStatus": "Durum Değiştir",
+    "Contanct": "İletişim",
+    "HowProcessWork": "Süreç Nasıl İşliyor",
 
+    "ReturnUserPage": "Kullanıcı Sayfası",
+    "ProfileS": "Profilim",
     //PERMISSION
     "Permission:Create": "Oluşturma",
     "Permission:Edit": "Düzenleme",
@@ -105,7 +109,30 @@
     "DeleteConfirmMessage": "Kaydı silmek istediğinize emin misiniz?",
 
     "Turkish": "Türkçe",
-    "English": "English"
+    "English": "English",
+
+    //HOME > FIRST
+    "Sectionh6": "Buraya da bişey ekleriz", //"Over 36,500+ Active Listings",
+    "Sectionh2": "Buraya Güzel Bir Başlık Lazım", //"Find Nearby Places &amp; Things"
+
+    //HOME > ABOUT
+    "AboutTitle": "SÜREÇ NASIL İŞLİYOR", //"HOW THE PROCESS WORKS"
+    "AboutMarque": "Buraya birşeyler ekleriz",
+    "AboutCallCenter": "Size Özel Profesyonel Danışmanlarımızla<br> Görüşmeye Başlıyorsunuz.",
+    "AboutDocumentQuestion": "Gerekli Olan Eksik Evraklarınızın<br> Tespitini Sağlıyoruz.",
+    "AboutHandShake": "Danışana Özel Olarak Hazırlanan <br> Resmi Sözleşmeniz ile <br> Sürece Başlıyoruz.",
+    "AboutDocumentTick": "Bireysel yurt içinde ve yurt dışındaki danışmanlarımız, dosyanızdaki eksikleri tamamlayarak işlemlerinizi başlatıyor.",
+    "AboutLast": "Vizeniz ile <br> Yeni Hayatınıza <br> İlk Adımınızı <br> Tamamlıyorsunuz.",
+
+    //HOME > CONTACT
+    "ContactTitle": "İLETİŞİM",
+    "ContactNamePlaceHolder": "Adınız*",
+    "ContactSurnNamePlaceHolder": "Soyadınız*",
+    "ContactEmailPlaceHolder": "Emailiniz*",
+    "ContactPhonePlaceHolder": "Telefonunuz*",
+    "ContactGenderPlaceHolder": "Cinsiyet Seçiniz*",
+    "ContactCountryPlaceHolder": "Ülke Seçiniz*",
+    "ContactDescriptionPlaceHolder": "Açıklama Giriniz"
 
   }
 }

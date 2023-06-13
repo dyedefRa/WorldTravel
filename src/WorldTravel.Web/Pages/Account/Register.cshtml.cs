@@ -42,14 +42,16 @@ namespace WorldTravel.Web.Pages.Account
         }
 
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return Redirect("~/Error?httpStatusCode=404");
             UserRegisterInputModel = new UserRegisterModel();
             Genders = _lookupAppService.GetGenderLookup();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            return Redirect("~/Error?httpStatusCode=404");
             try
             {
                 if (ModelState.IsValid)

@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <!--Web Logo-->
-            <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+            <div class="logo col-md-2 col-lg-2 d-none d-lg-block" style="padding-right: 0px;">
                 <a href="/Home" style="text-decoration:none;">
-                   <div  style="display:flex;">
+                    <div style="display:flex;">
                         <img src="/web/images/world-logo.png" height="40" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
                         <span class="logo-next-name">@L["ProjectName"]</span>
-                   </div>
+                    </div>
                 </a>
             </div>
             <!--End Web Logo-->
@@ -28,65 +28,25 @@
                 <nav class="grid__item" id="AccessibleNav">
                     <!-- for mobile -->
                     <ul id="siteNav" class="site-nav medium right hidearrow">
-                        <li class="lvl1 parent megamenu">
-                            <a href="#">Shop <i class="anm anm-angle-down-l"></i></a>
-                            <div class="megamenu style4">
-                                <ul class="grid grid--uniform mmWrapper">
-                                    <li class="grid__item lvl-1 col-md-3 col-lg-3">
-                                        <a href="#" class="site-nav lvl-1">Shop Pages</a>
-                                        <ul class="subLinks">
-                                            <li class="lvl-2"><a href="shop-left-sidebar.html" class="site-nav lvl-2">Left Sidebar</a></li>
-                                            <li class="lvl-2"><a href="shop-right-sidebar.html" class="site-nav lvl-2">Right Sidebar</a></li>
-                                            <li class="lvl-2"><a href="shop-fullwidth.html" class="site-nav lvl-2">Fullwidth</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-3.html" class="site-nav lvl-2">3 items per row</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-4.html" class="site-nav lvl-2">4 items per row</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-5.html" class="site-nav lvl-2">5 items per row</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-6.html" class="site-nav lvl-2">6 items per row</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-7.html" class="site-nav lvl-2">7 items per row</a></li>
-                                            <li class="lvl-2"><a href="shop-listview.html" class="site-nav lvl-2">Product Listview</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="grid__item lvl-1 col-md-3 col-lg-3">
-                                        <a href="#" class="site-nav lvl-1">Shop Features</a>
-                                        <ul class="subLinks">
-                                            <li class="lvl-2"><a href="shop-left-sidebar.html" class="site-nav lvl-2">Product Countdown <span class="lbl nm_label3">Hot</span></a></li>
-                                            <li class="lvl-2"><a href="shop-right-sidebar.html" class="site-nav lvl-2">Infinite Scrolling</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-3.html" class="site-nav lvl-2">Pagination - Classic</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-6.html" class="site-nav lvl-2">Pagination - Load More</a></li>
-                                            <li class="lvl-2"><a href="product-labels.html" class="site-nav lvl-2">Dynamic Product Labels</a></li>
-                                            <li class="lvl-2"><a href="product-swatches-style.html" class="site-nav lvl-2">Product Swatches <span class="lbl nm_label2">Sale</span></a></li>
-                                            <li class="lvl-2"><a href="product-hover-info.html" class="site-nav lvl-2">Product Hover Info</a></li>
-                                            <li class="lvl-2"><a href="shop-grid-3.html" class="site-nav lvl-2">Product Reviews</a></li>
-                                            <li class="lvl-2"><a href="shop-left-sidebar.html" class="site-nav lvl-2">Discount Label <span class="lbl nm_label1">New</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="grid__item lvl-1 col-md-6 col-lg-6">
-                                        <a href="#"><img src="assets/images/megamenu-bg1.jpg" alt="" title="" /></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        @if (CurrentUser.IsAuthenticated)
+                        @*  @if (CurrentUser.IsAuthenticated)
                         {
-@*                            <li class="lvl1"><a href="/Message"><i class="fa fa-envelope fa-fw"></i> @L["Message"] (2)</a></li>
-*@                            <li class="lvl1 parent dropdown">
-                                <a href="#"><i class="fa fa-user fa-fw"></i> @L["Profile"]<i class="anm anm-angle-down-l"></i></a>
-                                <ul class="dropdown">
-                                    @* <li class="lvl1">
-                                <img src="/uploads/profile/eecc75a5-bac7-4ef7-bd1f-ab472edf38f1_06-5-2023-04-23-03.png" alt="@L["User"]" id="profileImage" style="cursor: pointer" class="rounded-circle p-1 bg-pink" width="70" height="70">
-                                </li>*@
-                                    <li><a href="/Account/Manage">@L["MyAccountInformation"]</a></li>
-                                    <li><a href="/Account/MyAdvert">@L["MyAdverts"]</a></li>
-                                    <li><a href="/Account/Logout">@L["Logout"]</a></li>
-                                </ul>
-                            </li>
+                        <li class="lvl1 parent dropdown">
+                        <a href="#"><i class="fa fa-user fa-fw"></i> @L["Profile"]<i class="anm anm-angle-down-l"></i></a>
+                        <ul class="dropdown">
+                        <li><a href="/Account/Manage">@L["MyAccountInformation"]</a></li>
+                        <li><a href="/Account/MyAdvert">@L["MyAdverts"]</a></li>
+                        <li><a href="/Account/Logout">@L["Logout"]</a></li>
+                        </ul>
+                        </li>
                         }
                         else
                         {
-                            <li class="lvl1"><a href="/Account/Register"><i class="fa fa-user-plus fa-fw"></i> @L["Register"]</a></li>
-                            <li class="lvl1"><a href="/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["LoginB"]</a></li>
-                            <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Admin"]</a></li>
-                        }
+                        <li class="lvl1"><a href="/Account/Register"><i class="fa fa-user-plus fa-fw"></i> @L["Register"]</a></li>
+                        *@
+                        <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-user-plus fa-fw"></i> @L["AdminPage"]</a></li>
+                        <li class="lvl1"><a href="#about">@*<i class="fa fa-plus fa-fw"></i>*@ @L["HowProcessWork"]</a></li>
+                        <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
+                        @*}*@
                     </ul>
                 </nav>
                 <!--End Web Menu-->
@@ -99,7 +59,7 @@
 <div class="mobile-nav-wrapper" role="navigation">
     <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
     <ul id="MobileNav" class="mobile-nav">
-        @if (CurrentUser.IsAuthenticated)
+       @* @if (CurrentUser.IsAuthenticated)
         {
             <li class="lvl1"> <a href="#"><i class="fa fa-envelope fa-fw"></i>@L["Message"] (2)</a></li>
             <li class="lvl1 parent megamenu">
@@ -116,7 +76,9 @@
             <li class="lvl1"><a href="/Account/Register"><i class="fa fa-user-plus fa-fw"></i> @L["Register"]</a></li>
             <li class="lvl1"><a href="/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Login"]</a></li>
             <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Admin"]</a></li>
-        }
+        }*@
+        <li class="lvl1"><a href="#about">@*<i class="fa fa-plus fa-fw">*@</i> @L["HowProcessWork"]</a></li>
+        <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
     </ul>
 </div>
 <!--End Mobile Menu-->

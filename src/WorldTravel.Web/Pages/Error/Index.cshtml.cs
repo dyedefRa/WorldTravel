@@ -1,9 +1,8 @@
-using WorldTravel.Localization;
-using IdentityServer4.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Localization;
 using System.Net;
+using WorldTravel.Localization;
 
 namespace WorldTravel.Web.Pages.Error
 {

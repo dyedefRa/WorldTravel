@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using Volo.Abp.Domain.Entities;
 using WorldTravel.Entities.Countries;
 using WorldTravel.Entities.ShareContentFiles;

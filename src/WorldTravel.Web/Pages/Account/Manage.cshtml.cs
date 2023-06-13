@@ -33,6 +33,7 @@ namespace WorldTravel.Web.Pages.Account
 
         public async Task<IActionResult> OnGetAsync()
         {
+            return Redirect("~/Error?httpStatusCode=404");
             try
             {
                 if (!CurrentUser.IsAuthenticated)
@@ -53,6 +54,7 @@ namespace WorldTravel.Web.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
+            return Redirect("~/Error?httpStatusCode=404");
             try
             {
                 if (ModelState.IsValid)

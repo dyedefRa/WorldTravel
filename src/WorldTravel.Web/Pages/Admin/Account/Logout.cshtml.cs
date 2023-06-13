@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Volo.Abp.Identity.Web.Pages.Identity;
 
-namespace WorldTravel.Web.Pages.Account
+namespace WorldTravel.Web.Pages.Admin.Account
 {
     public class LogoutModel : IdentityPageModel
     {
@@ -17,7 +17,6 @@ namespace WorldTravel.Web.Pages.Account
 
         public async Task<IActionResult> OnGet()
         {
-            return Redirect("~/Error?httpStatusCode=404");
             await _signInManager.SignOutAsync();
 
             return Redirect("~/Home");

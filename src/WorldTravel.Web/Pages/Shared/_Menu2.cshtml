@@ -1,0 +1,46 @@
+﻿@using WorldTravel.Localization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.Users
+@inject IStringLocalizer<WorldTravelResource> L
+@inject ICurrentUser CurrentUser
+
+<!--Web Menu-->
+<div class="header-wrap classicHeader animated d-flex">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!--Web Logo-->
+            <div class="logo col-md-2 col-lg-2 d-none d-lg-block" style="padding-right: 0px;">
+                <a href="/Home" style="text-decoration:none;">
+                    <div style="display:flex;">
+                        <img src="/web/images/world-logo.png" height="40" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
+                        <span class="logo-next-name">@L["ProjectName"]</span>
+                    </div>
+                </a>
+            </div>
+            <!--End Web Logo-->
+            <div class="col-2 col-sm-3 col-md-3 col-lg-8">
+                <div class="d-block d-lg-none">
+                    <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+                        <i class="icon anm anm-times-l"></i>
+                        <i class="anm anm-bars-r"></i>
+                    </button>
+                </div>
+                <nav class="grid__item" id="AccessibleNav">
+                    <!-- for mobile -->
+                
+                </nav>
+                <!--End Web Menu-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Menu-->
+<!--Mobile Menu-->
+<div class="mobile-nav-wrapper" role="navigation">
+    <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
+    <ul id="MobileNav" class="mobile-nav">
+        <li class="lvl1"><a href="#about">@L["HowProcessWork"]</a></li>
+        <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
+    </ul>
+</div>
+<!--End Mobile Menu-->

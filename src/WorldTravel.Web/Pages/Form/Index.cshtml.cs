@@ -38,8 +38,9 @@ namespace WorldTravel.Web.Pages.Form
             Countries = await _lookupAppService.GetCountryLookupAsync();
         }
 
-        public async Task OnGet(bool returnPost = false)
+        public async Task<IActionResult> OnGet(bool returnPost = false)
         {
+            return Redirect("~/Error?httpStatusCode=404");
             await LoadInitializeData();
             if (returnPost)
                 Alerts.Info(L["FormRequestSuccessfully"].Value);
@@ -47,6 +48,7 @@ namespace WorldTravel.Web.Pages.Form
 
         public async Task<IActionResult> OnPostAsync()
         {
+            return Redirect("~/Error?httpStatusCode=404");
             try
             {
                 if (ModelState.IsValid)

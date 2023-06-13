@@ -4,7 +4,8 @@ using WorldTravel.Dtos.Forms;
 using WorldTravel.Dtos.Users.ViewModels;
 using static WorldTravel.Web.Pages.Account.ManageModel;
 using static WorldTravel.Web.Pages.Account.RegisterModel;
-using static WorldTravel.Web.Pages.Form.IndexModel;
+using static WorldTravel.Web.Pages.Home.IndexModel;
+//using static WorldTravel.Web.Pages.Form.IndexModel;
 
 namespace WorldTravel.Web
 {

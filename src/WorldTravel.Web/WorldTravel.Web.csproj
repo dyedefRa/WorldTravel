@@ -23,7 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Admin\Account\Logout.cshtml" />
     <Content Remove="Pages\Shared\_ChatBot.cshtml" />
+    <Content Remove="Pages\Shared\_Layout2.cshtml" />
+    <Content Remove="Pages\Shared\_Menu2.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +35,7 @@
     <None Include="Pages\Account\Manage.cshtml" />
     <None Include="Pages\Account\Register.cshtml" />
     <None Include="Pages\Admin\Account\Login.cshtml" />
+    <None Include="Pages\Admin\Account\Logout.cshtml" />
     <None Include="Pages\Admin\Account\Manage.cshtml" />
     <None Include="Pages\Admin\Identity\Roles\CreateModal.cshtml" />
     <None Include="Pages\Admin\Identity\Roles\EditModal.cshtml" />
@@ -48,10 +52,11 @@
     <None Include="Pages\Admin\_ViewImports.cshtml" />
     <None Include="Pages\Admin\_ViewStart.cshtml" />
     <None Include="Pages\Error\Index.cshtml" />
-    <None Include="Pages\Home\Index.cshtml" />
     <None Include="Pages\Shared\_Footer.cshtml" />
+    <None Include="Pages\Shared\_Layout2.cshtml" />
     <None Include="Pages\Shared\_Layout.cshtml" />
     <None Include="Pages\Shared\_ChatBot.cshtml" />
+    <None Include="Pages\Shared\_Menu2.cshtml" />
     <None Include="Pages\Shared\_Menu.cshtml" />
     <None Include="Pages\Shared\_VideoModal.cshtml" />
   </ItemGroup>

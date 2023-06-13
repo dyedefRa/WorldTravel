@@ -97,7 +97,31 @@
 
 .logo-next-name {
     color: #1594d0;
-    font-size: 25px;
+    font-size: 20px;
     margin-left: 8px;
-    margin-top: 3px;
+    margin-top: 7px;
+}
+
+/*@media (min-width: 576px) {
+    .home-text {
+        max-width: 540px
+    }
+}
+
+@media (min-width: 768px) {
+    .home-text {
+        max-width: 720px
+    }
+}
+
+@media (min-width: 992px) {
+    .home-text {
+        max-width: 960px
+    }
+}*/
+
+@media (min-width: 1200px) {
+    .home-text {
+        margin-top:-250px !important;
+    }
 }

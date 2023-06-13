@@ -76,13 +76,13 @@ $(function () {
                         return l('Enum:GenderType:' + data);
                     }
                 },
-                {
-                    title: l('BirthDate'),
-                    data: "birthDate",
-                    render: function (data) {
-                        return setDate(data);
-                    }
-                },
+                //{
+                //    title: l('BirthDate'),
+                //    data: "birthDate",
+                //    render: function (data) {
+                //        return setDate(data);
+                //    }
+                //},
                 {
                     title: l('CountryName'),
                     data: "countryName",

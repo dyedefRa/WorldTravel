@@ -1,8 +1,6 @@
 ﻿@page
-@using Microsoft.AspNetCore.Mvc.Localization
-@using WorldTravel.Localization
 @using WorldTravel.Extensions
-@inject IHtmlLocalizer<WorldTravelResource> L
+@inject Microsoft.Extensions.Localization.IStringLocalizer<WorldTravel.Localization.WorldTravelResource> L
 @model WorldTravel.Web.Pages.Home.IndexModel
 @{
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -10,7 +8,6 @@
 
 @section styles {
     <style>
-
         .top-text {
             text-align: center;
         }
@@ -31,285 +28,153 @@
                 margin-bottom: 45px;
             }
 
-        .home-search-form {
-            background-color: #fff;
-            padding: 0px 0px 0px 30px;
-            width: 100%;
-            border-radius: 7px;
-            display: inline-block;
-            text-align: center;
+        textarea {
+            resize: none;
         }
-
-            .home-search-form select,
-            .home-search-form input {
-                width: 100%;
-                height: 36px;
-                background-color: transparent;
-                border: none;
-                color: #2a2a2a;
-                font-size: 15px;
-                outline: none;
-            }
-
-        .form-select:focus {
-            box-shadow: none;
-        }
-
-        .home-search-form input.searchText {
-            border-left: 1px solid #8d99af;
-            border-right: 1px solid #8d99af;
-            padding: 0px 30px;
-        }
-
-        .home-search-form input::placeholder {
-            color: #2a2a2a;
-            font-size: 15px;
-        }
-
-        .home-search-form button {
-            width: 100%;
-            height: 100%;
-            background-color: #8d99af;
-            border: none;
-            padding: 15px;
-            color: #fff;
-            font-size: 15px;
-            border-top-right-radius: 7px;
-            border-bottom-right-radius: 7px;
-        }
-
-            .home-search-form button i {
-                width: 40px;
-                height: 40px;
-                background-color: #fff;
-                border-radius: 50%;
-                color: #8d99af;
-                display: inline-block;
-                text-align: center;
-                line-height: 38px;
-                margin-right: 10px;
-            }
-
     </style>
 }
 
-
-<div class="slideshow slideshow-wrapper">
-    <div class="home-slideshow">
-        <div class="slide">
-            <div class="blur-up lazyload">
-                <img class="blur-up lazyload" data-src="/web/images/home/home7.jpg" src="/web/images/home/home7.jpg" alt="Gift For her" title="Gift For her" />
-                <div class="slideshow__text-wrap slideshow__overlay classic middle">
-                    <div class="slideshow__text-content classic left">
-                        <div class="container" style="margin-top:-250px;">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="top-text header-text">
-                                        <h6>Over 36,500+ Active Listings</h6>
-                                        <h2>Find Nearby Places &amp; Things</h2>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <form id="search-form" class="home-search-form" name="gs" method="submit" role="search" action="#">
-                                        <div class="row">
-                                            <div class="col-lg-3 align-self-center">
-                                                @*  <abp-select asp-for="HomeSelectInputModel.Country">
-                                                <option disabled selected>@L["Choose"]</option>
-                                                </abp-select>*@
-
-                                                <select asp-for="HomeSelectInputModel.CountryId" class="form-select" asp-items="@Model.Countries">
-                                                    <option disabled selected>@L["SelectCountry"]</option>
-
-                                                </select>
-                                                @*  <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
-                                                <option selected>All Areas</option>
-                                                <option value="New Village">New Village</option>
-                                                <option value="Old Town">Old Town</option>
-                                                <option value="Modern City">Modern City</option>
-                                                </select>*@
-                                            </div>
-                                            <div class="col-lg-3 align-self-center">
-                                                <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
-                                                    <option selected>All Areas</option>
-                                                    <option value="New Village">New Village</option>
-                                                    <option value="Old Town">Old Town</option>
-                                                    <option value="Modern City">Modern City</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3 align-self-center">
-                                                <select name="price" class="form-select select3" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
-                                                    <option selected>Price Range</option>
-                                                    <option value="$100 - $250">$100 - $250</option>
-                                                    <option value="$250 - $500">$250 - $500</option>
-                                                    <option value="$500 - $1000">$500 - $1,000</option>
-                                                    <option value="$1000+">$1,000 or more</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <button class="main-button btn bg-default"><i class="fa fa-search"></i> @L["Search"]</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @*                <div class="slideshow__text-wrap slideshow__overlay classic bottom">
-                <div class="slideshow__text-content left">
-                <div class="container">
-                <div class="wrap-caption left">
-                <h2 class="h1 mega-title slideshow__title">Gift For her</h2>
-                <span class="mega-subtitle slideshow__subtitle">The latest collection from italian brands</span>
-                <span class="btn">Shop now</span>
-                </div>
-                </div>
-                </div>
-                </div>
-                *@
-            </div>
-        </div>
-    </div>
-</div>
-<!--End Home slider-->
-<!--Hero Parallax Section1-->
-<div class="section">
-    <div class="hero hero--large hero__overlay bg-size">
-        <img class="bg-img blur-up" src="/web/images/home/home10.jpg" alt="" />
-        <div class="hero__inner">
-            <div class="container">
-                <div class="wrap-text  right text-medium font-bold">
-                    <h2 class="h2 mega-title">DOĞRU BAŞVURU İLE <br>GİDİLEMEYECEK<br> YER YOK</h2>
-                    <div class="rte-setting mega-subtitle">Kişiye özel profesyonel danışmanlarımızla dosyanızı hazırlayıp size uygun vize türünü almak mümkün</div>
-                    <a href="#" class="btn">Detayları Gör</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End Hero Parallax Section1-->
-<!--Hero Parallax Section2-->
-<div class="section">
-    <div class="hero hero--large hero__overlay bg-size">
-        <img class="bg-img blur-up" src="/web/images/home/n5.jpg" alt="" />
-        <div class="hero__inner">
-            <div class="container">
-                <div class="wrap-text  left text-large font-bold">
-                    <h2 class="h2 mega-title">PROFESYONEL HİZMET İLE<br> HERKES<br>YURTDIŞINA GİDEBİLİR</h2>
-                    <div class="rte-setting mega-subtitle"><p><b>Yabancı dil, eğitim, maddi referans, yurt dışı refaransı vb. gibi şartlar olmadan</b></p> istediğin ülkeye gidebilirsin</div>
-                    <a href="#" class="btn">Detayları Gör</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End Hero Parallax Section2-->
 <!--Hero Parallax Section3-->
 <div class="section">
     <div class="hero hero--large hero__overlay bg-size">
-        <img class="bg-img blur-up" src="/web/images/home/home2.jpg" alt="" />
+        <img class="bg-img blur-up" src="/web/images/home/home7.jpg" alt="" />
         <div class="hero__inner">
-            <div class="container">
-                <div class="wrap-text  center text-medium font-bold">
-                    <h2 class="h2 mega-title">YURT DIŞINDAKİ DANIŞMANLARIMIZLA <br> SEYAHATİNİZİ <br> EN İYİ ŞEKİLDE <br> PLANLAYIN</h2>
-                    @*<div class="rte-setting mega-subtitle">Carry this stylist wallets for party</div>*@
-                    <a href="#" class="btn">Seyahat Planla</a>
+            <div class="container home-text">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="top-text header-text">
+                            <h6>@L["Sectionh6"]</h6>
+                            <h2>@L["Sectionh2"]</h2>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!--End Hero Parallax Section3-->
-<!--Home slider-->
-@*<div class="slideshow slideshow-wrapper pb-section">
-    <div class="home-slideshow">
-        <div class="slide slideshow--medium">
-            <div class="blur-up lazyload">
-                <img class="blur-up lazyload" data-src="/web/images/slideshow-banners/home5-banner1.jpg" src="/web/images/slideshow-banners/home5-banner1.jpg" alt="The One" title="The One" />
-                <div class="slideshow__text-wrap slideshow__overlay classic middle">
-                    <div class="slideshow__text-content classic left">
-                        <div class="container" style="margin-top:-250px;">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="top-text header-text">
-                                        <h6>Over 36,500+ Active Listings</h6>
-                                        <h2>Find Nearby Places &amp; Things</h2>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <form id="search-form" class="home-search-form" name="gs" method="submit" role="search" action="#">
-                                        <div class="row">
-                                            <div class="col-lg-3 align-self-center">
-                                                    <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
-                                                        <option selected>All Areas</option>
-                                                        <option value="New Village">New Village</option>
-                                                        <option value="Old Town">Old Town</option>
-                                                        <option value="Modern City">Modern City</option>
-                                                    </select>
-                                            </div>
-                                            <div class="col-lg-3 align-self-center">
-                                                <select name="area" class="form-select" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
-                                                    <option selected>All Areas</option>
-                                                    <option value="New Village">New Village</option>
-                                                    <option value="Old Town">Old Town</option>
-                                                    <option value="Modern City">Modern City</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3 align-self-center">
-                                                    <select name="price" class="form-select select3" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
-                                                        <option selected>Price Range</option>
-                                                        <option value="$100 - $250">$100 - $250</option>
-                                                        <option value="$250 - $500">$250 - $500</option>
-                                                        <option value="$500 - $1000">$500 - $1,000</option>
-                                                        <option value="$1000+">$1,000 or more</option>
-                                                    </select>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <fieldset>
-                                                    <button class="main-button btn btn-green"><i class="fa fa-search"></i> @L["Search"]</button>
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
 
-                            </div>
+<section id="about">
+    <div class="container">
+        <div class="about-top text-center">
+            <h3>@L["AboutTitle"]</h3>
+            <marquee behavior="" direction=""><p>@L["AboutMarque"]</p></marquee>
+        </div>
+        <div class="about-content">
+            <div class="row">
+                <div class="col-md-4 text-right wow fadeInRight" data-wow-duration="2s">
+                    @*<p></p>*@
+                    <br />
+                    <h4>@Html.Raw(L["AboutCallCenter"])</h4>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img class="rsm-yuvarla wow fadeIn" src="/web/ext/golden/images/h-call.png" alt="@L["ImageFailedToLoad"]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 offset-sm-4 text-center ">
+                    <img class="rsm-yuvarla wow fadeIn " src="/web/ext/golden/images/h-doc-q.jpeg" alt="p2">
+                </div>
+                <div class="col-md-4  wow fadeInLeft" data-wow-duration="2s">
+                    <br />
+                    <h4>@Html.Raw(L["AboutDocumentQuestion"])</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right wow fadeInRight" data-wow-duration="2s">
+                    <br />
+                    <h4>@Html.Raw(L["AboutHandShake"])</h4>
+                </div>
+                <div class="col-md-4 text-center ">
+                    <img class="rsm-yuvarla wow fadeIn" src="/web/ext/golden/images/h-handshake.png" alt="p1">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 offset-sm-4 text-center">
+                    <img class="rsm-yuvarla wow fadeIn" src="/web/ext/golden/images/h-doc-t.jpg" alt="p2">
+                </div>
+                <div class="col-md-4 wow fadeInLeft" data-wow-duration="2s">
+                    <br />
+                    <h4>@Html.Raw(L["AboutDocumentTick"])</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 offset-sm-4 text-center wow fadeIn">
+                    <div class="about-circle">
+                        <div class="indexle">
+                            <p style="margin-top:-8px;">@Html.Raw(L["AboutLast"]) </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>*@
-<!--End Home slider-->
+</section>
+
+<section id="contact">
+    <div class="container wow zoomIn" data-wow-duration="2s">
+        <div class="cont-top text-center ">
+            <h4>@L["ContactTitle"]</h4>
+        </div>
+        <div class="cont-content">
+            <form method="post" class="golden-from" href="/Home">
+                @Html.AntiForgeryToken()
+                @(await Component.InvokeAsync<Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Themes.Basic.Components.PageAlerts.PageAlertsViewComponent>())
+                <div class="row">
+                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                        <abp-input asp-for="FormInputModel.Name" label="@L["Name"]" placeholder="@L["ContactNamePlaceHolder"]" class="golden-from-element" />
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                        <abp-input asp-for="FormInputModel.Surname" label="@L["Surname"]" placeholder="@L["ContactSurnNamePlaceHolder"]" class="golden-from-element" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                        <abp-input asp-for="FormInputModel.Email" label="@L["Email"]" placeholder="@L["ContactEmailPlaceHolder"]" class="golden-from-element" />
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                        <abp-input asp-for="FormInputModel.PhoneNumber" class="golden-from-element mobilephone" placeholder="@L["ContactPhonePlaceHolder"]" label="@L["PhoneNumber"]" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                        <abp-select asp-for="FormInputModel.Gender" label="@L["Gender"]" class="golden-from-element">
+                            <option disabled selected>@L["ContactGenderPlaceHolder"]</option>
+                        </abp-select>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                        <abp-select asp-for="FormInputModel.CountryId" label="@L["Country"]" class="golden-from-element">
+                            <option disabled selected>@L["ContactCountryPlaceHolder"]</option>
+                        </abp-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                        <abp-input asp-for="FormInputModel.Description" placeholder="@L["ContactDescriptionPlaceHolder"]" class="golden-from-element" />
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:40px;">
+                    <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                        <abp-button text="@L["CreateForm"]" type="submit" class="btn-nice" button-type="Primary" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 @section scripts {
     <script>
         $(document).ready(function () {
             $('body').addClass('home9-parallax');
+            $('#FormInputModel_BirthDate').attr('type', 'date');
+            $('.golden-from label').hide();
+            //query temizle
 
-            //#region Filter
-
-            //#endregion
-
-            //abp.ajax({
-            //    type: 'GET',
-            //    url: '/api/identity/users'
-            //}).then(function (result) {
-            //    console.log(result);
-            //}).catch(function () {
-            //    alert("request failed :(");
-            //});
-
-
-            //abp.ajax({
-            //    url: abp.appPath + 'Portal/Catalog/SwitchCustomer',
-            //    data: JSON.stringify(info),
-            //    success: function (data) {
-            //        console.log('Data Returned: ' + data.personId);
-            //    }
-            //});
+        @if (Model.FormInputModel.IsReturnPost)
+        {
+            @:$('.contantLink').click();
+        }
+                window.history.replaceState(null, '', window.location.pathname);
         });
     </script>
 }
