@@ -77,18 +77,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-10 col-sm-8 col-md-5 col-lg-4">
-                        @*   <div class="currency-picker">
-                        <span class="selected-currency">USD</span>
-                        <ul id="currencies">
-                        <li data-currency="INR" class="">INR</li>
-                        <li data-currency="GBP" class="">GBP</li>
-                        <li data-currency="CAD" class="">CAD</li>
-                        <li data-currency="USD" class="selected">USD</li>
-                        <li data-currency="AUD" class="">AUD</li>
-                        <li data-currency="EUR" class="">EUR</li>
-                        <li data-currency="JPY" class="">JPY</li>
-                        </ul>
-                        </div>*@
                         <div class="language-dropdown">
                             <span class="language-dd">
                                 <img width="23" class="selectedLanguageImage" src="/global_assets/images/lang/tr.png" />
@@ -103,10 +91,11 @@
                                 </li>
                             </ul>
                         </div>
-                        <p class="phone-no"><i class="anm anm-phone-s"></i> +90 (546) 767 9477</p>
+                        <p class="phone-no"><a href="tel:905520186969" title="@L["ClickCallMe"]" style="cursor:pointer;"><i class="anm anm-phone-s"></i> +90 (552) 018 6969 </a></p>
+                        <p style="margin-left:5px;" class="phone-no"><a href="mailto:nuraliemirkalayci@gmail.com" title="@L["ClickSendMail"]" style="cursor:pointer;text-transform:initial;"><i class="icon-email"></i> @L["SendMail"] </a></p>
                     </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block">
-                        <div class="text-center"><p class="top-header_middle-text"> @L["WorldwideTravel"]</p></div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block" style="margin-top:3px;">
+                        <div class="text-center"><p class="top-header_middle-text"><a href="/Home">@L["ProjectName"]</a></p></div>
                     </div>
                     <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right">
                         @* <span class="user-menu d-block d-lg-none"><i class="anm anm-user-al" aria-hidden="true"></i></span>
@@ -305,11 +294,11 @@
                     var languageCookie = localStorage.getItem('$language');
                     if (languageCookie == 'en') {
                         localStorage.setItem('$language', 'tr');
-                        window.location.href = "/Abp/Languages/Switch?culture=tr&uiCulture=tr&returnUrl=%2FHome";
+                        window.location.href = "/Abp/Languages/Switch?culture=tr&uiCulture=tr&returnUrl=" + location.pathname
                     }
                     else {
                         localStorage.setItem('$language', 'en');
-                        window.location.href = "/Abp/Languages/Switch?culture=en&uiCulture=en&returnUrl=%2FHome";
+                        window.location.href = "/Abp/Languages/Switch?culture=en&uiCulture=en&returnUrl=" + location.pathname
                     }
                 });
                 //#endregion

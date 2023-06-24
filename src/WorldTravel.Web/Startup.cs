@@ -17,11 +17,20 @@ namespace WorldTravel.Web
     }
 }
 
-//Dil değiştirildiğinde home sayfasına atıyor. degısıtırcez.
 //tüm imagelere Alt ve title ver.
-
-//DIL MUHABBETINI BENI OKUYA EKLE 
-//CHATBOT BENI OKUYA EKLE.
 
 //GEREKSIZ DLLLERI CSS RESIM VS KALDIr.
 //PROJE SONUNDA eng.json doldur.
+
+
+//LAYOUTTA >>    @Html.Partial("_Scripts") YAP VE SYTYLE ICINDE YAP
+
+
+//  ülke güncelleme vs 
+// county Detailda resim ve videoları görünmesi.
+
+//popüler hizmet bolumune > modal ekle statik değerler al.
+
+//Yorum bolumu ekle
+
+//goruntulenme sayısını artır.

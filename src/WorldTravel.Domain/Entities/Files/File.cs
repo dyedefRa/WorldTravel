@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Volo.Abp.Domain.Entities;
 using WorldTravel.Entities.CountryContentFiles;
-using WorldTravel.Entities.ShareContentFiles;
+using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Users;
 using WorldTravel.Enums;
 
@@ -20,8 +20,7 @@ namespace WorldTravel.Entities.Files
         public Status Status { get; set; }
 
         public virtual AppUser User { get; set; }
+        public virtual ICollection<CountryContent> CountryContents { get; set; }
         public virtual ICollection<CountryContentFile> CountryContentFiles { get; set; }
-        public virtual ICollection<ShareContentFile> ShareContentFiles { get; set; }
-
     }
 }

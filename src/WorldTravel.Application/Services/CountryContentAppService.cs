@@ -1,17 +1,24 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using Serilog;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using WorldTravel.Abstract;
 using WorldTravel.Dtos.CountryContents;
 using WorldTravel.Dtos.CountryContents.ViewModels;
+using WorldTravel.Entities.CountryContentFiles;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Enums;
 using WorldTravel.Localization;
+using WorldTravel.Models.Results.Abstract;
+using WorldTravel.Models.Results.Concrete;
 using WorldTravel.Permissions;
 
 namespace WorldTravel.Services
@@ -20,13 +27,16 @@ namespace WorldTravel.Services
     public class CountryContentAppService : CrudAppService<CountryContent, CountryContentDto, int, PagedAndSortedResultRequestDto, CreateUpdateCountryContentDto, CreateUpdateCountryContentDto>, ICountryContentAppService
     {
         private readonly IStringLocalizer<WorldTravelResource> _L;
+        private readonly IRepository<CountryContentFile, int> _countryContentFileRepository;
 
         public CountryContentAppService(
             IRepository<CountryContent, int> repository,
-            IStringLocalizer<WorldTravelResource> L
+            IStringLocalizer<WorldTravelResource> L,
+            IRepository<CountryContentFile, int> countryContentFileRepository
             ) : base(repository)
         {
             _L = L;
+            _countryContentFileRepository = countryContentFileRepository;
         }
 
         public async Task<PagedResultDto<CountryContentViewModel>> GetCountryContentListAsync(GetCountryContentRequestDto input)
@@ -36,6 +46,7 @@ namespace WorldTravel.Services
             var query = Repository.Where(x => x.Status == Status.Active).AsQueryable();
             query = query
                 .Include(x => x.Country)
+                .Include(x => x.Image)
                 .Include(x => x.CountryContentFiles).ThenInclude(x => x.File);
 
             query = query
@@ -51,19 +62,11 @@ namespace WorldTravel.Services
                 var files = x.CountryContentFiles.Select(x => x.File).ToList();
                 var viewModel = ObjectMapper.Map<CountryContent, CountryContentViewModel>(x);
                 viewModel.CountryName = x.Country.Title;
+                viewModel.PreviewImageUrl = x.Image.Path;
                 if (files != null)
                 {
-                    var images = files.Where(x => x.FileType == FileType.Image).ToList();
-                    if (images.Count > 0)
-                    {
-                        viewModel.PreviewImageUrl = images.OrderBy(x => x.Rank).FirstOrDefault().Path;
-                        viewModel.TotalImageCount = images.Count;
-                    }
-                    var videos = files.Where(x => x.FileType == FileType.Video).ToList();
-                    if (videos.Count > 0)
-                    {
-                        viewModel.TotalVideoCount = videos.Count;
-                    }
+                    viewModel.TotalImageCount = files.Where(x => x.FileType == FileType.Image).Count();
+                    viewModel.TotalVideoCount = files.Where(x => x.FileType == FileType.Video).Count();
                 }
                 return viewModel;
             }).ToList();
@@ -74,5 +77,106 @@ namespace WorldTravel.Services
         }
 
 
+        [RemoteService(IsEnabled = false, IsMetadataEnabled = false)]
+        public async Task<IDataResult<bool>> AddOrRemoveCountryContentFileRelationAsync(int countryContentId, List<int> newFileIds, List<int> removedFileIds = null, bool isShareContent = false)
+        {
+            try
+            {
+                if (removedFileIds != null && removedFileIds.Count > 0)
+                {
+                    foreach (var removedFileId in removedFileIds)
+                    {
+                        var removedEntity = _countryContentFileRepository.FirstOrDefault(x => x.CountryContentId == countryContentId && x.FileId == removedFileId);
+                        await _countryContentFileRepository.DeleteAsync(removedEntity, true);
+                    }
+                }
+
+                if (newFileIds.Count > 0)
+                {
+                    await _countryContentFileRepository.InsertManyAsync(
+                        newFileIds.Select(x => new CountryContentFile() { CountryContentId = countryContentId, FileId = x, IsShareContent = isShareContent }), true);
+                }
+
+                return new SuccessDataResult<bool>(true);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "CountryContentAppService > AddOrRemoveCountryContentFileRelationAsync");
+                return new ErrorDataResult<bool>(false, L["GeneralError"].Value);
+            }
+        }
+
+        #region User Pages
+
+        /// <summary>
+        /// Web tarafındaki Country/Index sayfasında kullanılır.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        public async Task<List<CountryContentViewModel>> GetCountryContentListForUserAsync(GetCountryContentRequestDto input)
+        {
+            var result = new List<CountryContentViewModel>();
+            var query = Repository.Where(x => x.Status == Status.Active).AsQueryable();
+            query = query
+                .Include(x => x.Country)
+                .Include(x => x.Image)
+                .Include(x => x.CountryContentFiles).ThenInclude(x => x.File);
+
+            query = query
+                .WhereIf(!string.IsNullOrWhiteSpace(input.CountryNameFilter), x => x.Country.Title.Contains(input.CountryNameFilter));
+
+            var totalCount = await query.CountAsync();
+            query = ApplySorting(query, input);
+            query = ApplyPaging(query, input);
+
+            var list = await query.ToListAsync();
+            var viewModels = list.Select(x =>
+            {
+                var files = x.CountryContentFiles.Select(x => x.File).ToList();
+                var viewModel = ObjectMapper.Map<CountryContent, CountryContentViewModel>(x);
+                viewModel.CountryName = x.Country.Title;
+                viewModel.PreviewImageUrl = x.Image.Path;
+                if (files != null)
+                {
+                    viewModel.TotalImageCount = files.Where(x => x.FileType == FileType.Image).Count();
+                    viewModel.TotalVideoCount = files.Where(x => x.FileType == FileType.Video).Count();
+                }
+                return viewModel;
+            }).OrderBy(x => x.Rank).ToList();
+
+            return viewModels;
+        }
+
+        [AllowAnonymous]
+        public async Task<IDataResult<CountryContentViewModel>> GetCountryContentAsync(int countryContentId)
+        {
+            try
+            {
+                var data = await Repository
+                    .Include(x => x.Country)
+                    .Include(x => x.Image)
+                    .Include(x => x.CountryContentFiles).ThenInclude(x => x.File)
+                    .Where(x => x.Status == Status.Active)
+                    .FirstOrDefaultAsync(x => x.Id == countryContentId);
+
+                if (data == null)
+                    return new ErrorDataResult<CountryContentViewModel>(L["EntityNotFoundError"]);
+
+                var result = ObjectMapper.Map<CountryContent, CountryContentViewModel>(data);
+                result.CountryName = data.Country.Title;
+                result.PreviewImageUrl = data.Image.Path;
+
+                return new SuccessDataResult<CountryContentViewModel>(result);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "CountryContentAppService > AddOrRemoveCountryContentFileRelationAsync");
+
+                return new ErrorDataResult<CountryContentViewModel>(L["GeneralError"]);
+            }
+        }
+
+        #endregion
     }
 }

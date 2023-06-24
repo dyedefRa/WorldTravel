@@ -27,6 +27,7 @@
     <Content Remove="Pages\Shared\_ChatBot.cshtml" />
     <Content Remove="Pages\Shared\_Layout2.cshtml" />
     <Content Remove="Pages\Shared\_Menu2.cshtml" />
+    <Content Remove="Pages\Shared\_WhatsApp.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,6 +53,7 @@
     <None Include="Pages\Admin\_ViewImports.cshtml" />
     <None Include="Pages\Admin\_ViewStart.cshtml" />
     <None Include="Pages\Error\Index.cshtml" />
+    <None Include="Pages\Shared\_WhatsApp.cshtml" />
     <None Include="Pages\Shared\_Footer.cshtml" />
     <None Include="Pages\Shared\_Layout2.cshtml" />
     <None Include="Pages\Shared\_Layout.cshtml" />
@@ -93,10 +95,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Admin\Label\" />
-    <Folder Include="Pages\Admin\ShareContent\" />
-    <Folder Include="Pages\Admin\Package\" />
+    <Folder Include="wwwroot\uploads\profile\" />
     <Folder Include="wwwroot\web\images\home\" />
+    <Folder Include="wwwroot\web\img\home-country\" />
   </ItemGroup>
 
 </Project>

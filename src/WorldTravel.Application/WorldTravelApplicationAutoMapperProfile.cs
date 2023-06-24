@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Volo.Abp.Identity;
+using WorldTravel.Dtos.CountryContents;
+using WorldTravel.Dtos.CountryContents.ViewModels;
 using WorldTravel.Dtos.Files;
 using WorldTravel.Dtos.Forms;
 using WorldTravel.Dtos.Forms.ViewModels;
 using WorldTravel.Dtos.Users;
 using WorldTravel.Dtos.Users.ViewModels;
+using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Files;
 using WorldTravel.Entities.Forms;
 using WorldTravel.Entities.Users;
@@ -32,7 +35,12 @@ namespace WorldTravel
             CreateMap<Form, FormViewModel>().ReverseMap();//FormAopService > GetFormListAsync
             #endregion
 
+            #region CountryContent
+            CreateMap<CountryContent, CountryContentDto>().ReverseMap();
+            CreateMap<CountryContent, CreateUpdateCountryContentDto>().ReverseMap();
+            CreateMap<CountryContent, CountryContentViewModel>().ReverseMap();
 
+            #endregion
 
 
         }

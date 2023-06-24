@@ -30,7 +30,7 @@ namespace WorldTravel.Services
                 var defaultFileDto = uploadResult.Data;
                 defaultFileDto.FileType = fileType;
                 var entity = ObjectMapper.Map<FileDto, Entities.Files.File>(defaultFileDto);
-                var insertedData = await Repository.InsertAsync(entity, true);
+                var insertedData = await Repository.InsertAsync(entity,true);
                 var resultDto = ObjectMapper.Map<Entities.Files.File, FileDto>(insertedData);
                 return new SuccessDataResult<FileDto>(resultDto);
             }

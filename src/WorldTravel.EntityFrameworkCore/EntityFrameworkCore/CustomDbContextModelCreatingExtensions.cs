@@ -9,8 +9,6 @@ using WorldTravel.Entities.Forms;
 using WorldTravel.Entities.Logs;
 using WorldTravel.Entities.MailTemplates;
 using WorldTravel.Entities.SentMails;
-using WorldTravel.Entities.ShareContentFiles;
-using WorldTravel.Entities.ShareContents;
 using WorldTravel.Entities.Towns;
 
 namespace WorldTravel.EntityFrameworkCore
@@ -20,7 +18,7 @@ namespace WorldTravel.EntityFrameworkCore
         //1 Datetime nullable yapmak için direk enitty de nullable ver yani ; 
         //        public DateTime? BirthDate { get; set; }
 
-        //String required için  burdan ver entity.Property(e => e.Title).IsRequired(true)
+        //String required için  burdan ver entity.Property(e => e.Title).IsRequired(true) yoksa nullable oluyor.
         //İlişkileri buradan yap.
         public static void CustomConfigure(this ModelBuilder modelBuilder)
         {
@@ -50,6 +48,7 @@ namespace WorldTravel.EntityFrameworkCore
 
                 entity.Property(e => e.CountryContentId).HasColumnType("int");
                 entity.Property(e => e.FileId).HasColumnType("int");
+                entity.Property(e => e.IsShareContent).HasColumnType("bit");
 
                 entity.HasIndex(e => e.CountryContentId, "IX_AppCountryContentFile_CountryContentId");
                 entity.HasIndex(e => e.FileId, "IX_AppCountryContentFile_FileId");
@@ -72,14 +71,26 @@ namespace WorldTravel.EntityFrameworkCore
                 entity.ToTable(dbTablePrefix + "CountryContents");
 
                 entity.Property(e => e.Title).IsRequired(true).HasMaxLength(255);
+                entity.Property(e => e.ShortDescription).IsRequired(true);
                 entity.Property(e => e.Description).IsRequired(true);
+                entity.Property(e => e.ExtraDescription);
                 entity.Property(e => e.CountryId).HasColumnType("int");
                 entity.Property(e => e.ReadCount).HasColumnType("int");
+                entity.Property(e => e.Rank).HasColumnType("int");
+                entity.Property(e => e.IsSeenHomePage).HasColumnType("bit");
+                entity.Property(e => e.ImageKey).HasMaxLength(20);
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
                 entity.Property(e => e.ValidDate).HasColumnType("datetime");
                 entity.Property(a => a.Status).HasColumnType("int");
 
+                entity.HasIndex(e => e.ImageId, "IX_AppCountryContent_FileId");
                 entity.HasIndex(e => e.CountryId, "IX_AppCountryContent_CountryId");
+
+                entity.HasOne(d => d.Image)
+                 .WithMany(p => p.CountryContents)
+                 .HasForeignKey(d => d.ImageId)
+                 .OnDelete(DeleteBehavior.ClientSetNull)
+                 .HasConstraintName("FK_AppCountryContents_AppFiles");
 
                 entity.HasOne(d => d.Country)
                  .WithMany(p => p.CountryContents)
@@ -159,50 +170,6 @@ namespace WorldTravel.EntityFrameworkCore
                 entity.Property(e => e.Subject).IsRequired(true);
                 entity.Property(e => e.Body).IsRequired(true);
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
-            });
-
-            modelBuilder.Entity<ShareContentFile>(entity =>
-            {
-                entity.ToTable(dbTablePrefix + "ShareContentFiles");
-
-                entity.Property(e => e.ShareContentId).HasColumnType("int");
-                entity.Property(e => e.FileId).HasColumnType("int");
-
-                entity.HasIndex(e => e.ShareContentId, "IX_AppShareContentFile_ShareContentId");
-                entity.HasIndex(e => e.FileId, "IX_AppShareContentFile_FileId");
-
-                entity.HasOne(d => d.ShareContent)
-                 .WithMany(p => p.ShareContentFiles)
-                 .HasForeignKey(d => d.ShareContentId)
-                 .OnDelete(DeleteBehavior.ClientSetNull)
-                 .HasConstraintName("FK_AppShareContentFiles_AppShareContents");
-
-                entity.HasOne(d => d.File)
-                 .WithMany(p => p.ShareContentFiles)
-                 .HasForeignKey(d => d.FileId)
-                 .OnDelete(DeleteBehavior.ClientSetNull)
-                 .HasConstraintName("FK_AppShareContentFiles_AppFiles");
-            });
-
-            modelBuilder.Entity<ShareContent>(entity =>
-            {
-                entity.ToTable(dbTablePrefix + "ShareContents");
-
-                entity.Property(e => e.Title).IsRequired(true).HasMaxLength(255);
-                entity.Property(e => e.Description).IsRequired(false);
-                entity.Property(e => e.CountryId).HasColumnType("int");
-                entity.Property(e => e.ReadCount).HasColumnType("int");
-                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
-                entity.Property(e => e.ValidDate).HasColumnType("datetime");
-                entity.Property(a => a.Status).HasColumnType("int");
-
-                entity.HasIndex(e => e.CountryId, "IX_AppShareContent_CountryId");
-
-                entity.HasOne(d => d.Country)
-                 .WithMany(p => p.ShareContents)
-                 .HasForeignKey(d => d.CountryId)
-                 .OnDelete(DeleteBehavior.ClientSetNull)
-                 .HasConstraintName("FK_AppShareContents_AppCountries");
             });
 
             modelBuilder.Entity<Town>(entity =>

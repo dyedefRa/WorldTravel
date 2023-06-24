@@ -16,7 +16,7 @@ namespace WorldTravel.Web.Pages.Form
     public class IndexModel : WorldTravelPageModel
     {
         [BindProperty]
-        public FormModel FormInputModel { get; set; }
+        public FormModel Form { get; set; }
         public List<SelectListItem> Genders { get; set; }
         public List<SelectListItem> Countries { get; set; }
 
@@ -33,7 +33,7 @@ namespace WorldTravel.Web.Pages.Form
         }
         private async Task LoadInitializeData()
         {
-            FormInputModel = new FormModel();
+            Form = new FormModel();
             Genders = _lookupAppService.GetGenderLookup();
             Countries = await _lookupAppService.GetCountryLookupAsync();
         }
@@ -53,7 +53,7 @@ namespace WorldTravel.Web.Pages.Form
             {
                 if (ModelState.IsValid)
                 {
-                    var input = ObjectMapper.Map<FormModel, CreateUpdateFormDto>(FormInputModel);
+                    var input = ObjectMapper.Map<FormModel, CreateUpdateFormDto>(Form);
                     var addedResult = await _formAppService.CreateAsync(input);
                     if (addedResult != null)
                     {

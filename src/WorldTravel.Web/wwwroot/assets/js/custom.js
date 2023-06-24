@@ -39,45 +39,45 @@ $(document).ready(function () {
     $.Format.phoneFormat();
 });
 
-//$.MONEYFORMAT = {
+$.MONEYFORMAT = {
 
-//    formatTurkishMoney: function (price) {
-//        var currency_symbol = "TL"
+    formatTurkishMoney: function (price) {
+        var currency_symbol = "TL"
 
-//        var formattedOutput = new Intl.NumberFormat('tr-TR', {
-//            style: 'currency',
-//            currency: 'TRY',
-//            minimumFractionDigits: 2,
-//        });
+        var formattedOutput = new Intl.NumberFormat('tr-TR', {
+            style: 'currency',
+            currency: 'TRY',
+            minimumFractionDigits: 2,
+        });
 
-//        return formattedOutput.format(price).replace(currency_symbol, '')
-//    }
+        return formattedOutput.format(price).replace(currency_symbol, '')
+    }
 
-//};
+};
 
-//$.BlockUI = {
+$.BlockUI = {
 
-//    show: function () {
-//        $.blockUI({
-//            message: '<i class="icon-spinner4 spinner"></i>',
-//            overlayCSS: {
-//                backgroundColor: '#1b2024',
-//                opacity: 0.8,
-//                cursor: 'wait'
-//            },
-//            css: {
-//                border: 0,
-//                color: '#fff',
-//                padding: 0,
-//                backgroundColor: 'transparent'
-//            }
-//        });
-//    },
-//    hide: function () {
-//        $.unblockUI();
-//    }
+    show: function () {
+        $.blockUI({
+            message: '<i class="icon-spinner4 spinner"></i>',
+            overlayCSS: {
+                backgroundColor: '#1b2024',
+                opacity: 0.8,
+                cursor: 'wait'
+            },
+            css: {
+                border: 0,
+                color: '#fff',
+                padding: 0,
+                backgroundColor: 'transparent'
+            }
+        });
+    },
+    hide: function () {
+        $.unblockUI();
+    }
 
-//};
+};
 
 $.Format = {
 
@@ -98,18 +98,18 @@ $.Format = {
 
 };
 
-//$.City = {
+$.City = {
 
-//    getCity: function (cityId) {
-//        var city = cities.filter(function (index) {
-//            if (index.value === cityId) {
-//                return index.text;
-//            }
-//        });
+    getCity: function (cityId) {
+        var city = cities.filter(function (index) {
+            if (index.value === cityId) {
+                return index.text;
+            }
+        });
 
-//        return city[0].text;
-//    }
-//}
+        return city[0].text;
+    }
+}
 
 $.validator.methods.range = function (value, element, param) {
     var globalizedValue = value.replace(".", ",");
@@ -159,15 +159,15 @@ $('.accordion-toggle').click(function () {
 //    arr.splice(toIndex, 0, element);
 //}
 
-//function applyShortening(value) {
-//    if (value === null || value === '' || value === 0) {
-//        return '-';
-//    }
-//    if (value.length > 100) {
-//        return value.substring(0, 100) + ' ...';
-//    }
-//    return value;
-//}
+function applyShortening(value) {
+    if (value === null || value === '' || value === 0) {
+        return '-';
+    }
+    if (value.length > 50) {
+        return value.substring(0, 50) + ' ...';
+    }
+    return value;
+}
 
 //function checkNullable(value) {
 //    if (value === null || value === '' || value === 0) {
@@ -181,7 +181,7 @@ function applyImage(value) {
     if (value === null || value === '' || value === 0) {
         return '-';
     }
-    return '<img  src= "' + value + '"  class="form-group" width="60" />';
+    return '<img  src= "' + value + '"  class="form-group" width="100" />';
 }
 
 //function IsDateBiggerThanCurrentDate(date) {
@@ -194,11 +194,11 @@ function applyImage(value) {
 //}
 
 
-function setImage200(image) {
+function setImage100(image) {
     if (image === null || image === '') {
         return ''; //TODOO dfeult resim ekle.
     }
-    return '<img  src= "' + image + '"  class="form-group" width="200" style="margin: 0 auto;" />';
+    return '<img  src= "' + image + '"  class="form-group" width="100" style="margin: 0 auto;" />';
 };
 
 function setDate(data) {

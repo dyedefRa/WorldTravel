@@ -52,6 +52,10 @@
                 {
                     <li class="nav-item"> <a href="/Admin/Form/Index" class="nav-link"> <i class="icon-list-unordered"></i> <span>@L["FormManagement"]</span></a></li>
                 }
+                @if (await AuthorizationService.IsGrantedAsync(WorldTravelPermissions.CountryContent.Default))
+                {
+                    <li class="nav-item"> <a href="/Admin/CountryContent/Index" class="nav-link"> <i class="icon-list-unordered"></i> <span>@L["CountryContentManagement"]</span></a></li>
+                }
             </ul>
         </div>
     </div>

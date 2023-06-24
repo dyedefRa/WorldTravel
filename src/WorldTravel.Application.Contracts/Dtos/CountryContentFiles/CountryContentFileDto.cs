@@ -10,5 +10,6 @@ namespace WorldTravel.Entities.CountryContentFiles
         public CountryContentDto CountryContent { get; set; }
         public int FileId { get; set; }
         public FileDto File { get; set; }
+        public bool IsShareContent { get; set; }
     }
 }

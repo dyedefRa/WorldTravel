@@ -30,7 +30,7 @@
             <abp-column size-md="_12" class="text-right">
                 @if (await AuthorizationService.IsGrantedAsync(WorldTravel.Permissions.WorldTravelPermissions.CountryContent.Create))
                 {
-                    <abp-button id="createButton"
+                    <abp-button id="createCountryContentButton"
                             text="@L["NewCountryContent"]"
                             icon="plus"
                             button-type="Primary" />

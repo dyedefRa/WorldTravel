@@ -6,12 +6,16 @@ namespace WorldTravel.Dtos.CountryContents.ViewModels
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string ShortDescription { get; set; }
         public string Description { get; set; }
+        public string ExtraDescription { get; set; }
         public string CountryName { get; set; }
         public string PreviewImageUrl { get; set; }
         public int ReadCount { get; set; }
-        public int TotalImageCount { get; set; } = 0;
-        public int TotalVideoCount { get; set; } = 0;
+        public int Rank { get; set; }
+        public bool IsSeenHomePage { get; set; }
+        public int TotalImageCount { get; set; } 
+        public int TotalVideoCount { get; set; } 
         public DateTime CreatedDate { get; set; }
         //public DateTime ValidDate { get; set; }
         //public Status Status { get; set; }

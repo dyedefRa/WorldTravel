@@ -37,6 +37,8 @@ namespace WorldTravel.Helpers
             media.FullPath = filePath;
             media.Size = file.Length;
             media.Status = Status.Active;
+            media.CreatedDate = DateTime.Now;
+            media.Rank = 1;
             return new SuccessDataResult<FileDto>(media);
         }
 

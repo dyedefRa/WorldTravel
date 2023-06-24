@@ -1,0 +1,9 @@
+﻿
+-----------------------------------------------
+Url temizleme >>
+
+Country/detial/4  temizlemek için :
+                window.history.replaceState(null, '', window.location.pathname);
+
+-----------------------------------------------
+

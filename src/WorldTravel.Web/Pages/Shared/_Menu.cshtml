@@ -26,27 +26,11 @@
                     </button>
                 </div>
                 <nav class="grid__item" id="AccessibleNav">
-                    <!-- for mobile -->
                     <ul id="siteNav" class="site-nav medium right hidearrow">
-                        @*  @if (CurrentUser.IsAuthenticated)
-                        {
-                        <li class="lvl1 parent dropdown">
-                        <a href="#"><i class="fa fa-user fa-fw"></i> @L["Profile"]<i class="anm anm-angle-down-l"></i></a>
-                        <ul class="dropdown">
-                        <li><a href="/Account/Manage">@L["MyAccountInformation"]</a></li>
-                        <li><a href="/Account/MyAdvert">@L["MyAdverts"]</a></li>
-                        <li><a href="/Account/Logout">@L["Logout"]</a></li>
-                        </ul>
-                        </li>
-                        }
-                        else
-                        {
-                        <li class="lvl1"><a href="/Account/Register"><i class="fa fa-user-plus fa-fw"></i> @L["Register"]</a></li>
-                        *@
                         <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-user-plus fa-fw"></i> @L["AdminPage"]</a></li>
+                        <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
                         <li class="lvl1"><a href="#about">@*<i class="fa fa-plus fa-fw"></i>*@ @L["HowProcessWork"]</a></li>
                         <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
-                        @*}*@
                     </ul>
                 </nav>
                 <!--End Web Menu-->

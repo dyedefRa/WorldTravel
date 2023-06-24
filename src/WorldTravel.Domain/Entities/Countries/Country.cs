@@ -2,7 +2,6 @@
 using Volo.Abp.Domain.Entities;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Forms;
-using WorldTravel.Entities.ShareContents;
 
 namespace WorldTravel.Entities.Countries
 {
@@ -15,7 +14,6 @@ namespace WorldTravel.Entities.Countries
 
         public virtual ICollection<CountryContent> CountryContents { get; set; }
         public virtual ICollection<Form> Forms { get; set; }
-        public virtual ICollection<ShareContent> ShareContents { get; set; }
 
     }
 }

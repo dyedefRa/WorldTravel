@@ -8,7 +8,7 @@
 
 @section styles {
     <style>
-        .top-text {
+  /*      .top-text {
             text-align: center;
         }
 
@@ -30,21 +30,56 @@
 
         textarea {
             resize: none;
+        }*/
+
+        .h275{
+            height:200px;
+        }
+
+        .p05{
+            padding: 0 5px;
+        }
+
+        .bcg{
+            background-color: #f9f9f9;
+        }
+
+        .bt7{
+            bottom:-7px !important;
         }
     </style>
 }
 
-<!--Hero Parallax Section3-->
-<div class="section">
-    <div class="hero hero--large hero__overlay bg-size">
-        <img class="bg-img blur-up" src="/web/images/home/home7.jpg" alt="" />
-        <div class="hero__inner">
-            <div class="container home-text">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="top-text header-text">
-                            <h6>@L["Sectionh6"]</h6>
-                            <h2>@L["Sectionh2"]</h2>
+<!--Home slider-->
+<div class="slideshow slideshow-wrapper pb-section">
+    <div class="home-slideshow">
+        <div class="slide slideshow--medium">
+            <div class="blur-up lazyload">
+                <img class="blur-up lazyload" data-src="/web/images/slideshow-banners/home12-category-banner1.jpg" src="/web/images/slideshow-banners/home12-category-banner1.jpg" alt="Outfit of Today" title="Outfit of Today" />
+                <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                    <div class="slideshow__text-content classic left">
+                        <div class="container">
+                            <div class="wrap-caption left">
+                                <h2 class="h1 mega-title slideshow__title">Outfit of Today</h2>
+                                <span class="mega-subtitle slideshow__subtitle">Lookbook ss 2018</span>
+                                <span class="btn">View Catelog</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide slideshow--medium">
+            <div class="blur-up lazyload">
+                <img class="blur-up lazyload" data-src="/web/images/slideshow-banners/home12-category-banner2.jpg" src="/web/images/slideshow-banners/home12-category-banner2.jpg" alt="Accessories" title="Accessories" />
+                <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                    <div class="slideshow__text-content classic left">
+                        <div class="container">
+                            <div class="wrap-caption left">
+                                <h2 class="h1 mega-title slideshow__title">Accessories</h2>
+                                <span class="mega-subtitle slideshow__subtitle">New Collection A-W ss18</span>
+                                <span class="btn">Bilgi almak için tıklayın</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,9 +87,149 @@
         </div>
     </div>
 </div>
-<!--End Hero Parallax Section3-->
+<!--End Home slider-->
+<!--Collection Box slider-->
+<div class="collection-box fadeIn section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section-header text-center">
+                    <h2 class="h2">Populer Ülkeler</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="collection-grid-4item">
+            <div class="collection-grid-item p05">
+                <a href="collection-page.html" class="collection-grid-item__link">
+                    <img data-src="/web/img/home-country/germany.png" src="/web/img/home-country/germany.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                    <div class="collection-grid-item__title-wrapper bt7">
+                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Germany"]</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-grid-item p05">
+                <a href="collection-page.html" class="collection-grid-item__link">
+                    <img data-src="/web/img/home-country/america.png" src="/web/img/home-country/america.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                    <div class="collection-grid-item__title-wrapper bt7">
+                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["America"]</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-grid-item p05">
+                <a href="collection-page.html" class="collection-grid-item__link">
+                    <img data-src="/web/img/home-country/canada.png" src="/web/img/home-country/canada.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                    <div class="collection-grid-item__title-wrapper bt7">
+                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Canada"]</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-grid-item p05">
+                <a href="collection-page.html" class="collection-grid-item__link">
+                    <img data-src="/web/img/home-country/france.png" src="/web/img/home-country/france.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                    <div class="collection-grid-item__title-wrapper bt7">
+                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["France"]</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-grid-item p05 blur-up lazyloaded">
+                <a href="collection-page.html" class="collection-grid-item__link">
+                    <img data-src="/web/img/home-country/belgium.png" src="/web/img/home-country/belgium.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                    <div class="collection-grid-item__title-wrapper bt7">
+                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Belgium"]</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-grid-item p05">
+                <a href="collection-page.html" class="collection-grid-item__link">
+                    <img data-src="/web/img/home-country/italy.png" src="/web/img/home-country/italy.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                    <div class="collection-grid-item__title-wrapper bt7">
+                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Italy"]</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Collection Box slider-->
+<!--Popular Categories-->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section-header text-center">
+                    <h2 class="h2">Populer Hizmetler</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="categories-list-items">
+            <div class="row">
+                <div class="col-12">
+                    <div class="categories-item">
+                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img1.jpg" src="/web/images/autoparts/categories-img1.jpg" alt="Tools & Garage" title="Tools & Garage"></a>
+                        <h4><a href="#">Tools &amp; Garage </a></h4>
+                        <div class="rte-setting">
+                            <ul>
+                                <li><a href="#">Code Readers</a></li>
+                                <li><a href="#">Garage Accessories</a></li>
+                                <li><a href="#">Mobile Electronics</a></li>
+                                <li><a href="#">Videos &amp; Software</a></li>
+                                <li><a href="#">Tools and Components</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn no-border">View Collection</a>
+                    </div>
+                    <div class="categories-item">
+                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img2.jpg" src="/web/images/autoparts/categories-img2.jpg" alt="Exterior Accessories" title="Exterior Accessories"></a>
+                        <h4><a href="#">Exterior Accessories</a></h4>
+                        <div class="rte-setting">
+                            <ul>
+                                <li><a href="#">Bumpers &amp; Components</a></li>
+                                <li><a href="#">Car Covers</a></li>
+                                <li><a href="#">Fog Lights &amp; Accessories</a></li>
+                                <li><a href="#">Grilles &amp; Components</a></li>
+                                <li><a href="#">Hoods &amp; Components</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn no-border">View Collection</a>
+                    </div>
+                    <div class="categories-item">
+                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img3.jpg" src="/web/images/autoparts/categories-img3.jpg" alt="Body Parts &amp; Mirrors" title="Body Parts &amp; Mirrors"></a>
+                        <h4><a href="#">Body Parts &amp; Mirrors</a></h4>
+                        <div class="rte-setting">
+                            <ul>
+                                <li><a href="#">Bumpers &amp; Components</a></li>
+                                <li><a href="#">Car Covers</a></li>
+                                <li><a href="#">Grilles &amp; Components</a></li>
+                                <li><a href="#">Hoods &amp; Components</a></li>
+                                <li><a href="#">Mirrors &amp; Components</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn no-border">View Collection</a>
+                    </div>
+                    <div class="categories-item">
+                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img4.jpg" src="/web/images/autoparts/categories-img4.jpg" alt="Interior Accessories" title="Interior Accessories"></a>
+                        <h4><a href="#">Interior Accessories</a></h4>
+                        <div class="rte-setting">
+                            <ul>
+                                <li>Carpet Kits</li>
+                                <li><a href="#">Dash &amp; Accessories</a></li>
+                                <li><a href="#">Floor Mats &amp; Liners</a></li>
+                                <li><a href="#">Seats &amp; Accessories</a></li>
+                                <li><a href="#">Switches &amp; Components</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn no-border">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Popular Categories-->
 
-<section id="about">
+<section id="about" class="bcg">
     <div class="container">
         <div class="about-top text-center">
             <h3>@L["AboutTitle"]</h3>
@@ -68,12 +243,12 @@
                     <h4>@Html.Raw(L["AboutCallCenter"])</h4>
                 </div>
                 <div class="col-md-4 text-center">
-                    <img class="rsm-yuvarla wow fadeIn" src="/web/ext/golden/images/h-call.png" alt="@L["ImageFailedToLoad"]">
+                    <img class="rsm-yuvarla wow fadeIn" src="/extensions/golden/images/h-call.png" alt="@L["ImageFailedToLoad"]">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 offset-sm-4 text-center ">
-                    <img class="rsm-yuvarla wow fadeIn " src="/web/ext/golden/images/h-doc-q.jpeg" alt="p2">
+                    <img class="rsm-yuvarla wow fadeIn " src="/extensions/golden/images/h-doc-q.jpeg" alt="p2">
                 </div>
                 <div class="col-md-4  wow fadeInLeft" data-wow-duration="2s">
                     <br />
@@ -86,12 +261,12 @@
                     <h4>@Html.Raw(L["AboutHandShake"])</h4>
                 </div>
                 <div class="col-md-4 text-center ">
-                    <img class="rsm-yuvarla wow fadeIn" src="/web/ext/golden/images/h-handshake.png" alt="p1">
+                    <img class="rsm-yuvarla wow fadeIn" src="/extensions/golden/images/h-handshake.png" alt="p1">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 offset-sm-4 text-center">
-                    <img class="rsm-yuvarla wow fadeIn" src="/web/ext/golden/images/h-doc-t.jpg" alt="p2">
+                    <img class="rsm-yuvarla wow fadeIn" src="/extensions/golden/images/h-doc-t.jpg" alt="p2">
                 </div>
                 <div class="col-md-4 wow fadeInLeft" data-wow-duration="2s">
                     <br />
@@ -165,7 +340,9 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            $('body').addClass('home9-parallax');
+            $('body').addClass('home12-category');
+            //$('body').addClass('home13-auto-parts');
+
             $('#FormInputModel_BirthDate').attr('type', 'date');
             $('.golden-from label').hide();
             //query temizle

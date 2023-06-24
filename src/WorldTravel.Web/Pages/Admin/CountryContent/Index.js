@@ -1,7 +1,7 @@
 $(function () {
     var l = abp.localization.getResource('WorldTravel');
-    var createModal = new abp.ModalManager(abp.appPath + 'Admin/Form/Create');
-    var editModal = new abp.ModalManager(abp.appPath + 'Admin/Form/Edit');
+    var createModal = new abp.ModalManager(abp.appPath + 'Admin/CountryContent/Create');
+    var editModal = new abp.ModalManager(abp.appPath + 'Admin/CountryContent/Edit');
 
     var getFilter = function () {
         return {
@@ -16,7 +16,7 @@ $(function () {
             order: [],
             searching: false,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(worldTravel.services.counrtyContent.getCounrtyContentList, getFilter),
+            ajax: abp.libs.datatables.createAjax(worldTravel.services.countryContent.getCountryContentList, getFilter),
             columnDefs: [
                 {
                     title: l('Actions'),
@@ -27,7 +27,7 @@ $(function () {
                                     text: l('Edit'),
                                     //visible: abp.auth.isGranted('WorldTravel.Forms.Edit'),
                                     action: function (data) {
-                                        worldTravel.services.counrtyContent.updateCounrtyContent(data.record.id)
+                                        worldTravel.services.countryContent.updateCountryContent(data.record.id)
                                             .done(function (result) {
                                                 if (result.success) {
                                                     toastr.success(result.message)
@@ -49,7 +49,7 @@ $(function () {
                                         return l('DeleteConfirmMessage', data.record.name);
                                     },
                                     action: function (data) {
-                                        worldTravel.services.counrtyContent.softDelete(data.record.id)
+                                        worldTravel.services.countryContent.softDelete(data.record.id)
                                             .then(function () {
                                                 abp.notify.info(l('SuccessfullyDeleted'));
                                                 dataTable.ajax.reload();
@@ -60,20 +60,6 @@ $(function () {
                     }
                 },
                 {
-                    title: l('Title'),
-                    data: "title",
-                    render: function (data) {
-                        return data;
-                    }
-                },
-                {
-                    title: l('Description'),
-                    data: "description",
-                    render: function (data) {
-                        return data;
-                    }
-                },
-                {
                     title: l('CountryName'),
                     data: "countryName",
                     render: function (data) {
@@ -81,10 +67,38 @@ $(function () {
                     }
                 },
                 {
-                    title: l('Image'),
+                    title: l('Title'),
+                    data: "title",
+                    render: function (data) {
+                        return data;
+                    }
+                },
+                {
+                    title: l('ShortDescription'),
+                    data: "shortDescription",
+                    render: function (data) {
+                        return applyShortening(data);
+                    }
+                },
+                {
+                    title: l('Description'),
+                    data: "description",
+                    render: function (data) {
+                        return applyShortening(data);
+                    }
+                },
+                {
+                    title: l('ExtraDescription'),
+                    data: "extraDescription",
+                    render: function (data) {
+                        return applyShortening(data);
+                    }
+                },
+                {
+                    title: l('MainImage'),
                     data: "previewImageUrl",
                     render: function (data) {
-                        return setImage200(data);
+                        return applyImage(data);
                     }
                 },
                 {
@@ -92,6 +106,23 @@ $(function () {
                     data: "readCount",
                     render: function (data) {
                         return data;
+                    }
+                },
+                {
+                    title: l('Rank'),
+                    data: "rank",
+                    render: function (data) {
+                        return data;
+                    }
+                },
+                {
+                    title: l('IsSeenHomePage'),
+                    data: "isSeenHomePage",
+                    render: function (data) {
+                        if (data === true) {
+                            return l('True');
+                        }
+                        return l('False');
                     }
                 },
                 {
@@ -132,7 +163,7 @@ $(function () {
         abp.notify.info(l('SuccessfullyCompleted'));
     });
 
-    $('#createButton').click(function (e) {
+    $('#createCountryContentButton').click(function (e) {
         e.preventDefault();
         createModal.open();
     });
