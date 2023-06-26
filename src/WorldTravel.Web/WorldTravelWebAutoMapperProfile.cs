@@ -6,8 +6,6 @@ using WorldTravel.Dtos.Users.ViewModels;
 using static WorldTravel.Web.Pages.Account.ManageModel;
 using static WorldTravel.Web.Pages.Account.RegisterModel;
 using static WorldTravel.Web.Pages.Admin.CountryContent.CreateModel;
-//using static WorldTravel.Web.Pages.Form.IndexModel;
-using static WorldTravel.Web.Pages.Home.IndexModel;
 
 namespace WorldTravel.Web
 {
@@ -23,7 +21,9 @@ namespace WorldTravel.Web
             #endregion
 
             #region Form
-            CreateMap<FormModel, CreateUpdateFormDto>();//Form/Index POST
+            CreateMap<Pages.Home.IndexModel.FormModel, CreateUpdateFormDto>();//Form/Index POST
+            CreateMap<Pages.Country.DetailModel.FormModel, CreateUpdateFormDto>();//Country/Detail POST
+
             #endregion
 
             #region CountryContent

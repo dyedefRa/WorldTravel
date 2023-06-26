@@ -38,17 +38,18 @@
     <link rel="stylesheet" href="/web/css/bootstrap.min.css">
     <link href="~/libs/toastr/toastr.min.css" rel="stylesheet" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    @*   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">*@
     <!-- Main Style CSS -->
     @*    <link href="~/libs/abp/core/abp.css" rel="stylesheet" />
     *@
     <link rel="stylesheet" href="/web/css/style.css">
     <link rel="stylesheet" href="/web/css/responsive.css">
 
-@*    <link rel="stylesheet" href="/web/ext/chatbot/chatbot.css">
-*@    <link rel="stylesheet" href="/web/ext/golden/golden.css">
+    @*    <link rel="stylesheet" href="/web/ext/chatbot/chatbot.css">
+    *@
+    <link rel="stylesheet" href="/web/ext/golden/golden.css">
     <link href="/web/css/custom.css" rel="stylesheet" />
     @await Component.InvokeAsync(typeof(WidgetStylesViewComponent))
     @await RenderSectionAsync("styles", false)
@@ -115,14 +116,15 @@
         <div id="page-content">
             @RenderBody()
         </div>
+        <partial name="_WhatsApp" />
 
-      @*  <partial name="_ChatBot" />*@
+        @*  <partial name="_ChatBot" />*@
 
         <partial name="_Footer" />
 
         <!--Scoll Top-->
-        <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
-        <!--End Scoll Top-->
+        @*        <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+        *@        <!--End Scoll Top-->
         <!--Quick View popup-->
         <div class="modal fade quick-view-popup" id="content_quickview">
             <div class="modal-dialog">
@@ -264,12 +266,12 @@
         <script src="~/libs/toastr/toastr.min.js"></script>
         <script src="~/web/js/main.js"></script>
 
-@*        <script src="~/web/ext/chatbot/chatbot.js"></script>
-*@        <script src="~/web/ext/golden/golden.js"></script>
+        @*        <script src="~/web/ext/chatbot/chatbot.js"></script>
+        *@        <script src="~/web/ext/golden/golden.js"></script>
         <script src="~/web/js/custom.js"></script>
         <!--For Newsletter Popup-->
         <!-- Photoswipe Gallery -->
-        <script src="~/web/js/vendor/photoswipe.min.js"></script>
+           <script src="~/web/js/vendor/photoswipe.min.js"></script>
         <script src="~/web/js/vendor/photoswipe-ui-default.min.js"></script>
 
         <script>
@@ -308,20 +310,20 @@
                     jQuery('#modalOverly').fadeOut();
                 });
 
-                var visits = jQuery.cookie('visits') || 0;
-                visits++;
-                jQuery.cookie('visits', visits, { expires: 1, path: '/' });
-                console.debug(jQuery.cookie('visits'));
-                if (jQuery.cookie('visits') > 1) {
-                    jQuery('#modalOverly').hide();
-                    jQuery('#popup-container').hide();
-                } else {
-                    var pageHeight = jQuery(document).height();
-                    jQuery('<div id="modalOverly"></div>').insertBefore('body');
-                    jQuery('#modalOverly').css("height", pageHeight);
-                    jQuery('#popup-container').show();
-                }
-                if (jQuery.cookie('noShowWelcome')) { jQuery('#popup-container').hide(); jQuery('#active-popup').hide(); }
+                //var visits = jQuery.cookie('visits') || 0;
+                //visits++;
+                //jQuery.cookie('visits', visits, { expires: 1, path: '/' });
+                //console.debug(jQuery.cookie('visits'));
+                //if (jQuery.cookie('visits') > 1) {
+                //    jQuery('#modalOverly').hide();
+                //    jQuery('#popup-container').hide();
+                //} else {
+                //    var pageHeight = jQuery(document).height();
+                //    jQuery('<div id="modalOverly"></div>').insertBefore('body');
+                //    jQuery('#modalOverly').css("height", pageHeight);
+                //    jQuery('#popup-container').show();
+                //}
+                //if (jQuery.cookie('noShowWelcome')) { jQuery('#popup-container').hide(); jQuery('#active-popup').hide(); }
             });
 
             jQuery(document).mouseup(function (e) {

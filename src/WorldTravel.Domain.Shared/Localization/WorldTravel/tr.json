@@ -33,7 +33,6 @@
     "MyAdverts": "İlanlarım",
     "SelectImage": "Profil Resmi Seç",
     "Search": "Ara",
-    "WorldwideTravel": "Dünya Çapında Seyahat",
     "SelectCountry": "Ülke seçiniz",
     "Filter": "Filtrele",
     "FullName": "Ad / Soyad",
@@ -66,7 +65,18 @@
     "ClickSendMail": "Mail göndermek için tıklayın",
     "SendMail": "Mail Gönder",
     "Views": "Görüntüleme",
-    "Comments": "Yorum",
+    "Comment": "Yorum",
+    "Comments": "Yorumlar",
+    "Details": "Detaylar",
+    //"ImageKey": "Görsel Key",
+    //"CountryFlagImageUrl": "Ülke Bayrak Resmi",
+    "PopulerCountries": "POPÜLER ÜLKELER",
+    "PopularServices": "POPÜLER HİZMETLER",
+    "ViewVideo": "Video Göster",
+    "Zoom": "Yakınlaştır",
+    "WriteReview": "Yorum Yazın", //Write a review
+    "CountryId": "Ülke",
+
 
     "ReturnUserPage": "Kullanıcı Sayfası",
     "ProfileS": "Profilim",
@@ -132,6 +142,8 @@
     //SUCCESS & COnfirms
     "SuccessfullyCompleted": "İşleminiz başarıyla tamamlandı",
     "FormRequestSuccessfully": "Talebiniz başarıyla alındı.En kısa sürede sizinle iletişime geçeceğiz.Teşekkürler",
+    //"FormRequestSuccessfully2": "Talebiniz başarıyla alındı.</br> En kısa sürede sizinle iletişime geçeceğiz.</br>Teşekkürler",
+
     "SuccessfullyDeleted": "Kayıt başarıyla silindi",
     "DeleteConfirmMessage": "Kaydı silmek istediğinize emin misiniz?",
 
@@ -144,7 +156,7 @@
 
     //HOME > ABOUT
     "AboutTitle": "SÜREÇ NASIL İŞLİYOR", //"HOW THE PROCESS WORKS"
-    "AboutMarque": "Buraya birşeyler ekleriz",
+    //"AboutMarque": "Buraya birşeyler ekleriz",
     "AboutCallCenter": "Size Özel Profesyonel Danışmanlarımızla<br> Görüşmeye Başlıyorsunuz.",
     "AboutDocumentQuestion": "Gerekli Olan Eksik Evraklarınızın<br> Tespitini Sağlıyoruz.",
     "AboutHandShake": "Danışana Özel Olarak Hazırlanan <br> Resmi Sözleşmeniz ile <br> Sürece Başlıyoruz.",

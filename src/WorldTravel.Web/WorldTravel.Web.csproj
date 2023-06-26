@@ -95,9 +95,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\uploads\countrycontent\" />
     <Folder Include="wwwroot\uploads\profile\" />
     <Folder Include="wwwroot\web\images\home\" />
-    <Folder Include="wwwroot\web\img\home-country\" />
   </ItemGroup>
 
 </Project>

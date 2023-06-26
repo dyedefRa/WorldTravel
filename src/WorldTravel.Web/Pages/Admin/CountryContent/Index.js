@@ -67,6 +67,13 @@ $(function () {
                     }
                 },
                 {
+                    title: l('MainImage'),
+                    data: "previewImageUrl",
+                    render: function (data) {
+                        return applyImage_h(data);
+                    }
+                },
+                {
                     title: l('Title'),
                     data: "title",
                     render: function (data) {
@@ -92,13 +99,6 @@ $(function () {
                     data: "extraDescription",
                     render: function (data) {
                         return applyShortening(data);
-                    }
-                },
-                {
-                    title: l('MainImage'),
-                    data: "previewImageUrl",
-                    render: function (data) {
-                        return applyImage(data);
                     }
                 },
                 {

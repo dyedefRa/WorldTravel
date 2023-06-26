@@ -10,11 +10,14 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.ObjectMapping;
 using WorldTravel.Abstract;
 using WorldTravel.Dtos.CountryContents;
 using WorldTravel.Dtos.CountryContents.ViewModels;
+using WorldTravel.Dtos.Files.ViewModels;
 using WorldTravel.Entities.CountryContentFiles;
 using WorldTravel.Entities.CountryContents;
+using WorldTravel.Entities.Files;
 using WorldTravel.Enums;
 using WorldTravel.Localization;
 using WorldTravel.Models.Results.Abstract;
@@ -120,28 +123,29 @@ namespace WorldTravel.Services
             var query = Repository.Where(x => x.Status == Status.Active).AsQueryable();
             query = query
                 .Include(x => x.Country)
-                .Include(x => x.Image)
-                .Include(x => x.CountryContentFiles).ThenInclude(x => x.File);
+                .Include(x => x.Image);
+            //.Include(x => x.CountryContentFiles).ThenInclude(x => x.File);
 
             query = query
-                .WhereIf(!string.IsNullOrWhiteSpace(input.CountryNameFilter), x => x.Country.Title.Contains(input.CountryNameFilter));
+                .WhereIf(!string.IsNullOrWhiteSpace(input.CountryNameFilter), x => x.Country.Title.Contains(input.CountryNameFilter))
+                .WhereIf(input.IsSeenHomePage == true, x => x.IsSeenHomePage == true);
 
-            var totalCount = await query.CountAsync();
+            //var totalCount = await query.CountAsync();
             query = ApplySorting(query, input);
             query = ApplyPaging(query, input);
 
             var list = await query.ToListAsync();
             var viewModels = list.Select(x =>
             {
-                var files = x.CountryContentFiles.Select(x => x.File).ToList();
+                //var files = x.CountryContentFiles.Select(x => x.File).ToList();
                 var viewModel = ObjectMapper.Map<CountryContent, CountryContentViewModel>(x);
                 viewModel.CountryName = x.Country.Title;
                 viewModel.PreviewImageUrl = x.Image.Path;
-                if (files != null)
-                {
-                    viewModel.TotalImageCount = files.Where(x => x.FileType == FileType.Image).Count();
-                    viewModel.TotalVideoCount = files.Where(x => x.FileType == FileType.Video).Count();
-                }
+                //if (files != null)
+                //{
+                //    viewModel.TotalImageCount = files.Where(x => x.FileType == FileType.Image).Count();
+                //    viewModel.TotalVideoCount = files.Where(x => x.FileType == FileType.Video).Count();
+                //}
                 return viewModel;
             }).OrderBy(x => x.Rank).ToList();
 
@@ -166,6 +170,13 @@ namespace WorldTravel.Services
                 var result = ObjectMapper.Map<CountryContent, CountryContentViewModel>(data);
                 result.CountryName = data.Country.Title;
                 result.PreviewImageUrl = data.Image.Path;
+                result.CountryId = data.CountryId;
+                var files = data.CountryContentFiles.Select(x => x.File).ToList();
+                if (files != null)
+                {
+                    result.ImageFiles = ObjectMapper.Map<List<File>, List<FileViewModel>>(files.Where(x => x.FileType == FileType.Image).ToList());
+                    result.VideoFiles = ObjectMapper.Map<List<File>, List<FileViewModel>>(files.Where(x => x.FileType == FileType.Video).ToList());
+                }
 
                 return new SuccessDataResult<CountryContentViewModel>(result);
             }

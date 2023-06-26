@@ -184,6 +184,14 @@ function applyImage(value) {
     return '<img  src= "' + value + '"  class="form-group" width="100" />';
 }
 
+//TODO DINAMAIK YAP!!!
+function applyImage_h(value) {
+    if (value === null || value === '' || value === 0) {
+        return '-';
+    }
+    return '<img  src= "' + value + '"  class="form-group" width="110" height="70" />';
+}
+
 //function IsDateBiggerThanCurrentDate(date) {
 //    if (date >= new Date()) {
 //        return true;

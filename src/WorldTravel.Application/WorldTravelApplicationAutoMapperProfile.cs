@@ -3,6 +3,7 @@ using Volo.Abp.Identity;
 using WorldTravel.Dtos.CountryContents;
 using WorldTravel.Dtos.CountryContents.ViewModels;
 using WorldTravel.Dtos.Files;
+using WorldTravel.Dtos.Files.ViewModels;
 using WorldTravel.Dtos.Forms;
 using WorldTravel.Dtos.Forms.ViewModels;
 using WorldTravel.Dtos.Users;
@@ -27,6 +28,8 @@ namespace WorldTravel
 
             #region File
             CreateMap<File, FileDto>().ReverseMap();//FileAppService > SaveFileAsync
+            CreateMap<File, FileViewModel>().ReverseMap();//FileAppService > SaveFileAsync
+
             #endregion
 
             #region Form

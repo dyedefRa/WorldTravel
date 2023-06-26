@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 using WorldTravel.Abstract;
+using WorldTravel.Dtos.CountryContents.ViewModels;
 using WorldTravel.Dtos.Forms;
 using WorldTravel.Enums;
 
@@ -20,23 +21,29 @@ namespace WorldTravel.Web.Pages.Home
         public FormModel FormInputModel { get; set; }
         public List<SelectListItem> Genders { get; set; }
         public List<SelectListItem> Countries { get; set; }
+        public List<CountryContentViewModel> CountryContent { get; set; }
 
         private readonly ILookupAppService _lookupAppService;
         private readonly IFormAppService _formAppService;
+        private readonly ICountryContentAppService _countryContentAppService;
 
         public IndexModel(
                ILookupAppService lookupAppService,
-               IFormAppService formAppService
+               IFormAppService formAppService,
+               ICountryContentAppService countryContentAppService
                )
         {
             _lookupAppService = lookupAppService;
             _formAppService = formAppService;
+            _countryContentAppService = countryContentAppService;
         }
         private async Task LoadInitializeData()
         {
             FormInputModel = new FormModel();
             Genders = _lookupAppService.GetGenderLookup();
             Countries = await _lookupAppService.GetCountryLookupAsync();
+            CountryContent = await _countryContentAppService.GetCountryContentListForUserAsync(
+                new Dtos.CountryContents.GetCountryContentRequestDto() { IsSeenHomePage = true });
         }
 
         public async Task OnGet(bool r = false)
@@ -59,7 +66,6 @@ namespace WorldTravel.Web.Pages.Home
                     var addedResult = await _formAppService.CreateAsync(input);
                     if (addedResult != null)
                     {
-                        //return RedirectToAction("Index", "Home", new { returnPost = true });
                         var redirectUrl = $"~/Home?r={true}";
                         return Redirect(redirectUrl);
                     }

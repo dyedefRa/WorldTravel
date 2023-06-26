@@ -38,7 +38,8 @@ toastr.options = {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut",
     "progressBar": true,
-    "icon":false
+    "icon": false,
+    enableHtml: true
 };
 
 

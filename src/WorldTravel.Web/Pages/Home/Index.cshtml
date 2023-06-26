@@ -8,44 +8,20 @@
 
 @section styles {
     <style>
-  /*      .top-text {
-            text-align: center;
+        .h275 {
+            height: 200px;
         }
 
-            .top-text h6 {
-                color: #fff;
-                font-size: 15px;
-                font-weight: 500;
-                text-transform: uppercase;
-            }
-
-            .top-text h2 {
-                color: #fff;
-                font-size: 45px;
-                font-weight: 800;
-                text-transform: capitalize;
-                margin-top: 15px;
-                margin-bottom: 45px;
-            }
-
-        textarea {
-            resize: none;
-        }*/
-
-        .h275{
-            height:200px;
-        }
-
-        .p05{
+        .p05 {
             padding: 0 5px;
         }
 
-        .bcg{
+        .bcg {
             background-color: #f9f9f9;
         }
 
-        .bt7{
-            bottom:-7px !important;
+        .bt7 {
+            bottom: -7px !important;
         }
     </style>
 }
@@ -89,76 +65,42 @@
 </div>
 <!--End Home slider-->
 <!--Collection Box slider-->
-<div class="collection-box fadeIn section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="section-header text-center">
-                    <h2 class="h2">Populer Ülkeler</h2>
-                    <p></p>
+@if (Model.CountryContent.Any())
+{
+    <div class="collection-box fadeIn section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-header text-center">
+                        <h2 class="h2">@L["PopulerCountries"]</h2>
+                        <p></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="collection-grid-4item">
-            <div class="collection-grid-item p05">
-                <a href="collection-page.html" class="collection-grid-item__link">
-                    <img data-src="/web/img/home-country/germany.png" src="/web/img/home-country/germany.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
-                    <div class="collection-grid-item__title-wrapper bt7">
-                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Germany"]</h3>
+            <div class="collection-grid-4item">
+                @foreach (var countryContent in Model.CountryContent)
+                {
+                    <div class="collection-grid-item p05">
+                        <a href="/Country/Detail?Id=@countryContent.Id" class="collection-grid-item__link">
+                            <img data-src="@countryContent.PreviewImageUrl" src="@countryContent.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                            <div class="collection-grid-item__title-wrapper bt7">
+                                <h3 class="collection-grid-item__title btn btn--secondary no-border">@countryContent.Title</h3>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="collection-grid-item p05">
-                <a href="collection-page.html" class="collection-grid-item__link">
-                    <img data-src="/web/img/home-country/america.png" src="/web/img/home-country/america.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
-                    <div class="collection-grid-item__title-wrapper bt7">
-                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["America"]</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="collection-grid-item p05">
-                <a href="collection-page.html" class="collection-grid-item__link">
-                    <img data-src="/web/img/home-country/canada.png" src="/web/img/home-country/canada.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
-                    <div class="collection-grid-item__title-wrapper bt7">
-                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Canada"]</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="collection-grid-item p05">
-                <a href="collection-page.html" class="collection-grid-item__link">
-                    <img data-src="/web/img/home-country/france.png" src="/web/img/home-country/france.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
-                    <div class="collection-grid-item__title-wrapper bt7">
-                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["France"]</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="collection-grid-item p05 blur-up lazyloaded">
-                <a href="collection-page.html" class="collection-grid-item__link">
-                    <img data-src="/web/img/home-country/belgium.png" src="/web/img/home-country/belgium.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
-                    <div class="collection-grid-item__title-wrapper bt7">
-                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Belgium"]</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="collection-grid-item p05">
-                <a href="collection-page.html" class="collection-grid-item__link">
-                    <img data-src="/web/img/home-country/italy.png" src="/web/img/home-country/italy.png" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
-                    <div class="collection-grid-item__title-wrapper bt7">
-                        <h3 class="collection-grid-item__title btn btn--secondary no-border">@L["Italy"]</h3>
-                    </div>
-                </a>
+                }
             </div>
         </div>
     </div>
-</div>
+}
 <!--End Collection Box slider-->
 <!--Popular Categories-->
-<div class="section">
+@*<div class="section">
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="section-header text-center">
-                    <h2 class="h2">Populer Hizmetler</h2>
+                    <h2 class="h2">@L["PopularServices"]</h2>
                     <p></p>
                 </div>
             </div>
@@ -226,15 +168,14 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!--End Popular Categories-->
 
 <section id="about" class="bcg">
     <div class="container">
         <div class="about-top text-center">
             <h3>@L["AboutTitle"]</h3>
-            <marquee behavior="" direction=""><p>@L["AboutMarque"]</p></marquee>
-        </div>
+@*            <marquee behavior="" direction=""><p>@L["AboutMarque"]</p></marquee>*@        </div>
         <div class="about-content">
             <div class="row">
                 <div class="col-md-4 text-right wow fadeInRight" data-wow-duration="2s">
@@ -341,8 +282,6 @@
     <script>
         $(document).ready(function () {
             $('body').addClass('home12-category');
-            //$('body').addClass('home13-auto-parts');
-
             $('#FormInputModel_BirthDate').attr('type', 'date');
             $('.golden-from label').hide();
             //query temizle

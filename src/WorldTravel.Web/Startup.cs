@@ -34,3 +34,6 @@ namespace WorldTravel.Web
 //Yorum bolumu ekle
 
 //goruntulenme sayısını artır.
+
+
+//VİDEO BOLUMUNE EXT EKLE , PAGE AFTER EKLE POST EKLE ACCOU:NT MANAGEDE VAR
