@@ -98,6 +98,7 @@
     <Folder Include="wwwroot\uploads\countrycontent\" />
     <Folder Include="wwwroot\uploads\profile\" />
     <Folder Include="wwwroot\web\images\home\" />
+    <Folder Include="wwwroot\web\videos\company\" />
   </ItemGroup>
 
 </Project>
