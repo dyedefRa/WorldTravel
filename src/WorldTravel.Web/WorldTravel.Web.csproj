@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <Import Project="..\..\common.props" />
 
@@ -17,9 +17,13 @@
 
   <ItemGroup>
     <Compile Remove="Logs\**" />
+    <Compile Remove="wwwroot\web\videos\**" />
     <Content Remove="Logs\**" />
+    <Content Remove="wwwroot\web\videos\**" />
     <EmbeddedResource Remove="Logs\**" />
+    <EmbeddedResource Remove="wwwroot\web\videos\**" />
     <None Remove="Logs\**" />
+    <None Remove="wwwroot\web\videos\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -98,7 +102,6 @@
     <Folder Include="wwwroot\uploads\countrycontent\" />
     <Folder Include="wwwroot\uploads\profile\" />
     <Folder Include="wwwroot\web\images\home\" />
-    <Folder Include="wwwroot\web\videos\company\" />
   </ItemGroup>
 
 </Project>
