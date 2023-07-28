@@ -73,7 +73,7 @@ namespace WorldTravel.Web
 
             context.Services.AddAntiforgery(options =>
             {
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.None;
                 options.Cookie.HttpOnly = true;
                 options.SuppressXFrameOptionsHeader = true;
             });
@@ -266,7 +266,7 @@ namespace WorldTravel.Web
 
             //if (env.IsDevelopment())
             //{
-            //    app.UseDeveloperExceptionPage();
+            app.UseDeveloperExceptionPage();
             //}
 
             app.UseAbpRequestLocalization();
@@ -294,7 +294,8 @@ namespace WorldTravel.Web
             app.UseCookiePolicy(new CookiePolicyOptions
             {
                 HttpOnly = HttpOnlyPolicy.Always,
-                Secure = CookieSecurePolicy.Always,
+                Secure = CookieSecurePolicy.None
+                
             });
 
             app.UseCorrelationId();
