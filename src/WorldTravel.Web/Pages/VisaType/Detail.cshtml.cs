@@ -1,68 +1,59 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 using WorldTravel.Abstract;
-using WorldTravel.Dtos.CountryContents.ViewModels;
 using WorldTravel.Dtos.Forms;
 using WorldTravel.Dtos.VisaTypes.ViewModels;
 using WorldTravel.Enums;
 
-namespace WorldTravel.Web.Pages.Home
+namespace WorldTravel.Web.Pages.VisaType
 {
     [AutoValidateAntiforgeryToken]
-    public class IndexModel : WorldTravelPageModel
+    public class DetailModel : WorldTravelPageModel
     {
         [BindProperty]
-        public FormModel FormInputModel { get; set; }
+        public VisaTypeViewModel VisaType { get; set; }
+        [BindProperty]
+        public FormModel Form { get; set; }
         public List<SelectListItem> Genders { get; set; }
         public List<SelectListItem> Countries { get; set; }
-        public List<CountryContentViewModel> CountryContent { get; set; }
-        public List<VisaTypeViewModel> VisaType { get; set; }
 
-
+        private readonly IVisaTypeAppService _visaTypeAppService;
         private readonly ILookupAppService _lookupAppService;
         private readonly IFormAppService _formAppService;
-        private readonly ICountryContentAppService _countryContentAppService;
-        private readonly IVisaTypeAppService _visaTypeAppService;
 
-        public IndexModel(
-               ILookupAppService lookupAppService,
-               IFormAppService formAppService,
-               ICountryContentAppService countryContentAppService,
-               IVisaTypeAppService visaTypeAppService
-               )
+        public DetailModel(
+            IVisaTypeAppService visaTypeAppService,
+            ILookupAppService lookupAppService,
+            IFormAppService formAppService)
         {
+            _visaTypeAppService = visaTypeAppService;
             _lookupAppService = lookupAppService;
             _formAppService = formAppService;
-            _countryContentAppService = countryContentAppService;
-            _visaTypeAppService = visaTypeAppService;
         }
 
-        private async Task LoadInitializeData()
+        public async Task<IActionResult> OnGet(int id, bool r = false)
         {
-            FormInputModel = new FormModel();
+            var data = await _visaTypeAppService.GetVisaTypeAsync(id);
+            if (!data.Success)
+                return Redirect("~/Error?httpStatusCode=404");
+
+            VisaType = data.Data;
+            Form = new FormModel();
+            Form.VisaTypeId = id;
             Genders = _lookupAppService.GetGenderLookup();
             Countries = await _lookupAppService.GetCountryLookupAsync();
-            CountryContent = await _countryContentAppService.GetCountryContentListForUserAsync(
-                new Dtos.CountryContents.GetCountryContentRequestDto() { IsSeenHomePage = true });
-            VisaType = await _visaTypeAppService.GetVisaTypeListForUserAsync(
-                new Dtos.VisaTypes.GetVisaTypeRequestDto() { IsSeenHomePage = true });
-        }
-
-        public async Task OnGet(bool r = false)
-        {
-            await LoadInitializeData();
             if (r)
             {
-                Alerts.Info(L["FormRequestSuccessfully"].Value);
-                FormInputModel.IsReturnPost = true;
+                Form.IsReturnPost = true;
             }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -71,18 +62,18 @@ namespace WorldTravel.Web.Pages.Home
             {
                 if (ModelState.IsValid)
                 {
-                    var input = ObjectMapper.Map<FormModel, CreateUpdateFormDto>(FormInputModel);
+                    var input = ObjectMapper.Map<FormModel, CreateUpdateFormDto>(Form);
                     var addedResult = await _formAppService.CreateAsync(input);
                     if (addedResult != null)
                     {
-                        var redirectUrl = $"~/Home?r={true}";
+                        var redirectUrl = $"~/VisaType/Detail?id={Form.VisaTypeId}&r={true}";
                         return Redirect(redirectUrl);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Home > IndexModel > OnPostAsync has error! ");
+                Log.Error(ex, "VisaType > DetailModel > OnPostAsync has error! ");
             }
 
             Alerts.Danger(L["GeneralError"].Value);
@@ -108,13 +99,13 @@ namespace WorldTravel.Web.Pages.Home
             public Nullable<DateTime> BirthDate { get; set; }
             [Required]
             [SelectItems(nameof(Countries))]
-            [DisplayName("Country")]
             public int CountryId { get; set; }
             [TextArea(Rows = 3)]
             public string Description { get; set; }
             [HiddenInput]
             public bool IsReturnPost { get; set; } = false;
-
+            [HiddenInput]
+            public int VisaTypeId { get; set; }
         }
     }
 }

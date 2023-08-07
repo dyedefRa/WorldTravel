@@ -64,7 +64,6 @@
     </div>
 </div>
 <!--End Home slider-->
-<!--Collection Box slider-->
 @if (Model.CountryContent.Any())
 {
     <div class="collection-box fadeIn section">
@@ -82,7 +81,7 @@
                 {
                     <div class="collection-grid-item p05">
                         <a href="/Country/Detail?Id=@countryContent.Id" class="collection-grid-item__link">
-                            <img data-src="@countryContent.PreviewImageUrl" src="@countryContent.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" class="blur-up lazyload h275" />
+                            <img data-src="@countryContent.PreviewImageUrl" src="@countryContent.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@countryContent.Title" class="blur-up lazyload h275" />
                             <div class="collection-grid-item__title-wrapper bt7">
                                 <h3 class="collection-grid-item__title btn btn--secondary no-border">@countryContent.Title</h3>
                             </div>
@@ -93,89 +92,46 @@
         </div>
     </div>
 }
-<!--End Collection Box slider-->
-<!--Popular Categories-->
-@*<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="section-header text-center">
-                    <h2 class="h2">@L["PopularServices"]</h2>
-                    <p></p>
+<hr />
+@if (Model.VisaType.Any())
+{
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-header text-center">
+                        <h2 class="h2">@L["PopularVisaTypes"]</h2>
+                        <p></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="categories-list-items">
-            <div class="row">
-                <div class="col-12">
-                    <div class="categories-item">
-                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img1.jpg" src="/web/images/autoparts/categories-img1.jpg" alt="Tools & Garage" title="Tools & Garage"></a>
-                        <h4><a href="#">Tools &amp; Garage </a></h4>
-                        <div class="rte-setting">
-                            <ul>
-                                <li><a href="#">Code Readers</a></li>
-                                <li><a href="#">Garage Accessories</a></li>
-                                <li><a href="#">Mobile Electronics</a></li>
-                                <li><a href="#">Videos &amp; Software</a></li>
-                                <li><a href="#">Tools and Components</a></li>
+            <div class="categories-list-items">
+                <div class="row country-items">
+                    @foreach (var visaType in Model.VisaType)
+                    {
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 article country-item" style="padding: 20px;border: 2px solid #f9f9f9;text-align:center;">
+                            <a class="article_featured-image" href="/VisaType/Detail?Id=@visaType.Id"><img width="287" height="124" class="blur-up lazyload" data-src="@visaType.PreviewImageUrl" src="@visaType.PreviewImageUrl" title="@visaType.Title" alt="@L["ImageFailedToLoad"]"></a>
+                            <h2 class="h3"><a href="/VisaType/Detail?Id=@visaType.Id" class="visaTypeTitle">@visaType.Title</a></h2>
+                            <div class="rte">
+                                <p>@visaType.ShortDescription.ApplyShortening(200)</p>
+                            </div>
+                            <ul class="publish-detail">
+                                <li><i class="icon anm anm-clock-r"></i> <time>@visaType.CreatedDate.ToTurkishDateString()</time></li>
                             </ul>
+                            <p><a href="/VisaType/Detail?Id=@visaType.Id" class="btn btn-secondary btn--small">@L["ReadMore"] <i class="fa fa-caret-right" aria-hidden="true"></i></a></p>
                         </div>
-                        <a href="#" class="btn no-border">View Collection</a>
-                    </div>
-                    <div class="categories-item">
-                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img2.jpg" src="/web/images/autoparts/categories-img2.jpg" alt="Exterior Accessories" title="Exterior Accessories"></a>
-                        <h4><a href="#">Exterior Accessories</a></h4>
-                        <div class="rte-setting">
-                            <ul>
-                                <li><a href="#">Bumpers &amp; Components</a></li>
-                                <li><a href="#">Car Covers</a></li>
-                                <li><a href="#">Fog Lights &amp; Accessories</a></li>
-                                <li><a href="#">Grilles &amp; Components</a></li>
-                                <li><a href="#">Hoods &amp; Components</a></li>
-                            </ul>
-                        </div>
-                        <a href="#" class="btn no-border">View Collection</a>
-                    </div>
-                    <div class="categories-item">
-                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img3.jpg" src="/web/images/autoparts/categories-img3.jpg" alt="Body Parts &amp; Mirrors" title="Body Parts &amp; Mirrors"></a>
-                        <h4><a href="#">Body Parts &amp; Mirrors</a></h4>
-                        <div class="rte-setting">
-                            <ul>
-                                <li><a href="#">Bumpers &amp; Components</a></li>
-                                <li><a href="#">Car Covers</a></li>
-                                <li><a href="#">Grilles &amp; Components</a></li>
-                                <li><a href="#">Hoods &amp; Components</a></li>
-                                <li><a href="#">Mirrors &amp; Components</a></li>
-                            </ul>
-                        </div>
-                        <a href="#" class="btn no-border">View Collection</a>
-                    </div>
-                    <div class="categories-item">
-                        <a href="#" class="thumb"><img class="primary blur-up lazyload" data-src="/web/images/autoparts/categories-img4.jpg" src="/web/images/autoparts/categories-img4.jpg" alt="Interior Accessories" title="Interior Accessories"></a>
-                        <h4><a href="#">Interior Accessories</a></h4>
-                        <div class="rte-setting">
-                            <ul>
-                                <li>Carpet Kits</li>
-                                <li><a href="#">Dash &amp; Accessories</a></li>
-                                <li><a href="#">Floor Mats &amp; Liners</a></li>
-                                <li><a href="#">Seats &amp; Accessories</a></li>
-                                <li><a href="#">Switches &amp; Components</a></li>
-                            </ul>
-                        </div>
-                        <a href="#" class="btn no-border">View Collection</a>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
-</div>*@
-<!--End Popular Categories-->
-
+}
 <section id="about" class="bcg">
     <div class="container">
         <div class="about-top text-center">
             <h3>@L["AboutTitle"]</h3>
-@*            <marquee behavior="" direction=""><p>@L["AboutMarque"]</p></marquee>*@        </div>
+            @*            <marquee behavior="" direction=""><p>@L["AboutMarque"]</p></marquee>*@
+        </div>
         <div class="about-content">
             <div class="row">
                 <div class="col-md-4 text-right wow fadeInRight" data-wow-duration="2s">

@@ -5,10 +5,12 @@ namespace WorldTravel.Enums
     public enum UploadType
     {
         [Description("profile")]
-        Profile = 1,
+        Profile = 0,
         [Description("countrycontent")]
         CountryContent = 1,
         [Description("sharecontent")]
         ShareContent = 2,
+        [Description("visatypecontent")]
+        VisaType = 3,
     }
 }

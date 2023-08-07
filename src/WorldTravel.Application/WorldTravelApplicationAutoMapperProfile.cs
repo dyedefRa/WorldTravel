@@ -8,10 +8,13 @@ using WorldTravel.Dtos.Forms;
 using WorldTravel.Dtos.Forms.ViewModels;
 using WorldTravel.Dtos.Users;
 using WorldTravel.Dtos.Users.ViewModels;
+using WorldTravel.Dtos.VisaTypes;
+using WorldTravel.Dtos.VisaTypes.ViewModels;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Files;
 using WorldTravel.Entities.Forms;
 using WorldTravel.Entities.Users;
+using WorldTravel.Entities.VisaTypes;
 
 namespace WorldTravel
 {
@@ -24,7 +27,6 @@ namespace WorldTravel
             CreateMap<IdentityUserDto, IdentityUserUpdateDto>(); //UserAppService > ManageProfileAsync
             CreateMap<AppUser, AppUserDto>().ReverseMap();
             #endregion
-
 
             #region File
             CreateMap<File, FileDto>().ReverseMap();//FileAppService > SaveFileAsync
@@ -42,9 +44,13 @@ namespace WorldTravel
             CreateMap<CountryContent, CountryContentDto>().ReverseMap();
             CreateMap<CountryContent, CreateUpdateCountryContentDto>().ReverseMap();
             CreateMap<CountryContent, CountryContentViewModel>().ReverseMap();
-
             #endregion
 
+            #region VisaType
+            CreateMap<VisaType, VisaTypeDto>().ReverseMap();
+            CreateMap<VisaType, CreateUpdateVisaTypeDto>().ReverseMap();
+            CreateMap<VisaType, VisaTypeViewModel>().ReverseMap();
+            #endregion
 
         }
     }

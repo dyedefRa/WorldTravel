@@ -21,6 +21,10 @@ namespace WorldTravel.Permissions
             var counrtyContentPermission = myGroup.AddPermission(WorldTravelPermissions.CountryContent.Default, L("CountryContentManagement"));
             counrtyContentPermission.AddChild(WorldTravelPermissions.CountryContent.Create, L("Permission:Create"));
             counrtyContentPermission.AddChild(WorldTravelPermissions.CountryContent.Edit, L("Permission:Edit"));
+
+            var visaTypePermission = myGroup.AddPermission(WorldTravelPermissions.VisaType.Default, L("VisaTypeManagement"));
+            visaTypePermission.AddChild(WorldTravelPermissions.VisaType.Create, L("Permission:Create"));
+            visaTypePermission.AddChild(WorldTravelPermissions.VisaType.Edit, L("Permission:Edit"));
         }
 
         private static LocalizableString L(string name)

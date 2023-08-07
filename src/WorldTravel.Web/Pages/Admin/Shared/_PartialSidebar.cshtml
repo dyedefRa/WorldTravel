@@ -16,7 +16,6 @@
             <i class="icon-screen-normal"></i>
         </a>
     </div>
-
     <div class="sidebar-content">
         <div class="sidebar-user">
             <div class="card-body">
@@ -55,6 +54,10 @@
                 @if (await AuthorizationService.IsGrantedAsync(WorldTravelPermissions.CountryContent.Default))
                 {
                     <li class="nav-item"> <a href="/Admin/CountryContent/Index" class="nav-link"> <i class="icon-list-unordered"></i> <span>@L["CountryContentManagement"]</span></a></li>
+                }
+                @if (await AuthorizationService.IsGrantedAsync(WorldTravelPermissions.VisaType.Default))
+                {
+                    <li class="nav-item"> <a href="/Admin/VisaType/Index" class="nav-link"> <i class="icon-list-unordered"></i> <span>@L["VisaTypeManagement"]</span></a></li>
                 }
             </ul>
         </div>

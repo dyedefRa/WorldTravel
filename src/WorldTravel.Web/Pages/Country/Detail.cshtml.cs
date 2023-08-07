@@ -39,7 +39,6 @@ namespace WorldTravel.Web.Pages.Country
 
         public async Task<IActionResult> OnGet(int id, bool r = false)
         {
-
             var data = await _countryContentAppService.GetCountryContentAsync(id);
             if (!data.Success)
                 return Redirect("~/Error?httpStatusCode=404");
@@ -74,7 +73,7 @@ namespace WorldTravel.Web.Pages.Country
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Form > IndexModel > OnPostAsync has error! ");
+                Log.Error(ex, "Country > DetailModel > OnPostAsync has error! ");
             }
 
             Alerts.Danger(L["GeneralError"].Value);

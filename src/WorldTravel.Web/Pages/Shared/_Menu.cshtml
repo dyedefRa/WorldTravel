@@ -1,9 +1,15 @@
 ﻿@using WorldTravel.Localization
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.Users
+@using WorldTravel.Abstract
 @inject IStringLocalizer<WorldTravelResource> L
 @inject ICurrentUser CurrentUser
-
+@inject ICountryContentAppService _countryContentAppService
+@inject IVisaTypeAppService _visaTypeAppService
+@{
+    var countryContents = await _countryContentAppService.GetCountryContentListForUserAsync(new WorldTravel.Dtos.CountryContents.GetCountryContentRequestDto() { IsSeenHomePage = true });
+    var visaTypes = await _visaTypeAppService.GetVisaTypeListForUserAsync(new WorldTravel.Dtos.VisaTypes.GetVisaTypeRequestDto() { IsSeenHomePage = true });
+}
 <!--Web Menu-->
 <div class="header-wrap classicHeader animated d-flex">
     <div class="container-fluid">
@@ -27,8 +33,33 @@
                 </div>
                 <nav class="grid__item" id="AccessibleNav">
                     <ul id="siteNav" class="site-nav medium right hidearrow">
-@*                        <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-user-plus fa-fw"></i> @L["AdminPage"]</a></li>
-*@                        <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
+                        @*<li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-user-plus fa-fw"></i> @L["AdminPage"]</a></li>*@
+                        @if (countryContents.Count > 0)
+                        {
+                            <li class="lvl1 parent dropdown">
+                                <a href="#">@L["Countries"] <i class="anm anm-angle-down-l"></i></a>
+                                <ul class="dropdown">
+                                    @foreach (var countryContent in countryContents)
+                                    {
+                                        <li><a href="/Country/Detail?Id=@countryContent.Id" class="site-nav">@countryContent.Title</a></li>
+                                    }
+                                    <li><a href="/Country" class="site-nav">@L["SeeAll"] <span class="lbl nm_label1"> @L["New"]</span> </a></li>
+                                </ul>
+                            </li>
+                        }
+                        @if (visaTypes.Count > 0)
+                        {
+                            <li class="lvl1 parent dropdown">
+                                <a href="#">@L["Visas"] <i class="anm anm-angle-down-l"></i></a>
+                                <ul class="dropdown">
+                                    @foreach (var visaType in visaTypes)
+                                    {
+                                        <li><a href="/VisaType/Detail?Id=@visaType.Id" class="site-nav">@visaType.Title</a></li>
+                                    }
+                                    <li><a href="/VisaType" class="site-nav">@L["SeeAll"] <span class="lbl nm_label1"> @L["New"]</span> </a></li>
+                                </ul>
+                            </li>
+                        }
                         <li class="lvl1"><a href="#about">@*<i class="fa fa-plus fa-fw"></i>*@ @L["HowProcessWork"]</a></li>
                         <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
                     </ul>
@@ -43,23 +74,23 @@
 <div class="mobile-nav-wrapper" role="navigation">
     <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
     <ul id="MobileNav" class="mobile-nav">
-       @* @if (CurrentUser.IsAuthenticated)
+        @* @if (CurrentUser.IsAuthenticated)
         {
-            <li class="lvl1"> <a href="#"><i class="fa fa-envelope fa-fw"></i>@L["Message"] (2)</a></li>
-            <li class="lvl1 parent megamenu">
-                <a href="#">Profilim <i class="anm anm-plus-l"></i></a>
-                <ul>
-                    <li><a href="/Account/Manage" class="site-nav">Hesap Bilgilerim</a></li>
-                    <li><a href="blog-right-sidebar.html" class="site-nav">İlanlarım</a></li>
-                    <li><a href="/Account/Logout" class="site-nav">@L["Logout"]</a></li>
-                </ul>
-            </li>
+        <li class="lvl1"> <a href="#"><i class="fa fa-envelope fa-fw"></i>@L["Message"] (2)</a></li>
+        <li class="lvl1 parent megamenu">
+        <a href="#">Profilim <i class="anm anm-plus-l"></i></a>
+        <ul>
+        <li><a href="/Account/Manage" class="site-nav">Hesap Bilgilerim</a></li>
+        <li><a href="blog-right-sidebar.html" class="site-nav">İlanlarım</a></li>
+        <li><a href="/Account/Logout" class="site-nav">@L["Logout"]</a></li>
+        </ul>
+        </li>
         }
         else
         {
-            <li class="lvl1"><a href="/Account/Register"><i class="fa fa-user-plus fa-fw"></i> @L["Register"]</a></li>
-            <li class="lvl1"><a href="/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Login"]</a></li>
-            <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Admin"]</a></li>
+        <li class="lvl1"><a href="/Account/Register"><i class="fa fa-user-plus fa-fw"></i> @L["Register"]</a></li>
+        <li class="lvl1"><a href="/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Login"]</a></li>
+        <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Admin"]</a></li>
         }*@
         <li class="lvl1"><a href="#about">@*<i class="fa fa-plus fa-fw">*@</i> @L["HowProcessWork"]</a></li>
         <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>

@@ -12,6 +12,8 @@ namespace WorldTravel.Abstract
     {
         Task<IDataResult<bool>> AddOrRemoveCountryContentFileRelationAsync(int countryContentId, List<int> newFileIds, List<int> removedFileIds = null, bool isShareContent = false);
 
+        Task SoftDeleteAsync(int Id);
+
         Task<List<CountryContentViewModel>> GetCountryContentListForUserAsync(GetCountryContentRequestDto input);
 
         Task<IDataResult<CountryContentViewModel>> GetCountryContentAsync(int countryContentId);

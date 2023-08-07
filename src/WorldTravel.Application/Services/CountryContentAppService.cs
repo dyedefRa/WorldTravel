@@ -109,6 +109,13 @@ namespace WorldTravel.Services
             }
         }
 
+        public async Task SoftDeleteAsync(int Id)
+        {
+            var entity = Repository.FirstOrDefault(x => x.Id == Id);
+            entity.Status = Enums.Status.Deleted;
+            await Repository.UpdateAsync(entity);
+        }
+
         #region User Pages
 
         /// <summary>
@@ -182,7 +189,7 @@ namespace WorldTravel.Services
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "CountryContentAppService > AddOrRemoveCountryContentFileRelationAsync");
+                Log.Error(ex, "CountryContentAppService > GetCountryContentAsync");
 
                 return new ErrorDataResult<CountryContentViewModel>(L["GeneralError"]);
             }

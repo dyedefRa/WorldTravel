@@ -4,6 +4,7 @@ using Volo.Abp.Domain.Entities;
 using WorldTravel.Entities.CountryContentFiles;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Users;
+using WorldTravel.Entities.VisaTypes;
 using WorldTravel.Enums;
 
 namespace WorldTravel.Entities.Files
@@ -22,5 +23,6 @@ namespace WorldTravel.Entities.Files
         public virtual AppUser User { get; set; }
         public virtual ICollection<CountryContent> CountryContents { get; set; }
         public virtual ICollection<CountryContentFile> CountryContentFiles { get; set; }
+        public virtual ICollection<VisaType> VisaTypes { get; set; }
     }
 }

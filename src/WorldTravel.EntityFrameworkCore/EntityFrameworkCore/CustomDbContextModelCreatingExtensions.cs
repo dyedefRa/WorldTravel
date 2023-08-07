@@ -10,6 +10,7 @@ using WorldTravel.Entities.Logs;
 using WorldTravel.Entities.MailTemplates;
 using WorldTravel.Entities.SentMails;
 using WorldTravel.Entities.Towns;
+using WorldTravel.Entities.VisaTypes;
 
 namespace WorldTravel.EntityFrameworkCore
 {
@@ -78,7 +79,6 @@ namespace WorldTravel.EntityFrameworkCore
                 entity.Property(e => e.ReadCount).HasColumnType("int");
                 entity.Property(e => e.Rank).HasColumnType("int");
                 entity.Property(e => e.IsSeenHomePage).HasColumnType("bit");
-                entity.Property(e => e.ImageKey).HasMaxLength(20);
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
                 entity.Property(e => e.ValidDate).HasColumnType("datetime");
                 entity.Property(a => a.Status).HasColumnType("int");
@@ -183,6 +183,38 @@ namespace WorldTravel.EntityFrameworkCore
                     .HasForeignKey(d => d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AppTowns_AppCities");
+            });
+
+            modelBuilder.Entity<VisaType>(entity =>
+            {
+                entity.ToTable(dbTablePrefix + "VisaTypes");
+
+                entity.Property(e => e.Title).IsRequired(true).HasMaxLength(255);
+                entity.Property(e => e.ShortDescription).IsRequired(true);
+                entity.Property(e => e.Description).IsRequired(true);
+                entity.Property(e => e.ExtraDescription);
+                entity.Property(e => e.CountryId).HasColumnType("int");
+                entity.Property(e => e.ReadCount).HasColumnType("int");
+                entity.Property(e => e.Rank).HasColumnType("int");
+                entity.Property(e => e.IsSeenHomePage).HasColumnType("bit");
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+                entity.Property(e => e.ValidDate).HasColumnType("datetime");
+                entity.Property(a => a.Status).HasColumnType("int");
+
+                entity.HasIndex(e => e.ImageId, "IX_AppVisaType_FileId");
+                entity.HasIndex(e => e.CountryId, "IX_AppVisaType_CountryId");
+
+                entity.HasOne(d => d.Image)
+                 .WithMany(p => p.VisaTypes)
+                 .HasForeignKey(d => d.ImageId)
+                 .OnDelete(DeleteBehavior.ClientSetNull)
+                 .HasConstraintName("FK_AppVisaTypes_AppFiles");
+
+                entity.HasOne(d => d.Country)
+                 .WithMany(p => p.VisaTypes)
+                 .HasForeignKey(d => d.CountryId)
+                 .OnDelete(DeleteBehavior.ClientSetNull)
+                 .HasConstraintName("FK_AppVisaTypes_AppCountries");
             });
 
         }

@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using WorldTravel.Dtos.Files.ViewModels;
 
-namespace WorldTravel.Dtos.CountryContents.ViewModels
+namespace WorldTravel.Dtos.VisaTypes.ViewModels
 {
-    public class CountryContentViewModel
+    public class VisaTypeViewModel
     {
-        public CountryContentViewModel()
-        {
-            ImageFiles = new List<FileViewModel>();
-            VideoFiles = new List<FileViewModel>();
-        }
         public int Id { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
@@ -26,7 +19,5 @@ namespace WorldTravel.Dtos.CountryContents.ViewModels
         public int TotalVideoCount { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public List<FileViewModel> ImageFiles { get; set; }
-        public List<FileViewModel> VideoFiles { get; set; }
     }
 }

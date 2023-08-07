@@ -36,5 +36,12 @@
             public const string Edit = Default + ".Edit";
         }
 
+        public static class VisaType
+        {
+            public const string Default = Identity + ".VisaTypes";
+            public const string Create = Default + ".Create";
+            public const string Edit = Default + ".Edit";
+        }
+
     }
 }

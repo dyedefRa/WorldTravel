@@ -21,69 +21,50 @@
     <div class="row">
         <!--Sidebar-->
         <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar">
-          @*  <div class="sidebar_tags">
-                <div class="sidebar_widget categories">
-                    <div class="widget-title"><h2>Category</h2></div>
-                    <div class="widget-content">
-                        <ul class="sidebar_categories">
-                            <li class="lvl-1 "><a href="http://annimexweb.com/" class="site-nav lvl-1">Beauty</a></li>
-                            <li class="lvl-1  active"><a href="#" class="site-nav lvl-1">fashion</a></li>
-                            <li class="lvl-1 "><a href="#" class="site-nav lvl-1">summer</a></li>
-                            <li class="lvl-1 "><a href="#" class="site-nav lvl-1">trend</a></li>
-                            <li class="lvl-1 "><a href="#" class="site-nav lvl-1">winter</a></li>
-                        </ul>
+            <div class="sidebar_tags">
+                @if (Model.VisaType.Count > 0)
+                {
+                    <div class="sidebar_widget categories">
+                        <div class="widget-title"><h2>@L["VisaTypes"]</h2></div>
+                        <div class="widget-content">
+                            <ul class="sidebar_categories">
+                                @foreach (var visaType in Model.VisaType)
+                                {
+                                    <li class="lvl-1 "><a href="/VisaType/Detail?Id=@visaType.Id" target="_blank" class="site-nav lvl-1">@visaType.Title</a></li>
+                                }
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="sidebar_widget">
-                    <div class="widget-title"><h2>Recent Comments</h2></div>
-                    <div class="widget-content">
-                        <div class="list list-sidebar-products">
-                            <div class="grid">
-                                <div class="grid__item">
-                                    <div class="mini-list-item">
-                                        <div class="mini-view_image">
-                                            <a class="grid-view-item__link" href="#">
-                                                <img class="grid-view-item__image blur-up lazyload" data-src="assets/images/recent-commnet-img.jpg" src="assets/images/recent-commnet-img.jpg" alt="" />
-                                            </a>
+                }
+                @if (Model.CountryContent.Count > 0)
+                {
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>@L["Countries"]</h2></div>
+                        <div class="widget-content">
+                            <div class="list list-sidebar-products">
+                                <div class="grid">
+                                    @foreach (var countryContent in Model.CountryContent)
+                                    {
+                                        <div class="grid__item">
+                                            <div class="mini-list-item">
+                                                <div class="mini-view_image">
+                                                    <a class="grid-view-item__link" href="#">
+                                                        <img class="grid-view-item__image blur-up lazyload" data-src="@countryContent.PreviewImageUrl" src="@countryContent.PreviewImageUrl" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="details">
+                                                    <div class="grid-view-item__meta"><a href="/Country/Detail?Id=@countryContent.Id"><strong>@countryContent.Title</strong></a></div>
+                                                    <p>@countryContent.ShortDescription.ApplyShortening(200)</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="details">
-                                            <div class="grid-view-item__meta"><strong>Tim</strong> On <a href="#">Lorem Ipsum</a></div>
-                                            <a class="grid-view-item__title" href="#">On sait depuis longtemps que travailler avec</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid__item">
-                                    <div class="mini-list-item">
-                                        <div class="mini-view_image"> <a class="grid-view-item__link" href="#"><img class="grid-view-item__image blur-up lazyload" data-src="assets/images/recent-commnet-img.jpg" src="assets/images/recent-commnet-img.jpg" alt="" /></a> </div>
-                                        <div class="details">
-                                            <div class="grid-view-item__meta"><strong>Joy</strong> On <a href="#">Lorem Ipsum</a></div>
-                                            <a class="grid-view-item__title" href="#">On sait depuis longtemps que travailler avec</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid__item">
-                                    <div class="mini-list-item">
-                                        <div class="mini-view_image"> <a class="grid-view-item__link" href="#"><img class="grid-view-item__image blur-up lazyload" data-src="assets/images/recent-commnet-img.jpg" src="assets/images/recent-commnet-img.jpg" alt="" /></a> </div>
-                                        <div class="details">
-                                            <div class="grid-view-item__meta"><strong>Jhon</strong> On <a href="#">Lorem Ipsum</a></div>
-                                            <a class="grid-view-item__title" href="#">On sait depuis longtemps que travailler avec</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid__item">
-                                    <div class="mini-list-item">
-                                        <div class="mini-view_image"> <a class="grid-view-item__link" href="#"><img class="grid-view-item__image blur-up lazyload" data-src="assets/images/recent-commnet-img.jpg" src="assets/images/recent-commnet-img.jpg" alt="" /></a> </div>
-                                        <div class="details">
-                                            <div class="grid-view-item__meta"><strong>Tim</strong> On <a href="#">Lorem Ipsum</a></div>
-                                            <a class="grid-view-item__title" href="#">On sait depuis longtemps que travailler avec</a>
-                                        </div>
-                                    </div>
+                                    }                                
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>*@
+                }       
+            </div>
         </div>
         <!--End Sidebar-->
         <!--Main Content-->
@@ -101,19 +82,19 @@
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 article country-item" style="padding: 20px;border: 2px solid #f9f9f9;">
                             <!-- Article Image -->
                             <a class="article_featured-image" href="/Country/Detail?Id=@countryContent.Id"><img width="287" height="124" class="blur-up lazyload" data-src="@countryContent.PreviewImageUrl" src="@countryContent.PreviewImageUrl" title="@countryContent.Title" alt="@L["ImageFailedToLoad"]"></a>
-                            <h2 class="h3"><a href="/Country/Detail?Id=@countryContent.Id" class="counrtyTitle">@countryContent.Title</a></h2>
-                            <ul class="publish-detail">
-                                <li><i class="icon anm anm-clock-r"></i> <time>@countryContent.CreatedDate.ToTurkishDateString()</time></li>
-                        @*        <li><i class="anm anm-eye-r" aria-hidden="true"></i> @countryContent.ReadCount @L["Views"]</li>
-                                <li>
-                                    <ul class="inline-list">
-                                        <li><i class="icon anm anm-comments-l"></i> 0 @L["Comment"]</li>
-                                    </ul>
-                                </li>*@
-                            </ul>
+                            <h2 class="h3"><a href="/Country/Detail?Id=@countryContent.Id" class="countryTitle">@countryContent.Title</a></h2>
                             <div class="rte">
                                 <p>@countryContent.ShortDescription.ApplyShortening(200)</p>
                             </div>
+                            <ul class="publish-detail">
+                                <li><i class="icon anm anm-clock-r"></i> <time>@countryContent.CreatedDate.ToTurkishDateString()</time></li>
+                                @*        <li><i class="anm anm-eye-r" aria-hidden="true"></i> @countryContent.ReadCount @L["Views"]</li>
+                            <li>
+                            <ul class="inline-list">
+                            <li><i class="icon anm anm-comments-l"></i> 0 @L["Comment"]</li>
+                            </ul>
+                            </li>*@
+                            </ul>
                             <p><a href="/Country/Detail?Id=@countryContent.Id" class="btn btn-secondary btn--small">@L["ReadMore"] <i class="fa fa-caret-right" aria-hidden="true"></i></a></p>
                         </div>
                     }
@@ -154,11 +135,11 @@
 
         $('#txtCountrySearch').on('keyup', function () {
             var searchVal = $(this).val().toLowerCase();
-            $('.country-items .counrtyTitle').each(function (i) {
+            $('.country-items .countryTitle').each(function (i) {
 
-                var counrtyTitle = $(this).html().toLowerCase();
+                var countryTitle = $(this).html().toLowerCase();
                 var relatedParent = $(this).closest('.country-item');
-                if (counrtyTitle.toLowerCase().indexOf(searchVal) > -1) {
+                if (countryTitle.toLowerCase().indexOf(searchVal) > -1) {
                     //relatedParent.addClass('d-flex');
                     relatedParent.removeClass('d-none');
                     //relatedParent.next('hr').removeClass('d-none');

@@ -23,6 +23,7 @@ using WorldTravel.Entities.MailTemplates;
 using WorldTravel.Entities.SentMails;
 using WorldTravel.Entities.Towns;
 using WorldTravel.Entities.Users;
+using WorldTravel.Entities.VisaTypes;
 
 namespace WorldTravel.EntityFrameworkCore
 {
@@ -39,10 +40,10 @@ namespace WorldTravel.EntityFrameworkCore
         public DbSet<Log> Logs { get; set; }
         public DbSet<MailTemplate> MailTemplates { get; set; }
         public DbSet<SentMail> SentMails { get; set; }
-        //public DbSet<ShareContentFile> ShareContentFiles { get; set; }
-        //public DbSet<ShareContent> ShareContents { get; set; }
         public DbSet<Town> Towns { get; set; }
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<VisaType> VisaTypes { get; set; }
+
 
         public WorldTravelDbContext(DbContextOptions<WorldTravelDbContext> options)
             : base(options)
