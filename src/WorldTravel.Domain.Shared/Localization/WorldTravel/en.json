@@ -170,6 +170,33 @@
     "ContactPhonePlaceHolder": "Phone*",
     "ContactGenderPlaceHolder": "Select Gender*",
     "ContactCountryPlaceHolder": "Select Country*",
-    "ContactDescriptionPlaceHolder": "Enter Description"
+    "ContactDescriptionPlaceHolder": "Enter Description",
+
+
+
+    //NEW
+    "VisaTypeManagement": "Visa Type Management",
+    "VisaTypes": "Visa Types",
+    "NewVisaType": "New Visa Type",
+    "VisaTitle": "Visa Title",
+    "PopularVisaTypes": "POPULAR VISA TYPES",
+    "Visas": "VISAS",
+    "New": "New",
+    "SeeAll": "See All",
+    "EnterVisaTypeTitle": "Enter Visa Type Title",
+
+    "ProjectSlogan1": "Distances become close",
+    "ProjectSlogan2": "More than a visa...",
+    "ClickForInformation": "Click to get information",
+    "DefaultImageTitle": "Image",
+
+    "ServiceTitle": "SERVICES",
+    "ServiceMarquee": "For more information, please call our number +9005520186969.",
+    "ServiceHappy": "Happy Service",
+    "ServiceHappyDescription": "Have you ever thought why we are so preferred? We are a happy system, a happy family",
+    "ServiceGlobal": "Universality",
+    "ServiceGlobalDescription": "Our goals are realized in a world-oriented way.",
+    "ServiceStrongNetwork": "Strong Connection",
+    "ServiceStrongNetworkDescription": "We facilitate your accommodation, transportation and employment processes with our international connections."
   }
 }

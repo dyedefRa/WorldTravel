@@ -183,6 +183,22 @@
     "Visas": "VİZELER",
     "New": "Yeni",
     "SeeAll": "Tümünü Gör",
-    "EnterVisaTypeTitle": "Vize Adı Giriniz"
+    "EnterVisaTypeTitle": "Vize Adı Giriniz",
+
+    "ProjectSlogan1": "Uzaklar yakın olur",
+    "ProjectSlogan2": "Vizeden daha fazlası...",
+    "ClickForInformation": "Bilgi almak için tıklayın",
+    "DefaultImageTitle": "Görsel",
+
+    "ServiceTitle": "SERVİSLER",
+    "ServiceMarquee": " Daha fazla bilgi almak için lütfen 05520186969 nolu numaramızı arayınız.",
+    "ServiceHappy": "Mutlu Hizmet",
+    "ServiceHappyDescription": "Neden bu kadar çok tercih ediliyoruz hiç düşündünüz mü? Mutlu bir sistem mutlu bir aileyiz.",
+    "ServiceGlobal": "Evrensellik",
+    "ServiceGlobalDescription": "Hedeflerimiz dünyaya yönelik bir şekilde gerçekleşiyor.",
+    "ServiceStrongNetwork": "Güçlü Bağlantı",
+    "ServiceStrongNetworkDescription": "Yurtdışı bağlantılarımızla konaklama,ulaşım ve iş bulma süreçlerinizi kolaylaştırıyoruz."
+
+
   }
 }

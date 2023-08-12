@@ -69,7 +69,7 @@ a.nav-link {
     a.nav-link:hover {
         color: rgb(10, 10, 99) !important;
         transition: color 1s ease-out;
-    }
+    }*/
 
 #servisler {
     padding: 120px 0;
@@ -113,7 +113,7 @@ a.nav-link {
     margin-top: 15px;
 }
 
-#portfolio {
+/*#portfolio {
     background-color: #f7f7f7;
     padding-top: 120px;
     padding-bottom: 50px;
@@ -177,10 +177,10 @@ a.nav-link {
 
 .about-content h4 {
     /*    margin-top: 5px;
-*/ font-weight: 700;
-    font-size: 18px;
+*/ font-weight: 500;
+    font-size: 15px;
     /*//bunlar yeni*/
-    margin-top: 50px !important;
+    margin-top: 30px !important;
     text-align: center !important;
 }
 
@@ -215,23 +215,23 @@ a.nav-link {
         top: 0;
         bottom: 0;
         position: absolute;
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
         background-color: #1594d0;
         content: "";
         right: 50%;
-        border: 10px solid #f1f1f1;
-        margin-right: -100px;
-        border-radius: 150px;
+        border: 5px solid #f1f1f1;
+        margin-right: -80px;
+        border-radius: 100px;
     }
 
 .rsm-yuvarla {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     /*    background-image: cover no-repeat center;
 */
     border-radius: 150px;
-    border: 10px solid #f1f1f1;
+    border: 5px solid #f1f1f1;
 }
 
 .rsm-uzat {
@@ -252,7 +252,7 @@ a.nav-link {
     .indexle p {
         color: #f1f1f1;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 15px;
     }
 
 /*#team {

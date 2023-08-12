@@ -92,6 +92,32 @@
         <li class="lvl1"><a href="/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Login"]</a></li>
         <li class="lvl1"><a href="/Admin/Account/Login"><i class="fa fa-sign-in fa-fw"></i> @L["Admin"]</a></li>
         }*@
+        @if (countryContents.Count > 0)
+        {
+            <li class="lvl1 parent dropdown">
+                <a href="#">@L["Countries"] <i class="anm anm-angle-down-l"></i></a>
+                <ul class="dropdown">
+                    @foreach (var countryContent in countryContents)
+                    {
+                        <li><a href="/Country/Detail?Id=@countryContent.Id" class="site-nav">@countryContent.Title</a></li>
+                    }
+                    <li><a href="/Country" class="site-nav">@L["SeeAll"] <span class="lbl nm_label1"> @L["New"]</span> </a></li>
+                </ul>
+            </li>
+        }
+        @if (visaTypes.Count > 0)
+        {
+            <li class="lvl1 parent dropdown">
+                <a href="#">@L["Visas"] <i class="anm anm-angle-down-l"></i></a>
+                <ul class="dropdown">
+                    @foreach (var visaType in visaTypes)
+                    {
+                        <li><a href="/VisaType/Detail?Id=@visaType.Id" class="site-nav">@visaType.Title</a></li>
+                    }
+                    <li><a href="/VisaType" class="site-nav">@L["SeeAll"] <span class="lbl nm_label1"> @L["New"]</span> </a></li>
+                </ul>
+            </li>
+        }
         <li class="lvl1"><a href="#about">@*<i class="fa fa-plus fa-fw">*@</i> @L["HowProcessWork"]</a></li>
         <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
     </ul>

@@ -8,13 +8,18 @@
     Layout = "~/Pages/Shared/_Layout2.cshtml";
     //List<string> videos = new List<string>()
     //{
-    //"/web/videos/company/1.mp4",
-    //"/web/videos/company/2.mp4",
-    //"/web/videos/company/3.mp4"
+    //"/web/videos/company/1.mp4"
     //};
     var firstImage = Model.CountryContent.ImageFiles.FirstOrDefault();
     var images = Model.CountryContent.ImageFiles.ToList();
     var videos = Model.CountryContent.VideoFiles.ToList();
+
+    var hasImage = Model.CountryContent.ImageFiles.Any();
+    var cssString = "col-lg-6 col-md-6";
+    if (!hasImage)
+    {
+        cssString = "col-lg-12 col-md-12";
+    }
 }
 <style>
     #formModal {
@@ -32,7 +37,7 @@
             <a class="bread breadfirst" href="/Home" title="@L["Home"]"><i class="fa fa-home fa-fw"></i> @L["Home"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
             <a class="bread breadfirst" href="/Country" title="@L["Countries"]"> @L["Countries"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
             <a class="bread breadsecond" href="#" onClick="return false;" title="@L["Countries"]">
-                <img style="margin-top:-3px;margin-right:3px;" width="20" height="13" src="@Model.CountryContent.PreviewImageUrl">
+                <img style="margin-top:-3px;margin-right:3px;" width="20" height="13" src="@Model.CountryContent.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]">
                 @L[Model.CountryContent.CountryName]
             </a>
         </div>
@@ -44,72 +49,51 @@
         <!--product-single-->
         <div class="product-single">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="product-details-img">
-                        <div class="zoompro-wrap product-zoom-right pl-20">
-                            <div class="zoompro-span">
-                                @if (firstImage != null)
-                                {
-                                    <img class="blur-up lazyload zoompro" data-zoom-image="@firstImage.Path" alt="@L["ImageFailedToLoad"]" src="@firstImage.Path" />
-                                }
+                @if (hasImage)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="product-details-img">
+                            <div class="zoompro-wrap product-zoom-right pl-20">
+                                <div class="zoompro-span">
+                                    @if (firstImage != null)
+                                    {
+                                        <img class="blur-up lazyload zoompro" data-zoom-image="@firstImage.Path" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" src="@firstImage.Path" />
+                                    }
+                                </div>
+                                <div class="product-buttons">
+                                    @if (videos.Count > 0)
+                                    {
+                                        <a href="#" class="btn" id="btnVideo" title="@L["ViewVideo"]"><i class="icon anm anm-play-r" aria-hidden="true"></i></a>
+                                    }
+                                    <a href="#" class="btn prlightbox" title="@L["Zoom"]"><i class="icon anm anm-expand-l-arrows" aria-hidden="true"></i></a>
+                                </div>
                             </div>
-                            <div class="product-buttons">
-                                @if (videos.Count > 0)
-                                {
-                                    <a href="#" class="btn" id="btnVideo" title="@L["ViewVideo"]"><i class="icon anm anm-play-r" aria-hidden="true"></i></a>
-                                }
-                                <a href="#" class="btn prlightbox" title="@L["Zoom"]"><i class="icon anm anm-expand-l-arrows" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <div class="lightboximages">
-                            @foreach (var image in images)
-                            {
-                                <a href="@image.Path" data-size="1462x2048"></a>
-                            }
-                            @*<a href="/web/images/product-detail-page/product-with-right-thumbs-1.jpg" data-size="1462x2048"></a>
-                            <a href="/web/images/product-detail-page/product-with-right-thumbs-2.jpg" data-size="1462x2048"></a>
-                            <a href="/web/images/product-detail-page/product-with-right-thumbs-3.jpg" data-size="1462x2048"></a>
-                            <a href="/web/images/product-detail-page/product-with-right-thumbs-4.jpg" data-size="1462x2048"></a>
-                            <a href="/web/images/product-detail-page/product-with-right-thumbs-5.jpg" data-size="1462x2048"></a>
-                            <a href="/web/images/product-detail-page/product-with-right-thumbs-6.jpg" data-size="1462x2048"></a>*@
-                        </div>
-                        <div class="product-thumb">
-                            <div id="gallery" class="product-dec-slider-2 product-tab-left">
-                                @{
-                                    var dataslickindex = -4;
-                                }
+                            <div class="lightboximages">
                                 @foreach (var image in images)
                                 {
-                                    <a data-image="@image.Path" data-zoom-image="@image.Path" class="slick-slide slick-cloned" data-slick-index="@dataslickindex" aria-hidden="true" tabindex="-1">
-                                        <img class="blur-up lazyload" src="@image.Path" alt="@L["ImageFailedToLoad"]" />
-                                    </a>
-                                    dataslickindex--;
+                                    <a href="@image.Path" data-size="1462x2048"></a>
                                 }
-                                @* <a data-image="/web/images/product-detail-page/product-with-right-thumbs-1.jpg" data-zoom-image="/web/images/product-detail-page/product-with-right-thumbs-1.jpg" class="slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1">
-                                <img class="blur-up lazyload" src="/web/images/product-detail-page/product-with-right-thumbs-1.jpg" alt="" />
-                                </a>
-                                <a data-image="/web/images/product-detail-page/product-with-right-thumbs-2.jpg" data-zoom-image="/web/images/product-detail-page/product-with-right-thumbs-2.jpg" class="slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1">
-                                <img class="blur-up lazyload" src="/web/images/product-detail-page/product-with-right-thumbs-2.jpg" alt="" />
-                                </a>
-                                <a data-image="/web/images/product-detail-page/product-with-right-thumbs-3.jpg" data-zoom-image="/web/images/product-detail-page/product-with-right-thumbs-3.jpg" class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1">
-                                <img class="blur-up lazyload" src="/web/images/product-detail-page/product-with-right-thumbs-3.jpg" alt="" />
-                                </a>
-                                <a data-image="/web/images/product-detail-page/product-with-right-thumbs-4.jpg" data-zoom-image="/web/images/product-detail-page/product-with-right-thumbs-4.jpg" class="slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1">
-                                <img class="blur-up lazyload" src="/web/images/product-detail-page/product-with-right-thumbs-4.jpg" alt="" />
-                                </a>
-                                <a data-image="/web/images/product-detail-page/product-with-right-thumbs-5.jpg" data-zoom-image="/web/images/product-detail-page/product-with-right-thumbs-5.jpg" class="slick-slide slick-cloned" data-slick-index="0" aria-hidden="true" tabindex="-1">
-                                <img class="blur-up lazyload" src="/web/images/product-detail-page/product-with-right-thumbs-5.jpg" alt="" />
-                                </a>
-                                <a data-image="/web/images/product-detail-page/product-with-right-thumbs-6.jpg" data-zoom-image="/web/images/product-detail-page/product-with-right-thumbs-6.jpg" class="slick-slide slick-cloned" data-slick-index="1" aria-hidden="true" tabindex="-1">
-                                <img class="blur-up lazyload" src="/web/images/product-detail-page/product-with-right-thumbs-6.jpg" alt="" />
-                                </a>*@
+                            </div>
+                            <div class="product-thumb">
+                                <div id="gallery" class="product-dec-slider-2 product-tab-left">
+                                    @{
+                                        var dataslickindex = -4;
+                                    }
+                                    @foreach (var image in images)
+                                    {
+                                        <a data-image="@image.Path" data-zoom-image="@image.Path" class="slick-slide slick-cloned" data-slick-index="@dataslickindex" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="@image.Path" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
+                                        </a>
+                                        dataslickindex--;
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                }
+                <div class="@cssString col-sm-12 col-12">
                     <div class="product-single__meta">
-                        <h1 class="product-single__title"> <img style="margin-top:-5px;margin-right:3px;" width="30" height="20" src="@Model.CountryContent.PreviewImageUrl"> @Model.CountryContent.Title</h1>
+                        <h1 class="product-single__title"> <img style="margin-top:-5px;margin-right:3px;" width="30" height="20" src="@Model.CountryContent.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]"> @Model.CountryContent.Title</h1>
                         <hr />
                         <div class="product-single__description rte">
                             <p>@Html.Raw(Model.CountryContent.Description)</p>
@@ -120,9 +104,9 @@
                         <li><i class="icon anm anm-clock-r"></i> <time>@Model.CountryContent.CreatedDate.ToTurkishDateString()</time></li>
                         @*<li><i class="anm anm-eye-r" aria-hidden="true"></i> @Model.CountryContent.ReadCount @L["Views"]</li>
                         <li>
-                            <ul class="inline-list">
-                                <li><i class="icon anm anm-comments-l"></i> <a href="#"> 0 @L["Comments"]</a></li>
-                            </ul>
+                        <ul class="inline-list">
+                        <li><i class="icon anm anm-comments-l"></i> <a href="#"> 0 @L["Comments"]</a></li>
+                        </ul>
                         </li>*@
                     </ul>
                     <hr />
@@ -139,8 +123,9 @@
             <div class="tabs-listing">
                 <ul class="product-tabs">
                     <li rel="tab1"><a class="tablink">@L["Details"]</a></li>
-@*                    <li rel="tab2"><a class="tablink">@L["Comments"]</a></li>
-*@                </ul>
+                    @*                    <li rel="tab2"><a class="tablink">@L["Comments"]</a></li>
+                    *@
+                </ul>
                 <div class="tab-container">
                     <div id="tab1" class="tab-content">
                         <div class="product-description rte">
@@ -148,78 +133,78 @@
                         </div>
                     </div>
 
-                   @* <div id="tab2" class="tab-content">
-                        <div id="shopify-product-reviews">
-                            <div class="spr-container">
-                                <div class="spr-content">
-                                    <div class="spr-form clearfix">
-                                        <form method="post" action="#" id="new-review-form" class="new-review-form">
-                                            <h3 class="spr-form-title">@L["WriteReview"]</h3>
-                                            <fieldset class="spr-form-contact">
-                                                <div class="spr-form-contact-name">
-                                                    <label class="spr-form-label" for="review_author_10508262282">Name</label>
-                                                    <input class="spr-form-input spr-form-input-text " id="review_author_10508262282" type="text" name="review[author]" value="" placeholder="Enter your name">
-                                                </div>
-                                                <div class="spr-form-contact-email">
-                                                    <label class="spr-form-label" for="review_email_10508262282">Email</label>
-                                                    <input class="spr-form-input spr-form-input-email " id="review_email_10508262282" type="email" name="review[email]" value="" placeholder="john.smith@example.com">
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="spr-form-review">
-                                                <div class="spr-form-review-body">
-                                                    <label class="spr-form-label" for="review_body_10508262282">Body of Review <span class="spr-form-review-body-charactersremaining">(1500)</span></label>
-                                                    <div class="spr-form-input">
-                                                        <textarea class="spr-form-input spr-form-input-textarea " id="review_body_10508262282" data-product-id="10508262282" name="review[body]" rows="10" placeholder="Write your comments here"></textarea>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="spr-form-actions">
-                                                <input type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary" value="Submit Review">
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <div class="spr-reviews">
-                                        <div class="spr-review">
-                                            <div class="spr-review-header">
-                                                <span class="product-review spr-starratings spr-review-header-starratings"><span class="reviewLink"><i class="fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i></span></span>
-                                                <h3 class="spr-review-header-title">Lorem ipsum dolor sit amet</h3>
-                                                <span class="spr-review-header-byline"><strong>dsacc</strong> on <strong>Apr 09, 2019</strong></span>
-                                            </div>
-                                            <div class="spr-review-content">
-                                                <p class="spr-review-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                            </div>
-                                        </div>
-                                        <div class="spr-review">
-                                            <div class="spr-review-header">
-                                                <span class="product-review spr-starratings spr-review-header-starratings"><span class="reviewLink"><i class="fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i></span></span>
-                                                <h3 class="spr-review-header-title">Lorem Ipsum is simply dummy text of the printing</h3>
-                                                <span class="spr-review-header-byline"><strong>larrydude</strong> on <strong>Dec 30, 2018</strong></span>
-                                            </div>
+                    @* <div id="tab2" class="tab-content">
+                    <div id="shopify-product-reviews">
+                    <div class="spr-container">
+                    <div class="spr-content">
+                    <div class="spr-form clearfix">
+                    <form method="post" action="#" id="new-review-form" class="new-review-form">
+                    <h3 class="spr-form-title">@L["WriteReview"]</h3>
+                    <fieldset class="spr-form-contact">
+                    <div class="spr-form-contact-name">
+                    <label class="spr-form-label" for="review_author_10508262282">Name</label>
+                    <input class="spr-form-input spr-form-input-text " id="review_author_10508262282" type="text" name="review[author]" value="" placeholder="Enter your name">
+                    </div>
+                    <div class="spr-form-contact-email">
+                    <label class="spr-form-label" for="review_email_10508262282">Email</label>
+                    <input class="spr-form-input spr-form-input-email " id="review_email_10508262282" type="email" name="review[email]" value="" placeholder="john.smith@example.com">
+                    </div>
+                    </fieldset>
+                    <fieldset class="spr-form-review">
+                    <div class="spr-form-review-body">
+                    <label class="spr-form-label" for="review_body_10508262282">Body of Review <span class="spr-form-review-body-charactersremaining">(1500)</span></label>
+                    <div class="spr-form-input">
+                    <textarea class="spr-form-input spr-form-input-textarea " id="review_body_10508262282" data-product-id="10508262282" name="review[body]" rows="10" placeholder="Write your comments here"></textarea>
+                    </div>
+                    </div>
+                    </fieldset>
+                    <fieldset class="spr-form-actions">
+                    <input type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary" value="Submit Review">
+                    </fieldset>
+                    </form>
+                    </div>
+                    <div class="spr-reviews">
+                    <div class="spr-review">
+                    <div class="spr-review-header">
+                    <span class="product-review spr-starratings spr-review-header-starratings"><span class="reviewLink"><i class="fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i></span></span>
+                    <h3 class="spr-review-header-title">Lorem ipsum dolor sit amet</h3>
+                    <span class="spr-review-header-byline"><strong>dsacc</strong> on <strong>Apr 09, 2019</strong></span>
+                    </div>
+                    <div class="spr-review-content">
+                    <p class="spr-review-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    </div>
+                    <div class="spr-review">
+                    <div class="spr-review-header">
+                    <span class="product-review spr-starratings spr-review-header-starratings"><span class="reviewLink"><i class="fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i></span></span>
+                    <h3 class="spr-review-header-title">Lorem Ipsum is simply dummy text of the printing</h3>
+                    <span class="spr-review-header-byline"><strong>larrydude</strong> on <strong>Dec 30, 2018</strong></span>
+                    </div>
 
-                                            <div class="spr-review-content">
-                                                <p class="spr-review-content-body">
-                                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="spr-review">
-                                            <div class="spr-review-header">
-                                                <span class="product-review spr-starratings spr-review-header-starratings"><span class="reviewLink"><i class="fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i></span></span>
-                                                <h3 class="spr-review-header-title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</h3>
-                                                <span class="spr-review-header-byline"><strong>quoctri1905</strong> on <strong>Dec 30, 2018</strong></span>
-                                            </div>
+                    <div class="spr-review-content">
+                    <p class="spr-review-content-body">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                    </div>
+                    </div>
+                    <div class="spr-review">
+                    <div class="spr-review-header">
+                    <span class="product-review spr-starratings spr-review-header-starratings"><span class="reviewLink"><i class="fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i></span></span>
+                    <h3 class="spr-review-header-title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</h3>
+                    <span class="spr-review-header-byline"><strong>quoctri1905</strong> on <strong>Dec 30, 2018</strong></span>
+                    </div>
 
-                                            <div class="spr-review-content">
-                                                <p class="spr-review-content-body">
-                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.<br>
-                                                    <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="spr-review-content">
+                    <p class="spr-review-content-body">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.<br>
+                    <br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
                     </div>*@
                 </div>
             </div>
@@ -334,7 +319,7 @@
             @:toastr.success('Talebiniz başarıyla alındı.</br> En kısa sürede sizinle iletişime geçeceğiz.Teşekkürler');
         }
 
-                    });
+                            });
 
         $(function () {
             var $pswp = $('.pswp')[0],

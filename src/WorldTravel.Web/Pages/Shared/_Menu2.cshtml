@@ -1,9 +1,15 @@
 ﻿@using WorldTravel.Localization
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.Users
+@using WorldTravel.Abstract
 @inject IStringLocalizer<WorldTravelResource> L
 @inject ICurrentUser CurrentUser
-
+@inject ICountryContentAppService _countryContentAppService
+@inject IVisaTypeAppService _visaTypeAppService
+@{
+    var countryContents = await _countryContentAppService.GetCountryContentListForUserAsync(new WorldTravel.Dtos.CountryContents.GetCountryContentRequestDto() { IsSeenHomePage = true });
+    var visaTypes = await _visaTypeAppService.GetVisaTypeListForUserAsync(new WorldTravel.Dtos.VisaTypes.GetVisaTypeRequestDto() { IsSeenHomePage = true });
+}
 <!--Web Menu-->
 <div class="header-wrap classicHeader animated d-flex">
     <div class="container-fluid">
@@ -26,9 +32,15 @@
                     </button>
                 </div>
                 <nav class="grid__item" id="AccessibleNav">
-                    <ul id="siteNav" class="site-nav medium right hidearrow">
-                        <li class="lvl1"><a href="/VisaType">@L["VisaTypes"]</a></li>
-                        <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
+                    <ul id="siteNav" class="site-nav medium right hidearrow">                      
+                        @if (countryContents.Count > 0)
+                        {
+                            <li class="lvl1"><a href="/VisaType">@L["VisaTypes"]</a></li>
+                        }
+                        @if (visaTypes.Count > 0)
+                        {
+                            <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
+                        }
                         <li class="lvl1"><a href="/Home"><i class="fa fa-home fa-fw"></i>@L["Home"]</a></li>
                     </ul>
                 </nav>
@@ -42,8 +54,15 @@
 <div class="mobile-nav-wrapper" role="navigation">
     <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
     <ul id="MobileNav" class="mobile-nav">
-        <li class="lvl1"><a href="#about">@L["HowProcessWork"]</a></li>
-        <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
+        @if (countryContents.Count > 0)
+        {
+            <li class="lvl1"><a href="/VisaType">@L["VisaTypes"]</a></li>
+        }
+        @if (visaTypes.Count > 0)
+        {
+            <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
+        }
+        <li class="lvl1"><a href="/Home"><i class="fa fa-home fa-fw"></i>@L["Home"]</a></li>
     </ul>
 </div>
 <!--End Mobile Menu-->

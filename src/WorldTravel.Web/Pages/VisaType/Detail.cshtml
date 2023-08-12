@@ -23,7 +23,7 @@
             <a class="bread breadfirst" href="/Home" title="@L["Home"]"><i class="fa fa-home fa-fw"></i> @L["Home"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
             <a class="bread breadfirst" href="/VisaType" title="@L["VisaTypes"]"> @L["VisaTypes"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
             <a class="bread breadsecond" href="#" onClick="return false;" title="@L["VisaTypes"]">
-                <img style="margin-top:-3px;margin-right:3px;" width="20" height="13" src="@Model.VisaType.PreviewImageUrl">
+                <img style="margin-top:-3px;margin-right:3px;" width="20" height="13" src="@Model.VisaType.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]">
                 @L[Model.VisaType.Title]
             </a>
         </div>
@@ -39,7 +39,7 @@
                     <div class="product-details-img">
                         <div class="zoompro-wrap product-zoom-right pl-20">
                             <div class="zoompro-span">
-                                <img class="blur-up lazyload zoompro" data-zoom-image="@Model.VisaType.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" src="@Model.VisaType.PreviewImageUrl" />
+                                <img class="blur-up lazyload zoompro" data-zoom-image="@Model.VisaType.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" src="@Model.VisaType.PreviewImageUrl" />
                             </div>
                             <div class="product-buttons">
                                 <a href="#" class="btn prlightbox" title="@L["Zoom"]"><i class="icon anm anm-expand-l-arrows" aria-hidden="true"></i></a>
@@ -51,7 +51,7 @@
                         <div class="product-thumb">
                             <div id="gallery" class="product-dec-slider-2 product-tab-left">
                                 <a data-image="@Model.VisaType.PreviewImageUrl" data-zoom-image="@Model.VisaType.PreviewImageUrl" class="slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1">
-                                    <img class="blur-up lazyload" src="@Model.VisaType.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" />
+                                    <img class="blur-up lazyload" src="@Model.VisaType.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
                                 </a>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="product-single__meta">
-                        <h1 class="product-single__title"> <img style="margin-top:-5px;margin-right:3px;" width="30" height="20" src="@Model.VisaType.PreviewImageUrl"> @Model.VisaType.Title</h1>
+                        <h1 class="product-single__title"> <img style="margin-top:-5px;margin-right:3px;" width="30" height="20" src="@Model.VisaType.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]"> @Model.VisaType.Title</h1>
                         <hr />
                         <div class="product-single__description rte">
                             <p>@Html.Raw(Model.VisaType.Description)</p>
