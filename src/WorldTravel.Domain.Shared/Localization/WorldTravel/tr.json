@@ -175,15 +175,15 @@
 
 
     //NEW
-    "VisaTypeManagement": "Vize Türleri Yönetimi",
-    "VisaTypes": "Vize Türleri",
-    "NewVisaType": "Yeni Vize Türü Ekle",
-    "VisaTitle": "Vize Başlığı",
-    "PopularVisaTypes": "POPÜLER VİZE TÜRLERİ",
-    "Visas": "VİZELER",
+    "VisaTypeManagement": "İş Fırsatları Yönetimi",
+    "VisaTypes": "İş Fırsatları",
+    "NewVisaType": "Yeni İş Fırsatı Ekle",
+    "VisaTitle": "Başlık",
+    "PopularVisaTypes": "POPÜLER İŞ FIRSATLARI",
+    "Visas": "İŞ FIRSATLARI",
     "New": "Yeni",
     "SeeAll": "Tümünü Gör",
-    "EnterVisaTypeTitle": "Vize Adı Giriniz",
+    "EnterVisaTypeTitle": "İş Fırsat Adı Giriniz",
 
     "ProjectSlogan1": "Uzaklar yakın olur",
     "ProjectSlogan2": "Vizeden daha fazlası...",
