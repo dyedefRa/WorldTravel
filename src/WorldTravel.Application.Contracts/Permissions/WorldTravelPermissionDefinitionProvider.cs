@@ -1,6 +1,6 @@
-﻿using WorldTravel.Localization;
-using Volo.Abp.Authorization.Permissions;
+﻿using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Localization;
+using WorldTravel.Localization;
 
 namespace WorldTravel.Permissions
 {
@@ -25,6 +25,11 @@ namespace WorldTravel.Permissions
             var visaTypePermission = myGroup.AddPermission(WorldTravelPermissions.VisaType.Default, L("VisaTypeManagement"));
             visaTypePermission.AddChild(WorldTravelPermissions.VisaType.Create, L("Permission:Create"));
             visaTypePermission.AddChild(WorldTravelPermissions.VisaType.Edit, L("Permission:Edit"));
+
+            var jobPermission = myGroup.AddPermission(WorldTravelPermissions.Job.Default, L("JobManagement"));
+            jobPermission.AddChild(WorldTravelPermissions.Job.Create, L("Permission:Create"));
+            jobPermission.AddChild(WorldTravelPermissions.Job.Edit, L("Permission:Edit"));
+
         }
 
         private static LocalizableString L(string name)

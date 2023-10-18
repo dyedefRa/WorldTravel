@@ -22,20 +22,6 @@
         <!--Sidebar-->
         <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar">
             <div class="sidebar_tags">
-                @if (Model.VisaType.Count > 0)
-                {
-                    <div class="sidebar_widget categories">
-                        <div class="widget-title"><h2>@L["VisaTypes"]</h2></div>
-                        <div class="widget-content">
-                            <ul class="sidebar_categories">
-                                @foreach (var visaType in Model.VisaType)
-                                {
-                                    <li class="lvl-1 "><a href="/VisaType/Detail?Id=@visaType.Id" target="_blank" class="site-nav lvl-1">@visaType.Title</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                }
                 @if (Model.CountryContent.Count > 0)
                 {
                     <div class="sidebar_widget">
@@ -58,12 +44,42 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    }                                
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-                }       
+                }
+                @if (Model.VisaType.Count > 0)
+                {
+                    <hr />
+                    <div class="sidebar_widget categories">
+                        <div class="widget-title"><h2>@L["VisaTypesB"]</h2></div>
+                        <div class="widget-content">
+                            <ul class="sidebar_categories">
+                                @foreach (var visaType in Model.VisaType)
+                                {
+                                    <li class="lvl-1 "><a href="/VisaType/Detail?Id=@visaType.Id" target="_blank" class="site-nav lvl-1">@visaType.Title</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+                @if (Model.Job.Count > 0)
+                {
+                    <hr />
+                    <div class="sidebar_widget categories">
+                        <div class="widget-title"><h2>@L["JobsB"]</h2></div>
+                        <div class="widget-content">
+                            <ul class="sidebar_categories">
+                                @foreach (var job in Model.Job)
+                                {
+                                    <li class="lvl-1 "><a href="/Job/Detail?Id=@job.Id" target="_blank" class="site-nav lvl-1">@job.Title</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
         <!--End Sidebar-->

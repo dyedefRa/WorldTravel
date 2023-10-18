@@ -43,5 +43,12 @@
             public const string Edit = Default + ".Edit";
         }
 
+        public static class Job
+        {
+            public const string Default = Identity + ".Jobs";
+            public const string Create = Default + ".Create";
+            public const string Edit = Default + ".Edit";
+        }
+
     }
 }

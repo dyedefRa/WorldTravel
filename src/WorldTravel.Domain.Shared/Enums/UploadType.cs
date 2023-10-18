@@ -12,5 +12,7 @@ namespace WorldTravel.Enums
         ShareContent = 2,
         [Description("visatypecontent")]
         VisaType = 3,
+        [Description("job")]
+        Job = 3,
     }
 }

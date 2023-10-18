@@ -59,6 +59,10 @@
                 {
                     <li class="nav-item"> <a href="/Admin/VisaType/Index" class="nav-link"> <i class="icon-list-unordered"></i> <span>@L["VisaTypeManagement"]</span></a></li>
                 }
+                @if (await AuthorizationService.IsGrantedAsync(WorldTravelPermissions.Job.Default))
+                {
+                    <li class="nav-item"> <a href="/Admin/Job/Index" class="nav-link"> <i class="icon-list-unordered"></i> <span>@L["JobManagement"]</span></a></li>
+                }
             </ul>
         </div>
     </div>

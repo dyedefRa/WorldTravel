@@ -13,7 +13,7 @@
         }
 
         .p05 {
-            padding: 0 5px;
+            padding: 10px;
         }
 
         .bcg {
@@ -27,7 +27,7 @@
 }
 
 <!--Home slider-->
-<div class="slideshow slideshow-wrapper pb-section wow bounceInUp" data-wow-duration="1s">
+<div class="slideshow slideshow-wrapper pb-section wow fadeInDown" data-wow-duration="1s">
     <div class="home-slideshow">
         <div class="slide slideshow--medium">
             <div class="blur-up lazyload">
@@ -66,7 +66,7 @@
 <!--End Home slider-->
 @if (Model.CountryContent.Any())
 {
-    <div class="collection-box section wow bounceInLeft" data-wow-duration="4s">
+    <div class="collection-box section wow fadeInUp" data-wow-duration="2s">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="collection-grid-4item wow bounceInLeft" data-wow-duration="4s">
+            <div class="collection-grid-4item wow fadeInUp" data-wow-duration="4s" style="padding-left:50px;padding-right:50px;">
                 @foreach (var countryContent in Model.CountryContent)
                 {
                     <div class="collection-grid-item p05">
@@ -92,10 +92,13 @@
         </div>
     </div>
 }
-<hr />
+
 @if (Model.VisaType.Any())
 {
-    <div class="section wow bounceInRight" data-wow-duration="4s">
+    <hr />
+    <hr />
+
+    <div class="section wow fadeInUp" data-wow-duration="2s">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -106,10 +109,10 @@
                 </div>
             </div>
             <div class="categories-list-items">
-                <div class="row country-items wow bounceInRight" data-wow-duration="4s">
+                <div class="row country-items wow fadeInUp" data-wow-duration="4s">
                     @foreach (var visaType in Model.VisaType)
                     {
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 article country-item" style="padding: 20px;border: 2px solid #f9f9f9;text-align:center;">
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 article country-item" style="padding: 20px;border: 2px solid #f9f9f9;text-align:center;">
                             <a class="article_featured-image" href="/VisaType/Detail?Id=@visaType.Id"><img width="287" height="124" class="blur-up lazyload" data-src="@visaType.PreviewImageUrl" src="@visaType.PreviewImageUrl" title="@visaType.Title" alt="@L["ImageFailedToLoad"]"></a>
                             <h2 class="h3"><a href="/VisaType/Detail?Id=@visaType.Id" class="visaTypeTitle">@visaType.Title</a></h2>
                             <div class="rte">
@@ -126,6 +129,46 @@
         </div>
     </div>
 }
+@if (Model.Job.Any())
+{
+    <hr />
+    <hr />
+
+    <div class="section wow fadeInUp" data-wow-duration="2s">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-header text-center">
+                        <h2 class="h2">@L["PopularJobs"]</h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="categories-list-items">
+                <div class="row country-items wow fadeInUp" data-wow-duration="4s">
+                    @foreach (var job in Model.Job)
+                    {
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 article country-item" style="padding: 20px;border: 2px solid #f9f9f9;text-align:center;">
+                            <a class="article_featured-image" href="/Job/Detail?Id=@job.Id"><img width="287" height="124" class="blur-up lazyload" data-src="@job.PreviewImageUrl" src="@job.PreviewImageUrl" title="@job.Title" alt="@L["ImageFailedToLoad"]"></a>
+                            <h2 class="h3"><a href="/Job/Detail?Id=@job.Id" class="jobTitle">@job.Title</a></h2>
+                            <div class="rte">
+                                <p>@job.ShortDescription.ApplyShortening(200)</p>
+                            </div>
+                            <ul class="publish-detail">
+                                <li><i class="icon anm anm-clock-r"></i> <time>@job.CreatedDate.ToTurkishDateString()</time></li>
+                            </ul>
+                            <p><a href="/Job/Detail?Id=@job.Id" class="btn btn-secondary btn--small">@L["ReadMore"] <i class="fa fa-caret-right" aria-hidden="true"></i></a></p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<hr />
+<hr />
+
 <section id="about" class="bcg">
     <div class="container">
         <div class="about-top text-center">
@@ -153,7 +196,7 @@
                 <div class="col-md-2 wow fadeInLeft" data-wow-duration="2s">
                     <br />
                     <h4>@Html.Raw(L["AboutDocumentQuestion"])</h4>
-                </div>  
+                </div>
                 <div class="col-md-3"></div>
             </div>
             <div class="row">
@@ -196,6 +239,9 @@
         </div>
     </div>
 </section>
+
+<hr />
+<hr />
 
 <section id="servisler">
     <div class="container">

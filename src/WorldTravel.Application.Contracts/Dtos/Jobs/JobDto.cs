@@ -4,9 +4,9 @@ using WorldTravel.Dtos.Countries;
 using WorldTravel.Dtos.Files;
 using WorldTravel.Enums;
 
-namespace WorldTravel.Dtos.VisaTypes
+namespace WorldTravel.Dtos.Jobs
 {
-    public class VisaTypeDto : EntityDto<int>
+    public class JobDto : EntityDto<int>
     {
         public string Title { get; set; }
         public string ShortDescription { get; set; }

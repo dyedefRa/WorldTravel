@@ -6,6 +6,8 @@ using WorldTravel.Dtos.Files;
 using WorldTravel.Dtos.Files.ViewModels;
 using WorldTravel.Dtos.Forms;
 using WorldTravel.Dtos.Forms.ViewModels;
+using WorldTravel.Dtos.Jobs;
+using WorldTravel.Dtos.Jobs.ViewModels;
 using WorldTravel.Dtos.Users;
 using WorldTravel.Dtos.Users.ViewModels;
 using WorldTravel.Dtos.VisaTypes;
@@ -13,6 +15,7 @@ using WorldTravel.Dtos.VisaTypes.ViewModels;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Files;
 using WorldTravel.Entities.Forms;
+using WorldTravel.Entities.Jobs;
 using WorldTravel.Entities.Users;
 using WorldTravel.Entities.VisaTypes;
 
@@ -50,6 +53,12 @@ namespace WorldTravel
             CreateMap<VisaType, VisaTypeDto>().ReverseMap();
             CreateMap<VisaType, CreateUpdateVisaTypeDto>().ReverseMap();
             CreateMap<VisaType, VisaTypeViewModel>().ReverseMap();
+            #endregion
+
+            #region Job
+            CreateMap<Job, JobDto>().ReverseMap();
+            CreateMap<Job, CreateUpdateJobDto>().ReverseMap();
+            CreateMap<Job, JobViewModel>().ReverseMap();
             #endregion
 
         }

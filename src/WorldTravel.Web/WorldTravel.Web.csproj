@@ -99,7 +99,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Admin\Consultant\" />
     <Folder Include="wwwroot\uploads\countrycontent\" />
+    <Folder Include="wwwroot\uploads\job\" />
     <Folder Include="wwwroot\uploads\visatypecontent\" />
     <Folder Include="wwwroot\uploads\profile\" />
     <Folder Include="wwwroot\web\images\home\" />

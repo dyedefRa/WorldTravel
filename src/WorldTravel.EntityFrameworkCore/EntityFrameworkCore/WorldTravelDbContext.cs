@@ -18,6 +18,7 @@ using WorldTravel.Entities.CountryContentFiles;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Files;
 using WorldTravel.Entities.Forms;
+using WorldTravel.Entities.Jobs;
 using WorldTravel.Entities.Logs;
 using WorldTravel.Entities.MailTemplates;
 using WorldTravel.Entities.SentMails;
@@ -37,13 +38,13 @@ namespace WorldTravel.EntityFrameworkCore
         public DbSet<CountryContent> CountryContents { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Form> Form { get; set; }
+        public DbSet<Job> Job { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<MailTemplate> MailTemplates { get; set; }
         public DbSet<SentMail> SentMails { get; set; }
         public DbSet<Town> Towns { get; set; }
         public DbSet<AppUser> Users { get; set; }
         public DbSet<VisaType> VisaTypes { get; set; }
-
 
         public WorldTravelDbContext(DbContextOptions<WorldTravelDbContext> options)
             : base(options)

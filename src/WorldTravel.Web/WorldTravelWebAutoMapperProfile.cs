@@ -2,11 +2,13 @@
 using Volo.Abp.Identity;
 using WorldTravel.Dtos.CountryContents;
 using WorldTravel.Dtos.Forms;
+using WorldTravel.Dtos.Jobs;
 using WorldTravel.Dtos.Users.ViewModels;
 using WorldTravel.Dtos.VisaTypes;
 using static WorldTravel.Web.Pages.Account.ManageModel;
 using static WorldTravel.Web.Pages.Account.RegisterModel;
 using static WorldTravel.Web.Pages.Admin.CountryContent.CreateModel;
+using static WorldTravel.Web.Pages.Admin.Job.CreateModel;
 using static WorldTravel.Web.Pages.Admin.VisaType.CreateModel;
 
 namespace WorldTravel.Web
@@ -34,6 +36,10 @@ namespace WorldTravel.Web
 
             #region VisaType
             CreateMap<CreateVisaTypeModel, CreateUpdateVisaTypeDto>().ReverseMap();
+            #endregion
+
+            #region Job
+            CreateMap<CreateJobModel, CreateUpdateJobDto>().ReverseMap();
             #endregion
         }
     }

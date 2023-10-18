@@ -2,6 +2,7 @@
 using Volo.Abp.Domain.Entities;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Forms;
+using WorldTravel.Entities.Jobs;
 using WorldTravel.Entities.VisaTypes;
 
 namespace WorldTravel.Entities.Countries
@@ -14,6 +15,7 @@ namespace WorldTravel.Entities.Countries
         public string Title { get; set; }
 
         public virtual ICollection<CountryContent> CountryContents { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
         public virtual ICollection<Form> Forms { get; set; }
         public virtual ICollection<VisaType> VisaTypes { get; set; }
     }

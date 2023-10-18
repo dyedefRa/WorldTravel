@@ -6,9 +6,11 @@
 @inject ICurrentUser CurrentUser
 @inject ICountryContentAppService _countryContentAppService
 @inject IVisaTypeAppService _visaTypeAppService
+@inject IJobAppService _jobAppService
 @{
     var countryContents = await _countryContentAppService.GetCountryContentListForUserAsync(new WorldTravel.Dtos.CountryContents.GetCountryContentRequestDto() { IsSeenHomePage = true });
     var visaTypes = await _visaTypeAppService.GetVisaTypeListForUserAsync(new WorldTravel.Dtos.VisaTypes.GetVisaTypeRequestDto() { IsSeenHomePage = true });
+    var jobs = await _jobAppService.GetJobListForUserAsync(new WorldTravel.Dtos.Jobs.GetJobRequestDto() { IsSeenHomePage = true });
 }
 <!--Web Menu-->
 <div class="header-wrap classicHeader animated d-flex">
@@ -32,16 +34,20 @@
                     </button>
                 </div>
                 <nav class="grid__item" id="AccessibleNav">
-                    <ul id="siteNav" class="site-nav medium right hidearrow">                      
+                    <ul id="siteNav" class="site-nav medium right hidearrow">
                         @if (countryContents.Count > 0)
-                        {
-                            <li class="lvl1"><a href="/VisaType">@L["VisaTypes"]</a></li>
-                        }
-                        @if (visaTypes.Count > 0)
                         {
                             <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
                         }
-                        <li class="lvl1"><a href="/Home"><i class="fa fa-home fa-fw"></i>@L["Home"]</a></li>
+                        @if (visaTypes.Count > 0)
+                        {
+                            <li class="lvl1"><a href="/VisaType">@L["VisaTypesB"]</a></li>
+                        }
+                        @if (jobs.Count > 0)
+                        {
+                            <li class="lvl1"><a href="/Job">@L["JobsB"]</a></li>
+                        }
+                        <li class="lvl1"><a href="/Home"><i class="fa fa-home fa-fw"></i> @L["Home"]</a></li>
                     </ul>
                 </nav>
                 <!--End Web Menu-->
@@ -56,11 +62,15 @@
     <ul id="MobileNav" class="mobile-nav">
         @if (countryContents.Count > 0)
         {
-            <li class="lvl1"><a href="/VisaType">@L["VisaTypes"]</a></li>
+            <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
         }
         @if (visaTypes.Count > 0)
         {
-            <li class="lvl1"><a href="/Country">@L["Countries"]</a></li>
+            <li class="lvl1"><a href="/VisaType">@L["VisaTypesB"]</a></li>
+        }
+        @if (jobs.Count > 0)
+        {
+            <li class="lvl1"><a href="/Job">@L["JobsB"]</a></li>
         }
         <li class="lvl1"><a href="/Home"><i class="fa fa-home fa-fw"></i>@L["Home"]</a></li>
     </ul>

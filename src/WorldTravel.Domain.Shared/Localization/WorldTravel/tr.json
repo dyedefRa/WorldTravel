@@ -175,15 +175,25 @@
 
 
     //NEW
-    "VisaTypeManagement": "İş Fırsatları Yönetimi",
-    "VisaTypes": "İş Fırsatları",
-    "NewVisaType": "Yeni İş Fırsatı Ekle",
-    "VisaTitle": "Başlık",
-    "PopularVisaTypes": "POPÜLER İŞ FIRSATLARI",
-    "Visas": "İŞ FIRSATLARI",
+    "VisaTypeManagement": "Vize Türleri Yönetimi",
+    "VisaTypes": "Vize Türleri",
+    "NewVisaType": "Yeni Vize Türü Ekle",
+    "VisaTitle": "Vize Başlığı",
+    "PopularVisaTypes": "POPÜLER VİZE TÜRLERİ",
+    "VisaTypesB": "VİZE TÜRLERİ",
     "New": "Yeni",
     "SeeAll": "Tümünü Gör",
-    "EnterVisaTypeTitle": "İş Fırsat Adı Giriniz",
+    "EnterVisaTypeTitle": "Vize Adı Giriniz",
+
+
+    "JobManagement": "İş Fırsatları Yönetimi",
+    "Jobs": "İş Fırsatları",
+    "NewJob": "Yeni İş Fırsatları Ekle",
+    "JobTitle": "İş Fırsat Başlığı",
+    "JobsB": "İŞ FIRSATLARI",
+    "PopularJobs": "POPÜLER İŞ FIRSATLARI",
+    "EnterJobTitle": "İş Fırsat Adı Giriniz",
+
 
     "ProjectSlogan1": "Uzaklar yakın olur",
     "ProjectSlogan2": "Vizeden daha fazlası...",

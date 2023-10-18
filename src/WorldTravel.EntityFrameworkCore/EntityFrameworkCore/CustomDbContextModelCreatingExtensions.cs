@@ -6,6 +6,7 @@ using WorldTravel.Entities.CountryContentFiles;
 using WorldTravel.Entities.CountryContents;
 using WorldTravel.Entities.Files;
 using WorldTravel.Entities.Forms;
+using WorldTravel.Entities.Jobs;
 using WorldTravel.Entities.Logs;
 using WorldTravel.Entities.MailTemplates;
 using WorldTravel.Entities.SentMails;
@@ -135,6 +136,38 @@ namespace WorldTravel.EntityFrameworkCore
                .HasForeignKey(d => d.CountryId)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .HasConstraintName("FK_AppForms_AppCountries");
+            });
+
+            modelBuilder.Entity<Job>(entity =>
+            {
+                entity.ToTable(dbTablePrefix + "Jobs");
+
+                entity.Property(e => e.Title).IsRequired(true).HasMaxLength(255);
+                entity.Property(e => e.ShortDescription).IsRequired(true);
+                entity.Property(e => e.Description).IsRequired(true);
+                entity.Property(e => e.ExtraDescription);
+                entity.Property(e => e.CountryId).HasColumnType("int");
+                entity.Property(e => e.ReadCount).HasColumnType("int");
+                entity.Property(e => e.Rank).HasColumnType("int");
+                entity.Property(e => e.IsSeenHomePage).HasColumnType("bit");
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+                entity.Property(e => e.ValidDate).HasColumnType("datetime");
+                entity.Property(a => a.Status).HasColumnType("int");
+
+                entity.HasIndex(e => e.ImageId, "IX_AppJob_FileId");
+                entity.HasIndex(e => e.CountryId, "IX_AppJob_CountryId");
+
+                entity.HasOne(d => d.Image)
+                 .WithMany(p => p.Jobs)
+                 .HasForeignKey(d => d.ImageId)
+                 .OnDelete(DeleteBehavior.ClientSetNull)
+                 .HasConstraintName("FK_AppJobs_AppFiles");
+
+                entity.HasOne(d => d.Country)
+                 .WithMany(p => p.Jobs)
+                 .HasForeignKey(d => d.CountryId)
+                 .OnDelete(DeleteBehavior.ClientSetNull)
+                 .HasConstraintName("FK_AppJobs_AppCountries");
             });
 
             modelBuilder.Entity<Log>(entity =>

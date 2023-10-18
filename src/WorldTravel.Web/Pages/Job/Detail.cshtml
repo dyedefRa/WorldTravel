@@ -1,0 +1,244 @@
+﻿@page
+@using Volo.Abp.Users
+@using WorldTravel.Extensions;
+@model WorldTravel.Web.Pages.Job.DetailModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<WorldTravel.Localization.WorldTravelResource> L
+@inject ICurrentUser CurrentUser
+@{
+    Layout = "~/Pages/Shared/_Layout2.cshtml";
+}
+<style>
+    #formModal {
+        background: url('/extensions/golden/images/world.jpg') no-repeat center fixed;
+    }
+
+    .mbn {
+        margin-bottom: 0px !important;
+    }
+</style>
+
+<div class="page section-header">
+    <div class="bredcrumbWrap mb-00">
+        <div class="container breadcrumbs">
+            <a class="bread breadfirst" href="/Home" title="@L["Home"]"><i class="fa fa-home fa-fw"></i> @L["Home"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
+            <a class="bread breadfirst" href="/Job" title="@L["Jobs"]"> @L["Jobs"]</a><span style="font-size: 14px;" aria-hidden="true">›</span>
+            <a class="bread breadsecond" href="#" onClick="return false;" title="@L["Jobs"]">
+                <img style="margin-top:-3px;margin-right:3px;" width="20" height="13" src="@Model.Job.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]">
+                @L[Model.Job.Title]
+            </a>
+        </div>
+    </div>
+</div>
+<!--MainContent-->
+<div id="MainContent" class="main-content" role="main">
+    <div id="ProductSection-product-template" class="product-template__container prstyle1 container">
+        <!--product-single-->
+        <div class="product-single">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="product-details-img">
+                        <div class="zoompro-wrap product-zoom-right pl-20">
+                            <div class="zoompro-span">
+                                <img class="blur-up lazyload zoompro" data-zoom-image="@Model.Job.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" src="@Model.Job.PreviewImageUrl" />
+                            </div>
+                            <div class="product-buttons">
+                                <a href="#" class="btn prlightbox" title="@L["Zoom"]"><i class="icon anm anm-expand-l-arrows" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="lightboximages">
+                            <a href="@Model.Job.PreviewImageUrl" data-size="1462x2048"></a>
+                        </div>
+                        <div class="product-thumb">
+                            <div id="gallery" class="product-dec-slider-2 product-tab-left">
+                                <a data-image="@Model.Job.PreviewImageUrl" data-zoom-image="@Model.Job.PreviewImageUrl" class="slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1">
+                                    <img class="blur-up lazyload" src="@Model.Job.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="product-single__meta">
+                        <h1 class="product-single__title"> <img style="margin-top:-5px;margin-right:3px;" width="30" height="20" src="@Model.Job.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]"> @Model.Job.Title</h1>
+                        <hr />
+                        <div class="product-single__description rte">
+                            <p>@Html.Raw(Model.Job.Description)</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <ul class="publish-detail">
+                        <li><i class="icon anm anm-clock-r"></i> <time>@Model.Job.CreatedDate.ToTurkishDateString()</time></li>
+                        @*<li><i class="anm anm-eye-r" aria-hidden="true"></i> @Model.CountryContent.ReadCount @L["Views"]</li>
+                        <li>
+                        <ul class="inline-list">
+                        <li><i class="icon anm anm-comments-l"></i> <a href="#"> 0 @L["Comments"]</a></li>
+                        </ul>
+                        </li>*@
+                    </ul>
+                    <hr />
+                    <div class="product-form__item--submit">
+                        <button type="button" name="add" class="btn btnOpenFormModal">
+                            <span>@L["CreateForm"]</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!--End-product-single-->
+            <!-- first slider -->
+            <!--Product Tabs-->
+            <div class="tabs-listing">
+                <ul class="product-tabs">
+                    <li rel="tab1"><a class="tablink">@L["Details"]</a></li>
+                </ul>
+                <div class="tab-container">
+                    <div id="tab1" class="tab-content">
+                        <div class="product-description rte">
+                            @Html.Raw(Model.Job.ExtraDescription)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Product Tabs-->
+        </div>
+        <!--#ProductSection-product-template-->
+    </div>
+    <!--MainContent-->
+</div>
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap"><div class="pswp__container"><div class="pswp__item"></div><div class="pswp__item"></div><div class="pswp__item"></div></div><div class="pswp__ui pswp__ui--hidden"><div class="pswp__top-bar"><div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button><button class="pswp__button pswp__button--share" title="Share"></button><button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class="pswp__preloader"><div class="pswp__preloader__icn"><div class="pswp__preloader__cut"><div class="pswp__preloader__donut"></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class="pswp__share-tooltip"></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button><button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class="pswp__caption"><div class="pswp__caption__center"></div></div></div></div>
+</div>
+
+<div class="modal fade bd-example-modal-lg modal-dialog-scrollable" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@L["CreateForm"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" href="/Job/Detail">
+                    <abp-input asp-for="Form.JobId" />
+                    @Html.AntiForgeryToken()
+                    @(await Component.InvokeAsync<Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Themes.Basic.Components.PageAlerts.PageAlertsViewComponent>())
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 mbn">
+                            <abp-input asp-for="Form.Name" label="@L["Name"]" />
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 mbn">
+                            <abp-input asp-for="Form.Surname" label="@L["Surname"]" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 mbn">
+                            <abp-input asp-for="Form.Email" label="@L["Email"]" />
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 mbn">
+                            <abp-input asp-for="Form.PhoneNumber" class="mobilephone" placeholder="0(5__) ___-____" label="@L["PhoneNumber"]" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 mbn">
+                            <abp-select asp-for="Form.Gender" label="@L["Gender"]">
+                                <option disabled selected>@L["Choose"]</option>
+                            </abp-select>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-6 col-xl-6 mbn">
+                            <abp-input asp-for="Form.BirthDate" label="@L["BirthDate"]" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 mbn">
+                            <abp-select asp-for="Form.CountryId" label="@L["Country"]">
+                                <option disabled selected>@L["Choose"]</option>
+                            </abp-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12 col-xl-12 mbn">
+                            <abp-input asp-for="Form.Description" label="@L["Description"]" style="resize: none;" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:10px;margin-top:10px;">
+                        <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                            <abp-button text="@L["CreateForm"]" type="submit" class="btn-nice" button-type="Primary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End Body Content-->
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            //$('body').removeClass();
+            $('body').addClass('template-product template-product-right-thumb belle');
+            $('#Form_BirthDate').attr('type', 'date');
+
+            $('body').addClass('home9-parallax');
+            $('.header-wrap').removeClass('classicHeader');
+
+            $('.btnOpenFormModal').click(function (e) {
+                e.preventDefault();
+                $('#formModal').modal('show');
+            });
+
+            var search = window.location.search.split('&');
+            var newUrl = window.location.pathname + search[0];
+            window.history.replaceState(null, '', newUrl);
+
+        @if (Model.Form.IsReturnPost)
+        {
+            @:toastr.success('Talebiniz başarıyla alındı.</br> En kısa sürede sizinle iletişime geçeceğiz.Teşekkürler');
+        }
+
+                                });
+
+        $(function () {
+            var $pswp = $('.pswp')[0],
+                image = [],
+                getItems = function () {
+                    var items = [];
+                    $('.lightboximages a').each(function () {
+                        var $href = $(this).attr('href'),
+                            $size = $(this).data('size').split('x'),
+                            item = {
+                                src: $href,
+                                w: $size[0],
+                                h: $size[1]
+                            }
+                        items.push(item);
+                    });
+                    return items;
+                }
+            var items = getItems();
+
+            $.each(items, function (index, value) {
+                image[index] = new Image();
+                image[index].src = value['src'];
+            });
+            $('.prlightbox').on('click', function (event) {
+                event.preventDefault();
+
+                var $index = $(".active-thumb").parent().attr('data-slick-index');
+                $index++;
+                $index = $index - 1;
+
+                var options = {
+                    index: $index,
+                    bgOpacity: 0.9,
+                    showHideOpacity: true
+                }
+                var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
+                lightBox.init();
+            });
+
+        });
+    </script>
+}

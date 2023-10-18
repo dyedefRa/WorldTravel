@@ -261,3 +261,4 @@ src/WorldTravel.DbMigrator/Logs/*
 src/WorldTravel.Blazor.Server/Logs/*
 src/WorldTravel.Blazor.Server.Tiered/Logs/*
 /src/WorldTravel.Web/wwwroot/uploads/countrycontent
+/src/WorldTravel.Web/wwwroot/uploads/visatypecontent

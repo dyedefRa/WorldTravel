@@ -180,10 +180,20 @@
     "NewVisaType": "New Visa Type",
     "VisaTitle": "Visa Title",
     "PopularVisaTypes": "POPULAR VISA TYPES",
-    "Visas": "VISAS",
+    "VisaTypesB": "VISA TYPES",
     "New": "New",
     "SeeAll": "See All",
     "EnterVisaTypeTitle": "Enter Visa Type Title",
+
+
+    "JobManagement": "Job Opportunities Management",
+    "Jobs": "Job Opportunities",
+    "NewJob": "New Job Opportunities",
+    "JobTitle": "Job Opportunity Title",
+    "JobsB": "JOB OPPORTUNITIES",
+    "PopularJobs": "POPULAR JOB OPPORTUNITIES",
+    "EnterJobTitle": "*Enter Job Opportunity Title",
+
 
     "ProjectSlogan1": "Distances become close",
     "ProjectSlogan2": "More than a visa...",
