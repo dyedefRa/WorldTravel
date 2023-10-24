@@ -13,16 +13,16 @@
     var jobs = await _jobAppService.GetJobListForUserAsync(new WorldTravel.Dtos.Jobs.GetJobRequestDto() { IsSeenHomePage = true });
 }
 <!--Web Menu-->
-<div class="header-wrap classicHeader animated d-flex">
+<div class="header-wrap classicHeader animated d-flex" style="background-color:transparent;">
     <div class="container-fluid">
         <div class="row align-items-center">
             <!--Web Logo-->
             <div class="logo col-md-2 col-lg-2 d-none d-lg-block" style="padding-right: 0px;">
                 <a href="/Home" style="text-decoration:none;">
                     <div style="display:flex;">
-                        <img src="/web/images/world-logo.png" height="40" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
-                        <span class="logo-next-name">@L["ProjectName"]</span>
-                    </div>
+                        <img src="/web/images/new-logo.png" height="120" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
+@*                        <span class="logo-next-name">@L["ProjectName"]</span>
+*@                    </div>
                 </a>
             </div>
             <!--End Web Logo-->
@@ -39,7 +39,7 @@
                         @if (countryContents.Count > 0)
                         {
                             <li class="lvl1 parent dropdown">
-                                <a href="#">@L["Countries"] <i class="anm anm-angle-down-l"></i></a>
+                                <a href="#" class="fs15">@L["Countries"] <i class="anm anm-angle-down-l"></i></a>
                                 <ul class="dropdown">
                                     @foreach (var countryContent in countryContents)
                                     {
@@ -52,7 +52,7 @@
                         @if (visaTypes.Count > 0)
                         {
                             <li class="lvl1 parent dropdown">
-                                <a href="#">@L["VisaTypesB"] <i class="anm anm-angle-down-l"></i></a>
+                                <a href="#" class="fs15">@L["VisaTypesB"] <i class="anm anm-angle-down-l"></i></a>
                                 <ul class="dropdown">
                                     @foreach (var visaType in visaTypes)
                                     {
@@ -65,7 +65,7 @@
                         @if (jobs.Count > 0)
                         {
                             <li class="lvl1 parent dropdown">
-                                <a href="#">@L["JobsB"] <i class="anm anm-angle-down-l"></i></a>
+                                <a href="#" class="fs15">@L["JobsB"] <i class="anm anm-angle-down-l"></i></a>
                                 <ul class="dropdown">
                                     @foreach (var job in jobs)
                                     {
@@ -75,8 +75,8 @@
                                 </ul>
                             </li>
                         }
-                        <li class="lvl1"><a href="#about">@*<i class="fa fa-plus fa-fw"></i>*@ @L["HowProcessWork"]</a></li>
-                        <li class="lvl1"><a href="#contact" class="contantLink"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
+                        <li class="lvl1"><a href="#about" class="fs15">@*<i class="fa fa-plus fa-fw"></i>*@ @L["HowProcessWork"]</a></li>
+                        <li class="lvl1"><a href="#contact" class="contantLink fs15"><i class="fa fa-phone fa-fw"></i> @L["Contanct"]</a></li>
                     </ul>
                 </nav>
                 <!--End Web Menu-->
@@ -110,7 +110,7 @@
         @if (countryContents.Count > 0)
         {
             <li class="lvl1 parent dropdown">
-                <a href="#">@L["Countries"] <i class="anm anm-angle-down-l"></i></a>
+                <a href="#" class="fs15">@L["Countries"] <i class="anm anm-angle-down-l"></i></a>
                 <ul class="dropdown">
                     @foreach (var countryContent in countryContents)
                     {
@@ -123,7 +123,7 @@
         @if (visaTypes.Count > 0)
         {
             <li class="lvl1 parent dropdown">
-                <a href="#">@L["VisaTypesB"] <i class="anm anm-angle-down-l"></i></a>
+                <a href="#" class="fs15">@L["VisaTypesB"] <i class="anm anm-angle-down-l"></i></a>
                 <ul class="dropdown">
                     @foreach (var visaType in visaTypes)
                     {
@@ -136,7 +136,7 @@
         @if (jobs.Count > 0)
         {
             <li class="lvl1 parent dropdown">
-                <a href="#">@L["JobsB"] <i class="anm anm-angle-down-l"></i></a>
+                <a href="#" class="fs15">@L["JobsB"] <i class="anm anm-angle-down-l"></i></a>
                 <ul class="dropdown">
                     @foreach (var job in jobs)
                     {

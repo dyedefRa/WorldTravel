@@ -28,7 +28,7 @@
     }
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/web/images/world-logo.png" />
+    <link rel="shortcut icon" href="/web/images/new-logo.png" />
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="/web/css/plugins.css">
     <!-- Bootstap CSS -->
@@ -43,7 +43,7 @@
     @await RenderSectionAsync("styles", false)
     @await Component.InvokeLayoutHookAsync(LayoutHooks.Head.Last, StandardLayouts.Empty)
 </head>
-<body class="template-index belle" style="background-color:#f9f9f9">
+<body class="template-index belle" style="background-color:lightcyan;">
     <div id="pre-loader">
         <img src="/web/images/loader.gif" alt="Loading..." />
     </div>
@@ -81,22 +81,22 @@
                         <div class="language-dropdown">
                             <span class="language-dd">
                                 <img width="23" class="selectedLanguageImage" src="/global_assets/images/lang/tr.png" />
-                                <span class="selectedLanguageName">@L["Turkish"]</span>
+                                <span class="selectedLanguageName fs15">@L["Turkish"]</span>
                             </span>
                             <ul id="language" style="width:120px;">
                                 <li class="select-language">
                                     <a style="color:black;text-decoration:none;" href="#">
                                         <img width="23" class="optionLanguageImage" src="/global_assets/images/lang/en.png" />
-                                        <span class="optionLanguageName">@L["English"]</span>
+                                        <span class="optionLanguageName fs15">@L["English"]</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <p class="phone-no"><a href="tel:905520186969" title="@L["ClickCallMe"]" style="cursor:pointer;"><i class="anm anm-phone-s"></i> +90 (552) 018 6969 </a></p>
-                        <p style="margin-left:5px;" class="phone-no"><a href="mailto:nuraliemirkalayci@gmail.com" title="@L["ClickSendMail"]" style="cursor:pointer;text-transform:initial;"><i class="icon-email"></i> @L["SendMail"] </a></p>
+                        <p class="phone-no"><a href="tel:905343970662" class="fs15" title="@L["ClickCallMe"]" style="cursor:pointer;"><i class="anm anm-phone-s"></i> +90 (534) 397 0662 </a></p>
+                        <p style="margin-left:5px;" class="phone-no"><a href="mailto:contact@worldvisaturkey.com" class="fs15" title="@L["ClickSendMail"]" style="cursor:pointer;text-transform:initial;"><i class="icon-email"></i> @L["SendMail"] </a></p>
                     </div>
                     <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block" style="margin-top:3px;">
-                        <div class="text-center"><p class="top-header_middle-text"><a href="/Home">@L["ProjectName"]</a></p></div>
+                        <div class="text-center"><p class="top-header_middle-text"><a href="/Home" class="fs15">@L["ProjectName"]</a></p></div>
                     </div>
                     <div class="col-2 col-sm-4 col-md-3 col-lg-4">
                         @* <span class="user-menu d-block d-lg-none"><i class="anm anm-user-al" aria-hidden="true"></i></span>

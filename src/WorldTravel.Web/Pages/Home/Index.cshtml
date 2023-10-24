@@ -27,18 +27,18 @@
 }
 
 <!--Home slider-->
-<div class="slideshow slideshow-wrapper pb-section wow fadeInDown" data-wow-duration="1s">
+<div class="slideshow slideshow-wrapper pb-section wow fadeInDown" data-wow-duration="1s" style="background-color:#daf6fe">
     <div class="home-slideshow">
         <div class="slide slideshow--medium">
             <div class="blur-up lazyload">
-                <img class="blur-up lazyload" data-src="/web/images/home/home6.jpg" src="/web/images/home/home6.jpg" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
+                <img class="blur-up lazyload" data-src="/web/images/home/s1.png" src="/web/images/home/s1.png" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
                 <div class="slideshow__text-wrap slideshow__overlay classic middle">
-                    <div class="slideshow__text-content classic left">
+                    <div class="slideshow__text-content classic left" style="margin-top:-200px">
                         <div class="container">
                             <div class="wrap-caption left">
-                                <h2 class="h1 mega-title slideshow__title">@L["ProjectSlogan1"]</h2>
-                                <span class="mega-subtitle slideshow__subtitle">@L["ProjectSlogan2"]</span>
-                                <a class="btn" href="#about"> @L["ClickForInformation"] </a>
+                                <h2 class="h1 mega-title slideshow__title" style="margin-left:-200px;color:wheat">@L["ProjectSlogan1"]</h2>
+                                <span class="mega-subtitle slideshow__subtitle" style="font-size:26px;color:wheat">@L["ProjectSlogan2"]</span>
+                                <a href="#about" style="padding:14px;border-radius:17px;color:coral;" class="btn" "> @L["ClickForInformation"] </a>
                             </div>
                         </div>
                     </div>
@@ -47,14 +47,30 @@
         </div>
         <div class="slide slideshow--medium">
             <div class="blur-up lazyload">
-                <img class="blur-up lazyload" data-src="/web/images/home/home7.jpg" src="/web/images/home/home7.jpg" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
+                <img class="blur-up lazyload" data-src="/web/images/home/h1.png" src="/web/images/home/h1.png" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
                 <div class="slideshow__text-wrap slideshow__overlay classic middle">
-                    <div class="slideshow__text-content classic left">
+                    <div class="slideshow__text-content classic left" style="margin-top:-200px">
                         <div class="container">
                             <div class="wrap-caption left">
-                                <h2 class="h1 mega-title slideshow__title">@L["ProjectSlogan1"]</h2>
-                                <span class="mega-subtitle slideshow__subtitle">@L["ProjectSlogan2"]</span>
-                                <a class="btn" href="#about"> @L["ClickForInformation"] </a>
+                                <h2 class="h1 mega-title slideshow__title" style="margin-left:-200px;color:wheat">@L["ProjectSlogan1"]</h2>
+                                <span class="mega-subtitle slideshow__subtitle" style="font-size:26px;color:wheat">@L["ProjectSlogan2"]</span>
+                                <a href="#about" style="padding:14px;border-radius:17px;color:coral;" class="btn"> @L["ClickForInformation"] </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide slideshow--medium">
+            <div class="blur-up lazyload">
+                <img class="blur-up lazyload" data-src="/web/images/home/s2.png" src="/web/images/home/s2.png" alt="@L["ImageFailedToLoad"]" title="@L["DefaultImageTitle"]" />
+                <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                    <div class="slideshow__text-content classic left" style="margin-top:-200px">
+                        <div class="container">
+                            <div class="wrap-caption left">
+                                <h2 class="h1 mega-title slideshow__title" style="margin-left:-200px;color:wheat">@L["ProjectSlogan1"]</h2>
+                                <span class="mega-subtitle slideshow__subtitle" style="font-size:26px;color:wheat">@L["ProjectSlogan2"]</span>
+                                <a href="#about" style="padding:14px;border-radius:17px;color:coral;" class="btn"> @L["ClickForInformation"] </a>
                             </div>
                         </div>
                     </div>
@@ -64,9 +80,9 @@
     </div>
 </div>
 <!--End Home slider-->
-@if (Model.CountryContent.Any())
-{
-    <div class="collection-box section wow fadeInUp" data-wow-duration="2s">
+                @if (Model.CountryContent.Any())
+                {
+    <div class="collection-box section wow bounceInLeft" data-wow-duration="6s" style="background-color:#daf6fe;padding-bottom:70px;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -76,28 +92,25 @@
                     </div>
                 </div>
             </div>
-            <div class="collection-grid-4item wow fadeInUp" data-wow-duration="4s" style="padding-left:50px;padding-right:50px;">
-                @foreach (var countryContent in Model.CountryContent)
-                {
+            <div class="collection-grid-4item wow bounceInLeft" data-wow-duration="8s" style="padding-left:50px;padding-right:50px;">
+                                @foreach (var countryContent in Model.CountryContent)
+                                {
                     <div class="collection-grid-item p05">
                         <a href="/Country/Detail?Id=@countryContent.Id" class="collection-grid-item__link">
-                            <img data-src="@countryContent.PreviewImageUrl" src="@countryContent.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@countryContent.Title" class="blur-up lazyload h275" />
+                            <img data-src="@countryContent.PreviewImageUrl" style="width: 210px;height: 210px;border-radius:1000px" src="@countryContent.PreviewImageUrl" alt="@L["ImageFailedToLoad"]" title="@countryContent.Title" class="blur-up lazyload h275" />
                             <div class="collection-grid-item__title-wrapper bt7">
                                 <h3 class="collection-grid-item__title btn btn--secondary no-border">@countryContent.Title</h3>
                             </div>
                         </a>
                     </div>
-                }
+                                }
             </div>
         </div>
     </div>
-}
+                }
 
-@if (Model.VisaType.Any())
-{
-    <hr />
-    <hr />
-
+                @if (Model.VisaType.Any())
+                {
     <div class="section wow fadeInUp" data-wow-duration="2s">
         <div class="container">
             <div class="row">
@@ -110,8 +123,8 @@
             </div>
             <div class="categories-list-items">
                 <div class="row country-items wow fadeInUp" data-wow-duration="4s">
-                    @foreach (var visaType in Model.VisaType)
-                    {
+                                    @foreach (var visaType in Model.VisaType)
+                                    {
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 article country-item" style="padding: 20px;border: 2px solid #f9f9f9;text-align:center;">
                             <a class="article_featured-image" href="/VisaType/Detail?Id=@visaType.Id"><img width="287" height="124" class="blur-up lazyload" data-src="@visaType.PreviewImageUrl" src="@visaType.PreviewImageUrl" title="@visaType.Title" alt="@L["ImageFailedToLoad"]"></a>
                             <h2 class="h3"><a href="/VisaType/Detail?Id=@visaType.Id" class="visaTypeTitle">@visaType.Title</a></h2>
@@ -123,18 +136,17 @@
                             </ul>
                             <p><a href="/VisaType/Detail?Id=@visaType.Id" class="btn btn-secondary btn--small">@L["ReadMore"] <i class="fa fa-caret-right" aria-hidden="true"></i></a></p>
                         </div>
-                    }
+                                    }
                 </div>
             </div>
         </div>
     </div>
-}
-@if (Model.Job.Any())
-{
-    <hr />
-    <hr />
+                }
+                @if (Model.Job.Any())
+                {
 
-    <div class="section wow fadeInUp" data-wow-duration="2s">
+
+    <div class="section wow fadeInUp" data-wow-duration="2s" style="background-color:#daf6fe;padding-bottom:70px;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -146,8 +158,8 @@
             </div>
             <div class="categories-list-items">
                 <div class="row country-items wow fadeInUp" data-wow-duration="4s">
-                    @foreach (var job in Model.Job)
-                    {
+                                    @foreach (var job in Model.Job)
+                                    {
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 article country-item" style="padding: 20px;border: 2px solid #f9f9f9;text-align:center;">
                             <a class="article_featured-image" href="/Job/Detail?Id=@job.Id"><img width="287" height="124" class="blur-up lazyload" data-src="@job.PreviewImageUrl" src="@job.PreviewImageUrl" title="@job.Title" alt="@L["ImageFailedToLoad"]"></a>
                             <h2 class="h3"><a href="/Job/Detail?Id=@job.Id" class="jobTitle">@job.Title</a></h2>
@@ -159,15 +171,13 @@
                             </ul>
                             <p><a href="/Job/Detail?Id=@job.Id" class="btn btn-secondary btn--small">@L["ReadMore"] <i class="fa fa-caret-right" aria-hidden="true"></i></a></p>
                         </div>
-                    }
+                                    }
                 </div>
             </div>
         </div>
     </div>
-}
+                }
 
-<hr />
-<hr />
 
 <section id="about" class="bcg">
     <div class="container">
@@ -286,8 +296,8 @@
         </div>
         <div class="cont-content">
             <form method="post" class="golden-from" href="/Home">
-                @Html.AntiForgeryToken()
-                @(await Component.InvokeAsync<Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Themes.Basic.Components.PageAlerts.PageAlertsViewComponent>())
+                                @Html.AntiForgeryToken()
+                                @(await Component.InvokeAsync<Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Themes.Basic.Components.PageAlerts.PageAlertsViewComponent>())
                 <div class="row">
                     <div class="form-group col-md-6 col-lg-6 col-xl-6">
                         <abp-input asp-for="FormInputModel.Name" label="@L["Name"]" placeholder="@L["ContactNamePlaceHolder"]" class="golden-from-element" />
@@ -330,7 +340,7 @@
         </div>
     </div>
 </section>
-@section scripts {
+                @section scripts {
     <script>
         $(document).ready(function () {
             $('body').addClass('home12-category');
@@ -338,10 +348,10 @@
             $('.golden-from label').hide();
             //query temizle
 
-        @if (Model.FormInputModel.IsReturnPost)
-        {
-            @:$('.contantLink').click();
-        }
+                        @if (Model.FormInputModel.IsReturnPost)
+                        {
+                            @:$('.contantLink').click();
+                        }
                 window.history.replaceState(null, '', window.location.pathname);
         });
     </script>
