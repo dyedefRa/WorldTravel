@@ -13,17 +13,16 @@
     var jobs = await _jobAppService.GetJobListForUserAsync(new WorldTravel.Dtos.Jobs.GetJobRequestDto() { IsSeenHomePage = true });
 }
 <!--Web Menu-->
-<div class="header-wrap classicHeader animated d-flex"style="background-color:transparent;">
+<div class="header-wrap classicHeader animated d-flex">
     <div class="container-fluid">
-
         <div class="row align-items-center">
             <!--Web Logo-->
-            <div class="logo col-md-2 col-lg-2 d-none d-lg-block" style="padding-right: 0px;">
+            <div class="logo col-md-4 col-lg-4 d-none d-lg-block">
                 <a href="/Home" style="text-decoration:none;">
                     <div style="display:flex;">
-                        <img src="/web/images/new-logo.png" height="120" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
-@*                        <span class="logo-next-name">@L["ProjectName"]</span>
-*@                    </div>
+                        <img src="/web/images/world-logo.png" height="30" alt="@L["ImageFailedToLoad"]" title="Anasayfa" />
+                        <span class="logo-next-name" style="font-size:18px;">@L["ProjectName"]</span>
+                    </div>
                 </a>
             </div>
             <!--End Web Logo-->

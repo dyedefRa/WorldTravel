@@ -27,15 +27,13 @@ namespace WorldTravel.Web.Pages.Account
             _userAppService = userAppService;
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            return Redirect("~/Error?httpStatusCode=404");
             UserLoginInputModel = new UserLoginModel();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            return Redirect("~/Error?httpStatusCode=404");
             try
             {
                 if (ModelState.IsValid)

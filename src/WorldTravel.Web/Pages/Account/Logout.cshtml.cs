@@ -17,7 +17,7 @@ namespace WorldTravel.Web.Pages.Account
 
         public async Task<IActionResult> OnGet()
         {
-            return Redirect("~/Error?httpStatusCode=404");
+            //return Redirect("~/Error?httpStatusCode=404");
             await _signInManager.SignOutAsync();
 
             return Redirect("~/Home");

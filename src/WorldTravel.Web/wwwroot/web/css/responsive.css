@@ -418,10 +418,10 @@
 	
 	.slideshow .wrap-caption { padding:10px 0; }
 	.slideshow .slideshow__title { font-size:18px; }
-	.slideshow .slideshow__subtitle { display:none; }
-	.slideshow .container { width:320px; }
-	.slideshow .btn { display:none; }
-	.sliderFull .slideshow__subtitle { display:block; }
+/*	.slideshow .slideshow__subtitle { display:none; }
+*/	.slideshow .container { width:320px; }
+/*	.slideshow .btn { display:none; }
+*/	.sliderFull .slideshow__subtitle { display:block; }
 	.sliderFull .btn { display:inline-block; }
 	.sliderFull .slideshow__title { font-size:30px; }
 	.sliderFull .slideshow__subtitle { margin-bottom:10px; }

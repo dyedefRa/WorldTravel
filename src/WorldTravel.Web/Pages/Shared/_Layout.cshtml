@@ -8,9 +8,11 @@
 @using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetStyles
 @using Volo.Abp.Localization
 @using WorldTravel.Localization
+@using Volo.Abp.Users
 @using Microsoft.Extensions.Localization
 @inject IAbpAntiForgeryManager AbpAntiForgeryManager
 @inject IPageLayout PageLayout
+@inject ICurrentUser CurrentUser
 @inject IStringLocalizer<WorldTravelResource> L
 @{
     Layout = null;
@@ -28,7 +30,7 @@
     }
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/web/images/new-logo.png" />
+    <link rel="shortcut icon" href="/web/images/world-logo.png" />
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="/web/css/plugins.css">
     <!-- Bootstap CSS -->
@@ -98,14 +100,20 @@
                     <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block" style="margin-top:3px;">
                         <div class="text-center"><p class="top-header_middle-text"><a href="/Home" class="fs15">@L["ProjectName"]</a></p></div>
                     </div>
-                    <div class="col-2 col-sm-4 col-md-3 col-lg-4">
-                        @* <span class="user-menu d-block d-lg-none"><i class="anm anm-user-al" aria-hidden="true"></i></span>
+                    <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right">
+                        <span class="user-menu d-block d-lg-none"><i class="anm anm-user-al" aria-hidden="true"></i></span>
                         <ul class="customer-links list-inline">
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Create Account</a></li>
-                        <li><a href="wishlist.html">Wishlist</a></li>
-                        </ul>*@
-
+                            @if (CurrentUser.IsAuthenticated)
+                            {
+                                <li><a class="fs15" href="/Account/Manage">@L["MyAccountInformation"]</a></li>
+                                <li><a class="fs15" href="/Account/Logout">@L["Logout"]</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="fs15" href="/Account/Login">@L["LoginB"]</a></li>
+                                <li><a class="fs15" href="/Account/Register">@L["Register"]</a></li>
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -221,7 +229,6 @@
         <!--End For Newsletter Popup-->
         <abp-script-bundle name="custom_js_files" />
         <script src="~/assets/js/custom.js?_v=@DateTime.Now.Millisecond"></script>
-
 
         @await RenderSectionAsync("scripts", false)
         @await Component.InvokeAsync(typeof(WidgetScriptsViewComponent))
